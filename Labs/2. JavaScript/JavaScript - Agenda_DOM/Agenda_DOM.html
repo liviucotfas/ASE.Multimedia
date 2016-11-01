@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>Agenda telefonică</title>
+        <link rel="stylesheet" type="text/css" href="Agenda_HTML_CSS.css">
+    </head>
+    <body>
+        <h1>Agenda telefonică</h1>
+        <table>
+            <caption>
+                Lista persoane
+            </caption>
+            <thead>
+                <tr>
+                    <th>Nume</th>
+                    <th>Prenume</th>
+                    <th>Telefon</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <tr>
+                    <td>Popescu</td>
+                    <td>Ion</td>
+                    <td>023423222</td>
+                </tr>
+                <tr>
+                    <td>Vasilescu</td>
+                    <td>Maria</td>
+                    <td>073423222</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3">Număr persoane: 2</td>
+                </tr>
+            </tfoot>
+        </table>
+        <form action="#" class="controls">
+            <label for="nume">Nume:</label>
+            <input name="nume" id="nume">
+            <label for="prenume">Prenume:</label>
+            <input name="prenume" id="prenume">
+            <label for="Telefon">Telefon:</label>
+            <input name="telefon" id="telefon">
+            <input type="button" name="btnAdauga" value="Adaugă" onclick="adaugaPersoana()">
+        </form>
+
+        <script type="text/javascript">
+            function adaugaPersoana() {
+                
+                var tRow = document.createElement("tr");
+
+                var cNume = document.createElement("td");
+                if (document.getElementById("nume").value) {
+                    cNume.innerHTML = document.getElementById("nume").value;
+                }
+
+                var cPrenume = document.createElement("td");
+                if (document.getElementById("prenume").value) {
+                    cPrenume.innerHTML = document.getElementById("prenume").value;
+                }
+
+                var cTelefon = document.createElement("td");
+                if (document.getElementById("telefon").value) {
+                    cTelefon.innerHTML = document.getElementById("telefon").value;
+                }
+
+                tRow.appendChild(cNume);
+                tRow.appendChild(cPrenume);
+                tRow.appendChild(cTelefon);
+                
+                var tBody = document.getElementById("tableBody");
+                tBody.appendChild(tRow);
+
+                document.getElementsByTagName("tfoot")[0].childNodes[1].childNodes[1].innerHTML =
+                    "Număr persoane: " + tBody.children.length.toString();
+            }        
+        </script>
+    </body>
+</html>
