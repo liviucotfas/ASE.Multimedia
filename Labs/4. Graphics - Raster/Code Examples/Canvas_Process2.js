@@ -4,6 +4,10 @@
 - show a message when image processing fails due to CORS
 */
 
+/* Assignment
+1. show a message when image processing fails due to CORS
+*/
+
 function processImage(action) {
     var canvas = document.getElementById("result");
     var context = canvas.getContext("2d");
@@ -102,7 +106,7 @@ function loadImage() {
         c.fillText(img.src, 8, 25);
 
         // I. Compute histogram
-        var vR = new Array();
+        var vR = new Array(); //equivalent to var vR = []; Futher reading: http://www.w3schools.com/js/js_arrays.asp
         var vG = new Array();
         var vB = new Array();
         for (var i = 0; i < 256; i++){ 
