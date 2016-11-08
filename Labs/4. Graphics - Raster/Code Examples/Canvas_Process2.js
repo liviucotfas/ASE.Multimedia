@@ -138,16 +138,12 @@ function loadImage() {
 
 //extends the string prototype object
 //Inheritance and the prototype chain: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain 
+// "{0} {1}".format(10, 9)
 String.prototype.format = String.prototype.f = function () {
     var s = this,
         i = arguments.length;
 
     while (i--) {
-        s = s.replace(new RegExp('\\{' + i + '\\}', 'gm'), arguments[i]);
-        // g: ? //check the JavaScript CheatSheet included in the JavaScript Lab
-        // m: ? //check the JavaScript CheatSheet included in the JavaScript Lab
-
-        //Equivalent to:
         s = s.replace('{' + i + '}', arguments[i]);
     }
     return s;
