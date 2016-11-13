@@ -1,8 +1,4 @@
-﻿<!--- TODO
-Rewrite using ASP.NET Core
--->
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <title>Agenda telefonică</title>
@@ -46,67 +42,17 @@ Rewrite using ASP.NET Core
     </form>
 
     <script type="text/javascript">
-//        // I. Varianta locală folosind jQuery
-//
-//        $(document).ready(function () {
-//            $("#btnAdauga").click(function () {
-//                $("<tr></tr>")
-//                        .append($("<td></td>").append($("#nume").val()))
-//                        .append($("<td></td>").append($("#prenume").val()))
-//                        .append($("<td></td>").append($("#telefon").val()))
-//                        .appendTo("tbody");
+       $(document).ready(function () {
+           $("#btnAdauga").click(function () {
+               $("<tr></tr>")
+                       .append($("<td></td>").append($("#nume").val()))
+                       .append($("<td></td>").append($("#prenume").val()))
+                       .append($("<td></td>").append($("#telefon").val()))
+                       .appendTo("tbody");
 
-//                $("tfoot td").text("Număr persoane: " + $("tbody tr").length.toString());
-//            });
-//        });
-        
-        // II. Varianta folosind jQuery și server la distanță
-        $(document).ready(function () {
-
-            $.support.cors = true;
-
-            var serverUrl = "http://ase.softmentor.ro/agenda";
-            var listaPersoane = [];
-
-            function afisareListaPersoane() {
-                $("tbody").empty();
-
-                for (var i = 0; i < listaPersoane.length; i++) {
-                    var p = listaPersoane[i];
-
-                    $("<tr></tr>")
-                        .append($("<td></td>").append(p.nume))
-                        .append($("<td></td>").append(p.prenume))
-                        .append($("<td></td>").append(p.telefon))
-                        .appendTo("tbody");
-                }
-
-                $("tfoot td").text("Număr persoane: " + listaPersoane.length.toString());
-            }
-
-            function afisareListaServer() {
-                $.getJSON(serverUrl, function (dateServer) {
-                    listaPersoane = dateServer;
-                    afisareListaPersoane();
-                });
-            }
-
-            $("input[name='btnAdauga']").click(function () {
-
-                var persoana = {
-                    nume: $("#nume").val(),
-                    prenume: $("#prenume").val(),
-                    telefon: $("#telefon").val()
-                };
-
-                $.post(serverUrl, JSON.stringify(persoana));
-
-                afisareListaServer();
-            });
-
-            afisareListaServer();
-            setInterval(afisareListaServer, 3000);
-        });
+               $("tfoot td").text("Număr persoane: " + $("tbody tr").length.toString());
+           });
+       });
     </script>
 </body>
 </html>

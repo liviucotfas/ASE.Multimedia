@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>Agenda telefonică</title>
+        <link rel="stylesheet" type="text/css" href="Agenda_HTML_CSS.css">
+    </head>
+    <body>
+        <h1>Agenda telefonică</h1>
+        <table>
+            <caption>
+                Lista persoane
+            </caption>
+            <thead>
+                <tr>
+                    <th>Nume</th>
+                    <th>Prenume</th>
+                    <th>Telefon</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <tr>
+                    <td>Popescu</td>
+                    <td>Ion</td>
+                    <td>023423222</td>
+                </tr>
+                <tr>
+                    <td>Vasilescu</td>
+                    <td>Maria</td>
+                    <td>073423222</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3">Număr persoane: 2</td>
+                </tr>
+            </tfoot>
+        </table>
+        <form action="#" class="controls">
+            <label for="nume">Nume:</label>
+            <input name="nume" id="nume">
+            <label for="prenume">Prenume:</label>
+            <input name="prenume" id="prenume">
+            <label for="Telefon">Telefon:</label>
+            <input name="telefon" id="telefon">
+            <input type="button" name="btnAdauga" value="Adaugă" onclick="adaugaPersoana()">
+        </form>
+
+        <script type="text/javascript">
+            function adaugaPersoana() {
+                
+                var tRow = document.createElement("tr");
+
+                var cNume = document.createElement("td");
+                cNume.innerHTML = document.getElementById("nume").value;
+                tRow.appendChild(cNume);
+
+                var cPrenume = document.createElement("td");
+                cPrenume.innerHTML = document.getElementById("prenume").value;
+                tRow.appendChild(cPrenume);
+
+                var cTelefon = document.createElement("td");
+                cTelefon.innerHTML = document.getElementById("telefon").value;
+                tRow.appendChild(cTelefon);
+                
+                var tBody = document.getElementById("tableBody");
+                tBody.appendChild(tRow);
+
+                var tfoot =  document.getElementsByTagName("tfoot")[0]; // getElementsByTagName returns a collection from which we want to access the first (and only) element
+                var trInsideTfoot = tfoot.children[0]; // the <tfoot> in this example contains as the first (and only) child a <tr> element
+                var tdInsideTrInsideTfoot = trInsideTfoot[0]; // the <tr> inside the <tfoot> in this example contains as the first (and only) child a <td> element
+                //equivalent to document.getElementsByTagName("tfoot")[0].children[0].children[0]
+                tdInsideTrInsideTfoot.innerHTML = "Număr persoane: " + tBody.children.length.toString();
+            }        
+        </script>
+    </body>
+</html>
