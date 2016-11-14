@@ -1,20 +1,67 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>Video - Process</title>
-    <script src="http://code.jquery.com/jquery-latest.js" type="text/javascript"></script>
-    <link href="Video_Process.css" rel="stylesheet" type="text/css" />
-    <script src="Video_Process.js" type="text/javascript"></script>
+    <title>Video - Procesare</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 <body>
-
-<canvas id="canvasNormal"></canvas>
-<canvas id="canvasProcesat"></canvas>
 
 <video id="video" controls="controls" autoplay="autoplay">
     <source src="media/movie.mp4" type="video/mp4" />
     <source src="media/movie.ogg" type="video/ogg" />
 </video>
+<br>
+<canvas id="canvasProcesare"></canvas>
 
+<script type="text/javascript">
+    $(function () {
+
+        var video = $("#video")[0];
+
+        var canvas = $("#canvasProcesare")[0];
+        var context = canvas.getContext("2d");
+
+        setInterval(function () {
+
+            var W = canvas.width = video.clientWidth;
+            var H = canvas.height = video.clientHeight;
+
+            context.drawImage(video, 0, 0, W, H);
+
+            // !! OPERAȚIA VA EȘUA DACĂ VIDEO-UL NU A FOST 
+            // !! INCĂRCAT PRINTR-UN SERVER WEB SAU FACE PARTE 
+            // !! DINTR-UN DOMENIU DIFERIT DE CEL AL DOCUMENTULUI HTML
+            var imageData = context.getImageData(0, 0, W, H);
+            var pixels = imageData.data;
+
+            for (var y = 0; y < H; y++) {
+                for (var x = 0; x < W; x++) {
+
+                    // - se calculează indicele de început pentru pixel
+                    // în funcție de coordonate 
+                    // - fiecărui pixel îi corespund patru valori:
+                    //      pixels[i] - Red
+                    //      pixels[i+1] - Green
+                    //      pixels[i+2] - Blue
+                    //      pixels[i+3] - Opacity
+                    var i = (y * W * 4) + x * 4;
+
+                    if (y < 30) {
+                        pixels[i] /= 2;
+                        pixels[i + 1] /= 2;
+                        pixels[i + 2] /= 2;
+                    }
+                }
+            }
+
+            context.putImageData(imageData, 0, 0);
+
+            context.font = 'bold 16px sans-serif';
+            context.fillStyle = "white";
+            context.fillText("Poziție: " + video.currentTime.toFixed(1) + "s", 10, 22);
+
+        }, 30);
+    });
+</script>    
 </body>
 </html>
