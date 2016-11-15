@@ -1,4 +1,6 @@
-﻿$(document).ready(function () {
+﻿
+
+$(document).ready(function () {
     
     var video = document.getElementById('video');
     var contextNormal = document.getElementById('canvasNormal').getContext('2d');
@@ -6,6 +8,13 @@
 
     video.addEventListener('play', function () {
         draw(video, contextNormal, contextProcesat);
+         //TODO
+         /*cw = v.clientWidth;
+        ch = v.clientHeight;
+        canvas.width = cw;
+        canvas.height = ch;
+        back.width = cw;
+        back.height = ch;*/
     }, false);
 
 });
@@ -15,30 +24,30 @@ function draw(video, contextNormal, contextProcesat) {
         return false;
     }
 
-
+    //rotation effect
     var unghi = 3 * Math.PI / 180;
     var ct = Math.cos(unghi), st = Math.sin(unghi);
     var x = video.clientWidth / 2, y = video.clientHeight / 2;
-    contextNormal.transform(ct, -st, st, ct,
-                -x * ct - y * st + x, x * st - y * ct + y);
-    
+    contextNormal.transform(ct, -st, st, ct, -x * ct - y * st + x, x * st - y * ct + y);
     contextNormal.drawImage(video, 0, 0, video.clientWidth, video.clientHeight);
+    contextNormal.fillText("NE-PROCESAT", 10, 10);
+
+    //emboss effect
+    var imageData = contextNormal.getImageData(0, 0, video.clientWidth, video.clientHeight);
+    var pixels = imageData.data;
+    var imgDataWidth = imageData.width;
     
-    var idata = contextNormal.getImageData(0, 0, video.clientWidth, video.clientHeight);
-    var data = idata.data;
-    var w = idata.width;
-	var limit = data.length;
-    
-    for (var i = 0; i < limit; i++) {
+    for (var i = 0; i < pixels.length; i++) {
         if (i % 4 != 3) {
-            data[i] = 127 + 2 * data[i] - data[i + 4] - data[i + w * 4];
+            pixels[i] = 127 + 2 * pixels[i] - pixels[i + 4] - pixels[i + imgDataWidth * 4];
         }
     }
 
-    contextProcesat.putImageData(idata, 0, 0);
-    
-    contextNormal.fillText("NE-PROCESAT", 10, 10);
+    contextProcesat.putImageData(imageData, 0, 0);
     contextProcesat.fillText("PROCESAT", 10, 10);
 
-    setTimeout(draw, 20, video, contextNormal, contextProcesat);
+    //The setTimeout() method calls a function or evaluates an expression after a specified number of milliseconds.
+    //Tip: 1000 ms = 1 second.
+    //33ms ~= 30fps
+    setTimeout(draw, 33, video, contextNormal, contextProcesat);
 }
