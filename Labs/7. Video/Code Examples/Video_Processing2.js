@@ -10,13 +10,7 @@ $(document).ready(function () {
 
     video.addEventListener('play', function () {
         draw(video, contextNormal, contextProcesat);
-         //TODO
-         /*cw = v.clientWidth;
-        ch = v.clientHeight;
-        canvas.width = cw;
-        canvas.height = ch;
-        back.width = cw;
-        back.height = ch;*/
+         //TODO add the code for resizing the canvses here
     }, false);
 
 });
