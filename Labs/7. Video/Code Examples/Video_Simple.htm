@@ -6,37 +6,43 @@
 </head>
 <body>
 
-<video id="myVideo" controls="hidden" autoplay="autoplay">
+<video id="video" autoplay controls>
     <source src="media/movie.mp4" type="video/mp4" />
     <source src="media/movie.ogg" type="video/ogg" />
     Fără suport video.
 </video>
 
-<a id="btnStop" href="#">pauză</a>
-<a id="btnControale" href="#">controale</a>
+<a id="btnStop" href="#">Pause</a>
+<a id="btnControls" href="#">Hide Controls</a>
 
 <script type="text/javascript">
 
     $(document).ready(function () {
-        var v = document.getElementById("myVideo");
+        var v = document.getElementById("video");
         var btnStop = $("#btnStop");
 
         btnStop.click(function () {
             if (v.paused) {
                 v.play();
-                btnStop.text("pauză");
+                btnStop.text("Pause");
             }
             else {
                 v.pause();
-                btnStop.text("porneșteeee");
+                btnStop.text("Play");
             }
         });
 
-        $("#btnControale").click(function () {
+        var btnControls = $("#btnControls");
+        btnControls.click(function () {
             if (v.hasAttribute("controls")) {
                 v.removeAttribute("controls")
+                btnStop.text("Show Controls");
             } else {
-                v.setAttribute("controls", "controls")
+                v.setAttribute("controls", "") 
+                //we put "" because the controls atribute has no value <video controls></video>
+                //https://developer.mozilla.org/en/docs/Web/API/Element/setAttribute
+
+                btnStop.text("Hide Controls");
             } 
         });
     });
