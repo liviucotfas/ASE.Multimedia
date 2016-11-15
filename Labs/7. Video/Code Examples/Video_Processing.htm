@@ -1,7 +1,10 @@
-﻿<!DOCTYPE html>
+﻿<!--- Assignment
+1. Change the code bellow to display the video in grayscale
+-->
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Video - Procesare</title>
+    <title>Video - Processing</title>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 <body>
@@ -9,6 +12,7 @@
 <video id="video" controls="controls" autoplay="autoplay">
     <source src="media/movie.mp4" type="video/mp4" />
     <source src="media/movie.ogg" type="video/ogg" />
+    Your browser doesn't support HTML5 video.
 </video>
 <br>
 <canvas id="canvasProcesare"></canvas>
@@ -32,9 +36,6 @@
             for (var y = 0; y < H; y++) {
                 for (var x = 0; x < W; x++) {
 
-                    // - se calculează indicele de început pentru pixel
-                    // în funcție de coordonate 
-                    // - fiecărui pixel îi corespund patru valori:
                     //      pixels[i] - Red
                     //      pixels[i+1] - Green
                     //      pixels[i+2] - Blue
@@ -53,9 +54,14 @@
 
             context.font = 'bold 16px sans-serif';
             context.fillStyle = "white";
-            context.fillText("Poziție: " + video.currentTime.toFixed(1) + "s", 10, 22);
+            context.fillText("Time: " + video.currentTime.toFixed(1) + "s", 10, 22);
+            //The toFixed() method formats a number using fixed-point notation
+            //Number.prototype.toFixed(): https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed
 
-        }, 30);
+        }, 33);
+        //The setTimeout() method calls a function or evaluates an expression after a specified number of milliseconds.
+        //Tip: 1000 ms = 1 second.
+        //33ms ~= 30fps
     });
 </script>    
 </body>

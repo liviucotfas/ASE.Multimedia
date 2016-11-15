@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿<!--- Assignment
+1. Add a new button for mute /unmute
+-->
+
+<!DOCTYPE html>
 <html>
 <head>
     <title>Video - Simple</title>
@@ -9,7 +13,7 @@
 <video id="video" autoplay controls>
     <source src="media/movie.mp4" type="video/mp4" />
     <source src="media/movie.ogg" type="video/ogg" />
-    Fără suport video.
+    Your browser doesn't support HTML5 video.
 </video>
 
 <a id="btnStop" href="#">Pause</a>
@@ -18,31 +22,42 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-        var v = document.getElementById("video");
+        var video = document.getElementById("video");
         var btnStop = $("#btnStop");
 
-        btnStop.click(function () {
-            if (v.paused) {
-                v.play();
+        //Play/Pause
+        btnStop.click(function (e) {
+
+            //prevent the browser from navigating to # (adding # to the url)
+            //https://api.jquery.com/event.preventdefault/
+            //http://stackoverflow.com/questions/30473581/when-to-use-preventdefault-vs-return-false
+            e.preventDefault();
+
+            if (video.paused) {
+                video.play();
                 btnStop.text("Pause");
             }
             else {
-                v.pause();
+                video.pause();
                 btnStop.text("Play");
             }
         });
 
+        //Show/Hide Controls
         var btnControls = $("#btnControls");
-        btnControls.click(function () {
-            if (v.hasAttribute("controls")) {
-                v.removeAttribute("controls")
-                btnStop.text("Show Controls");
+        btnControls.click(function (e) {
+
+            e.preventDefault();
+
+            if (video.hasAttribute("controls")) {
+                video.removeAttribute("controls")
+                btnControls.text("Show Controls");
             } else {
-                v.setAttribute("controls", "") 
+                video.setAttribute("controls", "") 
                 //we put "" because the controls atribute has no value <video controls></video>
                 //https://developer.mozilla.org/en/docs/Web/API/Element/setAttribute
 
-                btnStop.text("Hide Controls");
+                btnControls.text("Hide Controls");
             } 
         });
     });

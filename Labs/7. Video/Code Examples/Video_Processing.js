@@ -1,4 +1,6 @@
-﻿
+﻿/* Assignment
+1. Change the code bellow to make the dimensions of the two canvases equal to the dimensions of the video element 
+*/
 
 $(document).ready(function () {
     
