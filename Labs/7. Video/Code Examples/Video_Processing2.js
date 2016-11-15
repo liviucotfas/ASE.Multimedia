@@ -26,7 +26,7 @@ function draw(video, contextNormal, contextProcesat) {
     var x = video.clientWidth / 2, y = video.clientHeight / 2;
     contextNormal.transform(ct, -st, st, ct, -x * ct - y * st + x, x * st - y * ct + y);
     contextNormal.drawImage(video, 0, 0, video.clientWidth, video.clientHeight);
-    contextNormal.fillText("NE-PROCESAT", 10, 10);
+    contextNormal.fillText("Rotation Effect", 10, 10);
 
     //emboss effect
     var imageData = contextNormal.getImageData(0, 0, video.clientWidth, video.clientHeight);
@@ -40,10 +40,10 @@ function draw(video, contextNormal, contextProcesat) {
     }
 
     contextProcesat.putImageData(imageData, 0, 0);
-    contextProcesat.fillText("PROCESAT", 10, 10);
+    contextProcesat.fillText("Emboss Effect", 10, 10);
 
     //The setTimeout() method calls a function or evaluates an expression after a specified number of milliseconds.
     //Tip: 1000 ms = 1 second.
-    //33ms ~= 30fps
-    setTimeout(draw, 33, video, contextNormal, contextProcesat);
+    //66ms ~= 15fps
+    setTimeout(draw, 66, video, contextNormal, contextProcesat);
 }
