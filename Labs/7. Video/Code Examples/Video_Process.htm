@@ -15,10 +15,8 @@
 
 <script type="text/javascript">
     $(function () {
-
-        var video = $("#video")[0];
-
-        var canvas = $("#canvasProcesare")[0];
+        var video = $("#video")[0]; //var video = document.getELementById("video")
+        var canvas = $("#canvasProcesare")[0]; // var canvas = document.getELementById("canvasProcesare");
         var context = canvas.getContext("2d");
 
         setInterval(function () {
@@ -28,9 +26,6 @@
 
             context.drawImage(video, 0, 0, W, H);
 
-            // !! OPERAȚIA VA EȘUA DACĂ VIDEO-UL NU A FOST 
-            // !! INCĂRCAT PRINTR-UN SERVER WEB SAU FACE PARTE 
-            // !! DINTR-UN DOMENIU DIFERIT DE CEL AL DOCUMENTULUI HTML
             var imageData = context.getImageData(0, 0, W, H);
             var pixels = imageData.data;
 
