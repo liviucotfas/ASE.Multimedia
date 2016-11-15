@@ -40,13 +40,13 @@
                     //      pixels[i+1] - Green
                     //      pixels[i+2] - Blue
                     //      pixels[i+3] - Opacity
-                    var i = (y * W * 4) + x * 4;
+                    var offset = (( W * y) + x) * 4;
 
                     //make the first 30 lines darker
                     if (y < 30) {
-                        pixels[i] /= 2;
-                        pixels[i + 1] /= 2;
-                        pixels[i + 2] /= 2;
+                        pixels[offset] /= 2;
+                        pixels[offset + 1] /= 2;
+                        pixels[offset + 2] /= 2;
                     }
                 }
             }
