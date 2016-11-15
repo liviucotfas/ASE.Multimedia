@@ -6,6 +6,9 @@
 
 /* Assignment
 1. show a message when image processing fails due to CORS
+2. modify the code bellow in order to display the negative image in the canvas with the id result 
+3. modify the code bellow in order to display the image in only black and white in the canvas with the id result
+4. modify the code bellow in order to modify the lightness of the image displayed in $("#result) 
 */
 
 function processImage(action) {
@@ -122,7 +125,7 @@ function loadImage() {
 
         drawHistogram(vR, vG, vB);
 
-        // II. Make black and white
+        // II. Convert to greyscale
         processImage(
             function (x, y, r, g, b, a) {
                 var m = (r + g + b) / 3;
@@ -138,16 +141,12 @@ function loadImage() {
 
 //extends the string prototype object
 //Inheritance and the prototype chain: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain 
+// "{0} {1}".format(10, 9)
 String.prototype.format = String.prototype.f = function () {
     var s = this,
         i = arguments.length;
 
     while (i--) {
-        s = s.replace(new RegExp('\\{' + i + '\\}', 'gm'), arguments[i]);
-        // g: ? //check the JavaScript CheatSheet included in the JavaScript Lab
-        // m: ? //check the JavaScript CheatSheet included in the JavaScript Lab
-
-        //Equivalent to:
         s = s.replace('{' + i + '}', arguments[i]);
     }
     return s;
