@@ -92,7 +92,7 @@
             // 3. Gestiune mouse
             // - coordonatele cursorului sunt salvate în variabilele globale mx și my
             // - variabilele sunt actualizate la fiecare mișcare a mouse-ului
-            // - la fiecare 30ms coordonatele sunt ajustate aleator cu + / - 1 pixel
+            // - la fiecare 33ms coordonatele sunt ajustate aleator cu + / - 1 pixel
             mx = 0;
             my = 0;
             $(window).mousemove(function (e) {
@@ -103,7 +103,7 @@
             setInterval(function () {
                 mx += Math.round(Math.random() * 2 - 1);
                 my += Math.round(Math.random() * 2 - 1);
-            }, 30);
+            }, 33);
         });    
     </script>
 </body>
