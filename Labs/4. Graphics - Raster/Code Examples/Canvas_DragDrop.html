@@ -12,10 +12,10 @@
             function desenare(img) {
                 var cW = img.width, cH = img.height;
                
-                $("#canvasImagine")
+                $("#canvasProcessedImagine")
                     .attr({ width: cW, height: cH });
                 
-                var context = $("#canvasImagine")[0].getContext("2d");
+                var context = $("#canvasProcessedImagine")[0].getContext("2d");
                 context.drawImage(img, 0, 0);
 
                 var v = [];
@@ -120,19 +120,20 @@
 
             //?After an event triggers on the deepest possible element, it then triggers on parents in nesting order
             //https://javascript.info/tutorial/bubbling-and-capturing
-            $("#canvasImagine").click(function () {
+            $("#canvasProcessedImagine").click(function () {
                 $("a").attr("href", this.toDataURL("image/png"));
             });
         });
     </script>
 </head>
-<body style="text-align:center; background-color:black">
-    <a href="#" download="imagine.png">
+<body style="text-align:center;">
+    Drag and drop an image to start. Click on the image afterwards to download it. <br>
+    <a href="#" download="processedImage.png">
         <!-- 
             download attribute: download file when clicking on the link (instead of navigating to the file)
             http://www.w3schools.com/tags/att_a_download.asp
         -->
-        <canvas id="canvasImagine"></canvas>
+        <canvas id="canvasProcessedImagine"></canvas>
     </a>
 </body>
 </html>
