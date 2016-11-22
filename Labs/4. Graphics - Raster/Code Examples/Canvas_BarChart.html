@@ -69,6 +69,9 @@ Assignment
     
     $(document).ready(function () {
         $("#btnDrawChart").click(function () {
+
+            //the eval() function evaluates JavaScript code represented as a string.
+            //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval
             drawChart(eval("[" + $("#tbValues").val() + "]"));
         });
     });
