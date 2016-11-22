@@ -1,5 +1,13 @@
 ﻿/* Assignment
 1. Change the code bellow to make the dimensions of the two canvases equal to the dimensions of the video element
+Hint:
+When video.clientWidth / video.clientHeight < video.videoWidth / video.videoHeight we should have canvas.height = video.clientWidth * video.videoHeight / video.videoWidth;
+if(video.clientWidth / video.clientHeight < video.videoWidth / video.videoHeight)
+{
+    canvas.width = video.clientWidth; 
+    canvas.height = video.clientWidth * video.videoHeight / video.videoWidth;
+ } 
+
 2. Implement black&white
 Hint: r'=g'=b'=(r+g+b)/3;
 3. Implement threshold
@@ -20,6 +28,9 @@ Hint: check https://gist.github.com/anonymous/1888841
 10. Implement blue
 */
 
+"use strict";
+
+//Note: global variables should be avoided. Learn more at: https://www.w3.org/wiki/JavaScript_best_practices#Avoid_globals
 var mode = "normal";
 
 $(document).ready(function () {
@@ -28,18 +39,17 @@ $(document).ready(function () {
         context.restore();
         context.save();
         
-        //more about teh data attribute: https://developer.mozilla.org/en/docs/Web/Guide/HTML/Using_data_attributes
+        //more about the data attribute: https://developer.mozilla.org/en/docs/Web/Guide/HTML/Using_data_attributes
         window.mode = $(this).data("state"); //equivalent to $(this)[0].dataset.state
-
-        
     });
 
     var video = document.getElementById('video');
-    var context = document.getElementById('canvasProcessed').getContext('2d');
+    var canvas = document.getElementById('canvasProcessed');
+    var context = canvas.getContext('2d');
 
     video.addEventListener('play', function () {
         draw(video, context);
-        //TODO add the code for resizing the canvses here
+        //TODO add the code for resizing the canvas here     
     }, false);
 
 });
@@ -51,9 +61,11 @@ function draw(video, context) {
 
     switch (mode) {
         case "normal":
-            context.drawImage(video, 0, 0, video.clientWidth, video.clientHeight);
-            var imageData = context.getImageData(0, 0, video.clientWidth, video.clientHeight);
-            context.putImageData(imageData, 0, 0);
+
+             var canvas = document.getElementById('canvasProcessed');
+            context.drawImage(video, 0, 0, canvas.clientWidth, canvas.clientHeight);
+            //var imageData = context.getImageData(0, 0, video.clientWidth, video.clientHeight);
+            //context.putImageData(imageData, 0, 0);
             break;
         case "rotation":
             var unghi = 3 * Math.PI / 180;

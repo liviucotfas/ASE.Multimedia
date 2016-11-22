@@ -27,10 +27,10 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-6"> <!-- What does col-ms-6 mean? Check http://getbootstrap.com/css/#grid -->
                 <h2>Original</h2>
                 <div class="embed-responsive embed-responsive-16by9">
-                    <video id="video" controls autoplay loop crossorigin="anonymous" class="embed-responsive-item">
+                    <video id="video" controls autoplay loop muted crossorigin="anonymous" class="embed-responsive-item">
                         <source src="https://dl.dropboxusercontent.com/u/70618257/tears-of-steel-battle-clip-medium.mp4" type="video/mp4" />
                         <source src="https://dl.dropboxusercontent.com/u/70618257/tears-of-steel-battle-clip-medium.ogg" type="video/ogg" /> Your browser doesn't support HTML5 video.
                     </video>
@@ -40,12 +40,13 @@
 
             <div class="col-sm-6">
                 <h2>Transformed</h2>
-                <canvas id="canvasProcessed"></canvas>
+                    <canvas id="canvasProcessed"></canvas>
             </div>
         </div>
 
         <div class="btn-toolbar" role="toolbar" aria-label="...">
             <div class="btn-group" role="group" aria-label="...">
+                <!-- https://developer.mozilla.org/en/docs/Web/Guide/HTML/Using_data_attributes -->
                 <button type="button" class="btn btn-default effectType" data-state="normal">Normal</button>
             </div>
             <div class="btn-group" role="group" aria-label="...">
