@@ -36,7 +36,9 @@ var mode = "normal";
 $(document).ready(function () {
 
     $('.effectType').click(function () {
+        //Restores the previously saved canvas state
         context.restore();
+        //Saves the entire state of the canvas by pushing the current state onto a stack
         context.save();
         
         //more about the data attribute: https://developer.mozilla.org/en/docs/Web/Guide/HTML/Using_data_attributes
