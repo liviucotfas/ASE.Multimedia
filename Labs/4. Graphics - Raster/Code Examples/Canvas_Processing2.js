@@ -87,6 +87,8 @@ function loadImage() {
     // $("<img>").get(0)
     // //https://learn.jquery.com/using-jquery-core/faq/how-do-i-pull-a-native-dom-element-from-a-jquery-object/
 
+    img.crossOrigin = "anonymous"; //more details: https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS
+
     img.onerror = function (msg, url, line) {
         alert("ERROR loading image using url '{0}'.".format(img.src));
     };
