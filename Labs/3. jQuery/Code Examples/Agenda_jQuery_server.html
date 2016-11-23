@@ -67,6 +67,7 @@ Rewrite using ASP.NET Core
                         .appendTo("tbody");
                 }
 
+                //tfoot td - descendant CSS selector
                 $("tfoot td").text("Număr persoane: " + listaPersoane.length.toString());
             }
 
@@ -91,7 +92,7 @@ Rewrite using ASP.NET Core
             });
 
             afisareListaServer();
-            setInterval(afisareListaServer, 3000);
+            setInterval(afisareListaServer, 3000); //3000ms = 3s
         });
     </script>
 </body>

@@ -33,7 +33,9 @@
             var cW = canvas.width, cH = canvas.height;
 
             // 1. Încărcare dinamică imagine + pornire timer la terminarea încărcării
-            var img = $("<img>").attr("src", "media/Penguins.jpg")
+            var img = $("<img>")
+                .attr("crossorigin","anonymous")
+                .attr("src", "https://dl.dropboxusercontent.com/u/70618257/HTML5Multimedia/Penguins.jpg")
                 .load(function () { setInterval(desenare, 30); });
 
             // 2. Funcția de procesare apelată la fiecare 30ms
