@@ -31,7 +31,7 @@ Hint: check https://gist.github.com/anonymous/1888841
 "use strict";
 
 //Note: global variables should be avoided. Learn more at: https://www.w3.org/wiki/JavaScript_best_practices#Avoid_globals
-var mode = "normal";
+var effect = "normal";
 
 $(document).ready(function () {
 
@@ -42,7 +42,7 @@ $(document).ready(function () {
         context.save();
         
         //more about the data attribute: https://developer.mozilla.org/en/docs/Web/Guide/HTML/Using_data_attributes
-        window.mode = $(this).data("state"); //equivalent to $(this)[0].dataset.state
+        window.effect = $(this).data("effect"); //equivalent to $(this)[0].dataset.effect
     });
 
     var video = document.getElementById('video');
@@ -61,7 +61,7 @@ function draw(video, context) {
         return false;
     }
 
-    switch (mode) {
+    switch (effect) {
         case "normal":
             context.drawImage(video, 0, 0, video.clientWidth, video.clientHeight);            
             break;
