@@ -63,11 +63,7 @@ function draw(video, context) {
 
     switch (mode) {
         case "normal":
-
-             var canvas = document.getElementById('canvasProcessed');
-            context.drawImage(video, 0, 0, canvas.clientWidth, canvas.clientHeight);
-            //var imageData = context.getImageData(0, 0, video.clientWidth, video.clientHeight);
-            //context.putImageData(imageData, 0, 0);
+            context.drawImage(video, 0, 0, video.clientWidth, video.clientHeight);            
             break;
         case "rotation":
             var unghi = 3 * Math.PI / 180;
@@ -91,6 +87,12 @@ function draw(video, context) {
             }
             context.putImageData(imageData, 0, 0);
             context.fillText("Emboss Effect", 10, 10);
+            break;
+        case "blackWhite":
+            //context.drawImage(video, 0, 0, video.clientWidth, video.clientHeight);
+            //var imageData = context.getImageData(0, 0, video.clientWidth, video.clientHeight);
+            //process the pixels
+            //context.putImageData(imageData, 0, 0);
             break;
     }
 
