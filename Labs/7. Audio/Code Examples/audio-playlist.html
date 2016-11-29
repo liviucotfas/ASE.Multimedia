@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Audio - Playlist</title>
+    <style type="text/css">
+        #playlist, #controls
+        {
+            background: gray;
+            width: 400px;
+            padding: 5px;
+            font-family: Sans-Serif;
+        }
+        
+        #playlist
+        {            
+            list-style-type: none;
+        }
+        
+        #controls span
+        {
+            display: inline-block;
+            min-width: 150px;
+            text-align: right; 
+            padding-right: 5px;           
+            color: #eeeedd;
+            background: #333;
+        }
+        
+        #playlist .active
+        {
+            color: #7D7DFF;
+        }
+        
+        #playlist li
+        {
+            color: #eeeedd;
+            background: #333;
+            padding: 5px;
+            display: block;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+    <audio id="audio">
+        Your browser does not support the <code>audio</code> element.
+    </audio>
+    <p id="controls">
+        <span id="currentPosition">dfs</span>
+        <button id="btnPlayPause">||</button>
+        <button id="btnForward">&gt;&gt;</button>
+        <button id="btnNext">&gt;|</button>
+    </p>
+    <ul id="playlist">
+        <li data-url="http://www.archive.org/download/bolero_69/Bolero.mp3">
+            Ravel - Bolero
+        </li>
+        <li data-url="http://www.archive.org/download/MoonlightSonata_755/Beethoven-MoonlightSonata.mp3">
+            Beethoven - Moonlight Sonata
+        </li>
+        <li data-url="http://www.archive.org/download/CanonInD_261/CanoninD.mp3">
+            Pachelbel - Canon in D
+        </li>
+    </ul>
+
+    <script type="text/javascript">
+        $(function () {
+            var audio = $('#audio')[0];
+            var tracks = []; //track list
+
+            // 1. Afișare poziție curentă în secunde
+            setInterval(function () {
+
+                if (audio.duration) {
+                    $("#controls span").text(
+                      Math.floor(audio.currentTime) + " / " +
+                        Math.floor(audio.duration));
+                }
+                else {
+                    $("#controls span").text("Încărcare...");
+                };
+            }, 30);
+
+            // 2. Parcurgere listă pentru asociere 
+            // evenimente și populare listă de piese
+            $("#playlist li").each(function () {
+                tracks.push($(this).data("url"));
+
+                $(this).click(function () {
+                    play($(this));
+                });
+            });
+
+            // 3. Funcții utile
+            function play(url) {
+
+                $("#playlist li[data='" + url + "']")
+                    .addClass("active")
+                    .siblings().removeClass("active");
+
+                audio.src = url;
+                audio.load();
+                audio.play();
+            }
+
+            function next() {
+                var i = tracks.indexOf(audio.src) + 1;
+                if (i >= tracks.length) {
+                    i = 0;
+                }
+
+                play(tracks[i]);
+            }
+
+            // 4. Asociere evenimente
+            $("#btnPlayPause").click(function () {
+                if (audio.paused) {
+                    audio.play();
+                    $("#btnPlayPause").text("||");
+                }
+                else {
+                    audio.pause();
+                    $("#btnPlayPause").text(">");
+                }
+            });
+
+            $("#btnForward").click(function () {
+                audio.currentTime += 10;
+            });
+
+            $("#btnNext").click(next);
+
+            $(audio).bind("ended", next);
+
+            next(); // pornire redate
+        });
+    </script>
+</body>
+</html>
