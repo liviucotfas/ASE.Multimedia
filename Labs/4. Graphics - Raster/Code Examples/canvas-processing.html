@@ -2,7 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Procesare imagine</title>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <script 
+        src="https://code.jquery.com/jquery-latest.js"
+        crossorigin="anonymous"></script>
     <style type="text/css">
         body
         {
@@ -23,9 +25,7 @@
 </head>
 <body>
     <canvas width="860" height="600"></canvas>
-    <script type="text/javascript">
-
-
+    <script>
         $(function () {
             var canvas = $("canvas")[0];
             var c = canvas.getContext("2d");

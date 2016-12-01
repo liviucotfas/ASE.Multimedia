@@ -20,12 +20,16 @@ b' = (r * .272) + (g *.534) + (b * .131)
 5. Implement invert (negative)
 Hint: r' = 255 – r; g' = 255 – g; b' = 255 – b;
 6. Implement pixelate
-Hint: check https://gist.github.com/anonymous/1888841
+Hint: check https://gist.github.com/anonymous/1888841 (the code contains a small mistake ;) )
 7. Implement 2Channels
 Hint: check https://gist.github.com/anonymous/1888841
 8. Implement red
 9. Implement green
 10. Implement blue
+11. Automatically resize the canvas when the size of the video element changes (ex: when the user resizes the browser window, when the user rotates the phone or the tablet)
+Hint: 
+https://api.jquery.com/resize/
+https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onresize
 */
 
 "use strict";
