@@ -27,7 +27,9 @@ Hint: check https://gist.github.com/anonymous/1888841
 9. Implement green
 10. Implement blue
 11. Automatically resize the canvas when the size of the video element changes (ex: when the user resizes the browser window, when the user rotates the phone or the tablet)
-Hint: https://api.jquery.com/resize/
+Hint: 
+https://api.jquery.com/resize/
+https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onresize
 */
 
 "use strict";
