@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>Audio - Playlist</title>
+    <title>HTML5 - Audio Playlist</title>
     <style type="text/css">
         #playlist, #controls
         {
@@ -70,10 +70,11 @@
 
     <script type="text/javascript">
         $(function () {
+
             var audio = $('#audio')[0];
             var tracks = []; //track list
 
-            // 1. Afișare poziție curentă în secunde
+            // 1. Display the current time in seconds
             setInterval(function () {
 
                 if (audio.duration) {
@@ -82,24 +83,24 @@
                         Math.floor(audio.duration));
                 }
                 else {
-                    $("#controls span").text("Încărcare...");
+                    $("#controls span").text("Loading...");
                 };
             }, 30);
 
-            // 2. Parcurgere listă pentru asociere 
-            // evenimente și populare listă de piese
+            // 2. Iterate over the playlist in order to associate events
             $("#playlist li").each(function () {
-                tracks.push($(this).data("url"));
+                var url = $(this).data("url");
+                tracks.push(url);
 
                 $(this).click(function () {
-                    play($(this));
+                    play(url);
                 });
             });
 
-            // 3. Funcții utile
+            // 3. Play/Next methods
             function play(url) {
 
-                $("#playlist li[data='" + url + "']")
+                $("#playlist li[data-url='" + url + "']")
                     .addClass("active")
                     .siblings().removeClass("active");
 
@@ -117,7 +118,7 @@
                 play(tracks[i]);
             }
 
-            // 4. Asociere evenimente
+            // 4. Associate events
             $("#btnPlayPause").click(function () {
                 if (audio.paused) {
                     audio.play();
@@ -137,7 +138,7 @@
 
             $(audio).bind("ended", next);
 
-            next(); // pornire redate
+            next(); // start playing
         });
     </script>
 </body>
