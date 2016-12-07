@@ -136,13 +136,14 @@ function visualize() {
 
     function draw() {
       //The window.requestAnimationFrame() method tells the browser that you wish to perform an animation and requests that the browser call a specified function to update an animation before the next repaint. The method takes as an argument a callback to be invoked before the repaint.
+      //Return value: A long integer value, the request id, that uniquely identifies the entry in the callback list. This is a non-zero value, but you may not make any other assumptions about its value. You can pass this value to window.cancelAnimationFrame() to cancel the refresh callback request.
       //More info: https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame
       drawVisual = requestAnimationFrame(draw);
-
+      
       context.fillStyle = 'rgb(0, 0, 0)';
       context.fillRect(0, 0, WIDTH, HEIGHT);
 
-       //Copies the current frequency data into a Uint8Array array passed into it.
+      //Copies the current frequency data into a Uint8Array array passed into it.
       analyser.getByteFrequencyData(dataArray); //Value btween 0 and 255
       //http://stackoverflow.com/questions/14789283/what-does-the-fft-data-in-the-web-audio-api-correspond-to/14789992#14789992
       
