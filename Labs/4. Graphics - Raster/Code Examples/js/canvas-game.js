@@ -1,7 +1,8 @@
 /*
 Adapted from: https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript
-
-
+Assignment
+1. Make the canvas the same size as the browser window
+2. Rewrite the code that is drawing the elements (paddle, bricks and ball) in order to ajust their size based on the size of the browser window
 */
 
 $(document).ready(function () {
