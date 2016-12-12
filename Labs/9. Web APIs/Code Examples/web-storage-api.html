@@ -1,28 +1,31 @@
+<html>
 
-<!-- saved from url=(0039)http://facemsoft.ro/multimedia/ex2.html -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>Utilizare localStorage/sessionStorage</title>
-	<style type="text/css"></style></head>
-	<body onload="displayData()">
-		<form action="http://facemsoft.ro/multimedia/ex2.html#">
-			<label for="utilizator">Utilizator:</label>
-			<input type="text" name="utilizator" id="utilizator" placeholder="Nume">
-			<br>
-			<label for="ora">Ora:</label>
-			<input type="datetime-local" name="ora" id="ora">
-			<br>
-			<label for="task">Task:</label>
-			<br>
-			<textarea name="task" id="task" placeholder="Descrierea taskului" rows="4" cols="30"></textarea>
-			<br>
-			<label for="locatie">Locatie:</label>
-			<input type="text" name="locatie" id="locatie" placeholder="N/A">
-			<br>
-			<div id="map"></div>
-			<br><br>
-			<input type="submit" value="Salveaza" onclick="saveTask()">
-		</form>
-		
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Utilizare localStorage/sessionStorage</title>
+	<style type="text/css"></style>
+</head>
+
+<body onload="displayData()">
+	<form action="http://facemsoft.ro/multimedia/ex2.html#">
+		<label for="utilizator">Utilizator:</label>
+		<input type="text" name="utilizator" id="utilizator" placeholder="Nume">
+		<br>
+		<label for="ora">Ora:</label>
+		<input type="datetime-local" name="ora" id="ora">
+		<br>
+		<label for="task">Task:</label>
+		<br>
+		<textarea name="task" id="task" placeholder="Descrierea taskului" rows="4" cols="30"></textarea>
+		<br>
+		<label for="locatie">Locatie:</label>
+		<input type="text" name="locatie" id="locatie" placeholder="N/A">
+		<br>
+		<div id="map"></div>
+		<br><br>
+		<input type="submit" value="Salveaza" onclick="saveTask()">
+	</form>
+
 	<script>
 		var x=document.getElementById("locatie");
 		function displayData()
@@ -68,5 +71,7 @@
 			  }
 		}
 	</script>
-	
-</body></html>
+
+</body>
+
+</html>

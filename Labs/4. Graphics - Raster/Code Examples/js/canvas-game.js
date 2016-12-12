@@ -1,8 +1,10 @@
 /*
 Adapted from: https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript
-Assignment
-1. Make the canvas the same size as the browser window
-2. Rewrite the code that is drawing the elements (paddle, bricks and ball) in order to ajust their size based on the size of the browser window
+#Assignments
+1. Store and display the best score obtained until now. The maximum score should be persisted even if the user closes the browser or navigates to another website
+Hint: Use the Web Storage API: https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API
+2. Make the canvas the same size as the browser window
+3. Rewrite the code that is drawing the elements (paddle, bricks and ball) in order to ajust their size based on the size of the browser window
 */
 
 $(document).ready(function () {
