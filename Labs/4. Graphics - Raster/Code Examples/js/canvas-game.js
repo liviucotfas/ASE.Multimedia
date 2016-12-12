@@ -181,12 +181,11 @@ $(document).ready(function () {
             }
         }
 
-        //
         //move the paddle right if the right control button is pressed
         if (rightPressed && paddleX < canvas.width - paddleWidth) {
             paddleX += 7;
         }
-        //Move the paddle left if the left control button is pressed
+        //move the paddle left if the left control button is pressed
         else if (leftPressed && paddleX > 0) {
             paddleX -= 7;
         }
@@ -194,7 +193,7 @@ $(document).ready(function () {
         //update the location of the ball
         x += dx;
         y += dy;
-        
+
         requestAnimationFrame(draw);
     }
     draw();
