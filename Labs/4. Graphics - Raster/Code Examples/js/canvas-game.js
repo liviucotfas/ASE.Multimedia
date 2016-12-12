@@ -7,19 +7,28 @@ Assignment
 
 $(document).ready(function () {
 
+    //1. SetUp variables
+    //Canvas
     var canvas = document.getElementById("myCanvas");
-
     var ctx = canvas.getContext("2d");
+    
+    //Ball settings
     var ballRadius = 10;
     var x = canvas.width / 2;
     var y = canvas.height - 30;
+    //we want to add a small value to x and y after every frame has been drawn to make it appear that the ball is moving
     var dx = 2;
     var dy = -2;
+
+    //Paddle settings
     var paddleHeight = 10;
     var paddleWidth = 75;
     var paddleX = (canvas.width - paddleWidth) / 2;
+    //store information on whether the left or right control button is pressed
     var rightPressed = false;
     var leftPressed = false;
+   
+    //Brick settings
     var brickRowCount = 5;
     var brickColumnCount = 3;
     var brickWidth = 75;
@@ -27,6 +36,8 @@ $(document).ready(function () {
     var brickPadding = 10;
     var brickOffsetTop = 30;
     var brickOffsetLeft = 30;
+   
+    //Game data
     var score = 0;
     var lives = 3;
     var bricks = [];
@@ -36,10 +47,11 @@ $(document).ready(function () {
             bricks[c][r] = { x: 0, y: 0, status: 1 };
         }
     }
+
+    //2. Handle events
     document.addEventListener("keydown", keyDownHandler, false);
     document.addEventListener("keyup", keyUpHandler, false);
     document.addEventListener("mousemove", mouseMoveHandler, false);
-
 
     function keyDownHandler(e) {
         if (e.keyCode == 39) {
@@ -63,6 +75,8 @@ $(document).ready(function () {
             paddleX = relativeX - paddleWidth / 2;
         }
     }
+
+    //3. Methods
     function collisionDetection() {
         for (c = 0; c < brickColumnCount; c++) {
             for (r = 0; r < brickRowCount; r++) {
@@ -124,20 +138,29 @@ $(document).ready(function () {
         ctx.fillText("Lives: " + lives, canvas.width - 65, 20);
     }
     function draw() {
+        //clear the canvas before each frame
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+        //draw the elements
         drawBricks();
         drawBall();
         drawPaddle();
         drawScore();
         drawLives();
+        //detect collisions
         collisionDetection();
+
+        //Bouncing off the left and right
         if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
             dx = -dx;
         }
+
+        //Bouncing off the top
         if (y + dy < ballRadius) {
             dy = -dy;
         }
+        //Bouncing off the bottom
         else if (y + dy > canvas.height - ballRadius) {
+           
             if (x > paddleX && x < paddleX + paddleWidth) {
                 dy = -dy;
             }
@@ -150,20 +173,28 @@ $(document).ready(function () {
                 else {
                     x = canvas.width / 2;
                     y = canvas.height - 30;
-                    dx = 3;
+                    dx = 2;
                     dy = -3;
+                    //center the paddle
                     paddleX = (canvas.width - paddleWidth) / 2;
                 }
             }
         }
+
+        //
+        //move the paddle right if the right control button is pressed
         if (rightPressed && paddleX < canvas.width - paddleWidth) {
             paddleX += 7;
         }
+        //Move the paddle left if the left control button is pressed
         else if (leftPressed && paddleX > 0) {
             paddleX -= 7;
         }
+
+        //update the location of the ball
         x += dx;
         y += dy;
+        
         requestAnimationFrame(draw);
     }
     draw();
