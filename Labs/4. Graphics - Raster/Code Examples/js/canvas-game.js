@@ -3,6 +3,7 @@ Adapted from: https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breako
 #Assignments
 1. Store and display the minimum time in which the game has been won so far. The minimum time should be persisted even if the user closes the browser or navigates to another website
 Hint: Use the Web Storage API: https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API
+2. The example has a few "physics" issues. For example, we only test if the coordinates of the ball are inside a brick, but in fact we should test if any point on the contour of the ball is touching the brick. The same issue appears when the ball hits the paddle from the side.
 2. Make the canvas the same size as the browser window
 3. Rewrite the code that is drawing the elements (paddle, bricks and ball) in order to ajust their size based on the size of the browser window
 */
@@ -31,8 +32,8 @@ $(document).ready(function () {
     var leftPressed = false;
    
     //Brick settings
-    var brickRowCount = 5;
-    var brickColumnCount = 3;
+    var brickColumnCount = 5;
+    var brickRowCount = 3;
     var brickWidth = 75;
     var brickHeight = 20;
     var brickPadding = 10;
@@ -43,10 +44,10 @@ $(document).ready(function () {
     var score = 0;
     var lives = 3;
     var bricks = [];
-    for (c = 0; c < brickColumnCount; c++) {
-        bricks[c] = [];
-        for (r = 0; r < brickRowCount; r++) {
-            bricks[c][r] = { x: 0, y: 0, status: 1 };
+    for (var r = 0; r < brickRowCount; r++) {
+        bricks[r] = [];
+        for (var c = 0; c < brickColumnCount; c++) {
+            bricks[r][c] = { x: 0, y: 0, status: 1 };
         }
     }
 
@@ -80,15 +81,15 @@ $(document).ready(function () {
 
     //3. Methods
     function collisionDetection() {
-        for (c = 0; c < brickColumnCount; c++) {
-            for (r = 0; r < brickRowCount; r++) {
-                var b = bricks[c][r];
+        for (var r = 0; r < brickRowCount; r++) {
+            for (var c = 0; c < brickColumnCount; c++) {
+                var b = bricks[r][c];
                 if (b.status == 1) {
                     if (x > b.x && x < b.x + brickWidth && y > b.y && y < b.y + brickHeight) {
                         dy = -dy;
                         b.status = 0;
                         score++;
-                        if (score == brickRowCount * brickColumnCount) {
+                        if (score == brickColumnCount * brickRowCount) {
                             alert("YOU WIN, CONGRATS!");
                             document.location.reload();
                         }
@@ -113,13 +114,13 @@ $(document).ready(function () {
         //equivalen to ctx.fillRect
     }
     function drawBricks() {
-        for (c = 0; c < brickColumnCount; c++) {
-            for (r = 0; r < brickRowCount; r++) {
-                if (bricks[c][r].status == 1) {
-                    var brickX = (r * (brickWidth + brickPadding)) + brickOffsetLeft;
-                    var brickY = (c * (brickHeight + brickPadding)) + brickOffsetTop;
-                    bricks[c][r].x = brickX;
-                    bricks[c][r].y = brickY;
+        for (var r = 0; r < brickRowCount; r++) {
+            for (var c = 0; c < brickColumnCount; c++) {
+                if (bricks[r][c].status == 1) {
+                    var brickX = (c * (brickWidth + brickPadding)) + brickOffsetLeft;
+                    var brickY = (r * (brickHeight + brickPadding)) + brickOffsetTop;
+                    bricks[r][c].x = brickX;
+                    bricks[r][c].y = brickY;
                     ctx.beginPath();
                     ctx.rect(brickX, brickY, brickWidth, brickHeight);
                     ctx.fillStyle = "#0095DD";
