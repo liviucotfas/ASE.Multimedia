@@ -110,12 +110,12 @@
             }
 
             function next() {
-                var i = tracks.indexOf(audio.src) + 1;
-                if (i >= tracks.length) {
-                    i = 0;
+                var index = tracks.indexOf(audio.src) + 1;
+                if (index >= tracks.length) {
+                    index = 0;
                 }
 
-                play(tracks[i]);
+                play(tracks[index]);
             }
 
             // 4. Associate events
@@ -136,7 +136,7 @@
 
             $("#btnNext").click(next);
 
-            $(audio).bind("ended", next);
+            $(audio).on("ended", next);
 
             next(); // start playing
         });
