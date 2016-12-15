@@ -15,7 +15,7 @@ $(document).ready(function () {
 
     //1. SetUp variables
     //Canvas
-    var canvas = document.getElementById("myCanvas");
+    var canvas = document.getElementById("gameCanvas");
     var ctx = canvas.getContext("2d");
     
     //Ball settings
@@ -23,16 +23,18 @@ $(document).ready(function () {
     var x = canvas.width / 2;
     var y = canvas.height - 30;
     //we want to add a small value to x and y after every frame has been drawn to make it appear that the ball is moving
-    var dx = 2;
-    var dy = -2;
+    var dxDefault = 2;
+    var dyDefault = -2;
+    var dx = dxDefault;
+    var dy = dyDefault;
 
     //Paddle settings
     var paddleHeight = 10;
     var paddleWidth = 75;
     var paddleX = (canvas.width - paddleWidth) / 2;
     //store information on whether the left or right control button is pressed
-    var rightPressed = false;
-    var leftPressed = false;
+    var rightKeyPressed = false;
+    var leftKeyPressed = false;
    
     //Brick settings
     var brickColumnCount = 5;
@@ -61,18 +63,18 @@ $(document).ready(function () {
 
     function keyDownHandler(e) {
         if (e.keyCode == 39) {
-            rightPressed = true;
+            rightKeyPressed = true;
         }
         else if (e.keyCode == 37) {
-            leftPressed = true;
+            leftKeyPressed = true;
         }
     }
     function keyUpHandler(e) {
         if (e.keyCode == 39) {
-            rightPressed = false;
+            rightKeyPressed = false;
         }
         else if (e.keyCode == 37) {
-            leftPressed = false;
+            leftKeyPressed = false;
         }
     }
     function mouseMoveHandler(e) {
@@ -104,7 +106,7 @@ $(document).ready(function () {
     function drawBall() {
         ctx.beginPath();
         ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
-        ctx.fillStyle = "#0095DD";
+        ctx.fillStyle = "#FF0000";
         ctx.fill();
         ctx.closePath();
     }
@@ -135,12 +137,12 @@ $(document).ready(function () {
     }
     function drawScore() {
         ctx.font = "16px Arial";
-        ctx.fillStyle = "#0095DD";
+        ctx.fillStyle = "#000000";
         ctx.fillText("Score: " + score, 8, 20);
     }
     function drawLives() {
         ctx.font = "16px Arial";
-        ctx.fillStyle = "#0095DD";
+        ctx.fillStyle = "#000000";
         ctx.fillText("Lives: " + lives, canvas.width - 65, 20);
     }
     function draw() {
@@ -179,8 +181,8 @@ $(document).ready(function () {
                 else {
                     x = canvas.width / 2;
                     y = canvas.height - 30;
-                    dx = 2;
-                    dy = -3;
+                    dx = dxDefault;
+                    dy = dyDefault;
                     //center the paddle
                     paddleX = (canvas.width - paddleWidth) / 2;
                 }
@@ -188,11 +190,11 @@ $(document).ready(function () {
         }
 
         //move the paddle right if the right control button is pressed
-        if (rightPressed && paddleX < canvas.width - paddleWidth) {
+        if (rightKeyPressed && paddleX < canvas.width - paddleWidth) {
             paddleX += 7;
         }
         //move the paddle left if the left control button is pressed
-        else if (leftPressed && paddleX > 0) {
+        else if (leftKeyPressed && paddleX > 0) {
             paddleX -= 7;
         }
 
