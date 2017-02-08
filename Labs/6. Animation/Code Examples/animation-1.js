@@ -18,7 +18,7 @@ $(document).ready(function () {
         mouseYPos = e.pageY;
     });
 
-    //disable the defualt contextual menu
+    //disable the default contextual menu
 	$(document).on("contextmenu", function(e) { 
         e.preventDefault();
      });

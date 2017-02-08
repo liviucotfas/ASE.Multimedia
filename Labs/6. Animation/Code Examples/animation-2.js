@@ -83,7 +83,7 @@ var buildBall = function (top, left, color) {
             };
         }
         else if (e.button == 2) {
-            ball[0].playing();
+            ball[0].play();
         }
 
         e.preventDefault();
