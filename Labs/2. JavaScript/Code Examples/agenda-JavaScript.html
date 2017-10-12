@@ -8,13 +8,13 @@
         <h1>Telephone Agenda</h1>
         <table>
             <caption>
-                Lista persoane
+                Person List
             </caption>
             <thead>
                 <tr>
-                    <th>Nume</th>
-                    <th>Prenume</th>
-                    <th>Telefon</th>
+                    <th>Last Name</th>
+                    <th>First Name</th>
+                    <th>Phone Number</th>
                 </tr>
             </thead>
             <tbody id="tableBody">
@@ -31,22 +31,24 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="3">Număr persoane: 2</td>
+                    <td colspan="3">Number of persons: 2</td>
                 </tr>
             </tfoot>
         </table>
         <form action="#" class="controls">
-            <label for="nume">Nume:</label>
+            <label for="nume">Last Name:</label>
             <input name="nume" id="nume">
-            <label for="prenume">Prenume:</label>
+            <label for="prenume">First Name:</label>
             <input name="prenume" id="prenume">
-            <label for="Telefon">Telefon:</label>
+            <label for="Telefon">Phone Number:</label>
             <input name="telefon" id="telefon">
-            <input type="button" name="btnAdauga" value="Adaugă" onclick="adaugaPersoana()">
+            <input type="button" value="Add Person" onclick="addPerson()">
         </form>
 
         <script type="text/javascript">
-            function adaugaPersoana() {
+            "use strict";
+
+            function addPerson() {
                 
                 var tRow = document.createElement("tr");
 
@@ -69,7 +71,7 @@
                 var trInsideTfoot = tfoot.children[0]; // the <tfoot> in this example contains as the first (and only) child a <tr> element
                 var tdInsideTrInsideTfoot = trInsideTfoot[0]; // the <tr> inside the <tfoot> in this example contains as the first (and only) child a <td> element
                 //equivalent to document.getElementsByTagName("tfoot")[0].children[0].children[0]
-                tdInsideTrInsideTfoot.innerHTML = "Număr persoane: " + tBody.children.length.toString();
+                tdInsideTrInsideTfoot.innerHTML = "Number of persons: " + tBody.children.length.toString();
             }        
         </script>
     </body>
