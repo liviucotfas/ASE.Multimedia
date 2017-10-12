@@ -9,6 +9,10 @@ Hint:
 2. The example has a few "physics" issues. For example, we only test if the coordinates of the ball are inside a brick, but in fact we should test if any point on the contour of the ball is touching the brick. The same issue appears when the ball hits the paddle from the side.
 2. Make the canvas the same size as the browser window
 3. Rewrite the code that is drawing the elements (paddle, bricks and ball) in order to ajust their size based on the size of the browser window
+
+#Further reading:
+- try https://phaser.io/examples/v2/games/breakout
+- read more about phase on https://phaser.io
 */
 
 $(document).ready(function () {
