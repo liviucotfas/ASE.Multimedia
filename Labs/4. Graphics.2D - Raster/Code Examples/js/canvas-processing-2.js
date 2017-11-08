@@ -1,11 +1,7 @@
 ﻿"use strict";
 
-/*TODO:
-- show a message when image processing fails due to CORS
-*/
-
 /* Assignment
-1. show a message when image processing fails due to CORS
+1. (optional) show a message when image processing fails due to CORS
 2. modify the code bellow in order to display the negative image in the canvas with the id result 
 3. modify the code bellow in order to display the image in only black and white in the canvas with the id result
 4. modify the code bellow in order to modify the lightness of the image displayed in $("#result") 
