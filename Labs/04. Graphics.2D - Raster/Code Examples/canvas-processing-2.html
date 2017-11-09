@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Image - Process</title>
+   
+    <link 
+        rel="stylesheet" 
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
+        crossorigin="anonymous">
+
+    <script 
+        src="https://code.jquery.com/jquery-latest.js"
+        crossorigin="anonymous"></script>
+    <script 
+        src="js/canvas-processing-2.js"></script>
+    <script>
+        $(function () {
+            $("#btnLoad").click(loadImage);
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+
+        <div class="alert alert-info">
+            The chosen image might not be processed correctly due to HTTP access control (CORS). If this is the case, in Chrome Developer tools (Console tab) the following error will be displayed: "Unable to get image data from canvas because the canvas has been tainted by cross-origin data".
+            Learn more about HTTP access control (CORS) <a title="HTTP access control (CORS)" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS" target="_blank">here</a>.
+        </div>
+        
+        <div>
+            <label for="txtImageUrl">Image URL:</label>
+            <input id="txtImageUrl" type="text" value="/img/Desert.jpg" />
+            <input id="btnLoad" type="button" value="Load" />
+        </div>
+
+        <canvas id="histogram" width="512" height="200"></canvas>
+        <canvas id="result" width="300" height="200"></canvas>
+        <div id="originalImage"></div>
+    </div>
+</body>
+</html>
