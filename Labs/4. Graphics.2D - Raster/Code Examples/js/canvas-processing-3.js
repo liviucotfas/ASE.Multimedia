@@ -61,7 +61,17 @@ $(function () {
     //?After an event triggers on the deepest possible element, it then triggers on parents in nesting order
     //https://javascript.info/tutorial/bubbling-and-capturing
     $("#canvasProcessedImagine").click(function () {
-        $("a").attr("href", this.toDataURL("image/png"));
+        //1. Ok for small images. Does not work with large images
+        //$("a").attr("href", this.toDataURL("image/png"));
+
+        //2. create a Blob object representing the image contained in the canvas; this file may be cached on the disk or stored in memory at the discretion of the user agent.
+        //https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob
+        this.toBlob(
+            function(blob){
+                $("#btnDownloadImage").attr("href", URL.createObjectURL(blob));
+            },
+            "image/png"
+        );
     });
 });
 

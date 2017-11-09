@@ -1,7 +1,7 @@
-﻿<!-- 
-Assignment
-1. add a separate button for downloading the barchart (use an "a" element)
-2. check http://www.chartjs.org/ and try to implement some of its features in the current example
+﻿<!-- Assignment
+1. add a separate button for downloading the barchart 
+Hint: use an "a" element
+2. (optional) check http://www.chartjs.org/ and try to implement some of its features in the current example
 -->
 
 <!DOCTYPE html>
@@ -12,24 +12,25 @@ Assignment
     <script 
         src="https://code.jquery.com/jquery-latest.js"
         crossorigin="anonymous"></script>
-</head>
-
-<body>
-    <form>
-        <input id="tbValues" type="text" value="12, 13, 3, 2, 1, 10, 7, 18">
-        <input id="btnDrawChart" type="button" value="Draw chart">
-    </form>
-
-    Click on the bar chart to donwload it<br>
-    <a href="#" download="barchart.png">
-        <canvas id="canvasBarChart" width="300" height="200"></canvas>
-    </a>
     
     <script type="text/javascript">
-    
-    "use strict";
-    
-    function drawChart(values) {
+        "use strict";
+
+        $(function () {
+            $("#btnDrawChart").click(function () {
+                //the eval() function evaluates JavaScript code represented as a string.
+                //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval
+                drawChart(eval("[" + $("#tbValues").val() + "]"));
+            });
+
+            //?After an event triggers on the deepest possible element, it then triggers on parents in nesting order
+            //https://javascript.info/tutorial/bubbling-and-capturing
+            $("#canvasBarChart").click(function () {
+                $("a").attr("href", this.toDataURL("image/png"));
+            });
+        });
+            
+        function drawChart(values) {
             var canvas = document.getElementById('canvasBarChart');
             var context = canvas.getContext('2d');
 
@@ -61,23 +62,20 @@ Assignment
                 context.fill();
                 context.stroke();*/
             }
-    }
-
-    //?After an event triggers on the deepest possible element, it then triggers on parents in nesting order
-    //https://javascript.info/tutorial/bubbling-and-capturing
-    $("#canvasBarChart").click(function () {
-        $("a").attr("href", this.toDataURL("image/png"));
-    });
-    
-    $(document).ready(function () {
-        $("#btnDrawChart").click(function () {
-
-            //the eval() function evaluates JavaScript code represented as a string.
-            //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval
-            drawChart(eval("[" + $("#tbValues").val() + "]"));
-        });
-    });
+        }
     </script>
+</head>
+
+<body>
+    <form>
+        <input id="tbValues" type="text" value="12, 13, 3, 2, 1, 10, 7, 18">
+        <input id="btnDrawChart" type="button" value="Draw chart">
+    </form>
+
+    Click on the bar chart to donwload it<br>
+    <a href="#" download="barchart.png">
+        <canvas id="canvasBarChart" width="300" height="200"></canvas>
+    </a>
 </body>
 
 </html>

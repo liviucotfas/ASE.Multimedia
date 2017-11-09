@@ -5,6 +5,71 @@
 2. modify the code bellow in order to display the image in only black and white in the canvas with the id result
 */
 
+function loadImage() {
+    /* 
+    CORS Enabled images:
+    https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_enabled_image 
+    */
+
+    var img = document.createElement("img");
+    //jQuery Equivalent: 
+    // $(document.createElement('img')).get(0)
+    // $("<img>").get(0)
+    // //https://learn.jquery.com/using-jquery-core/faq/how-do-i-pull-a-native-dom-element-from-a-jquery-object/
+
+    img.crossOrigin = "anonymous"; //more details: https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS
+
+    img.onerror = function (msg, url, line) {
+        alert("ERROR loading image using url '{0}'.".format(img.src));
+    };
+
+    img.onload = function () {
+        
+        $("#originalImage").empty();
+        $("#originalImage").append(img);
+
+        var canvas = document.getElementById("result");
+        canvas.height = img.height;
+        canvas.width = img.width;
+
+        var context = canvas.getContext("2d");
+        context.drawImage(img, 0, 0);
+
+        context.font = "bold 10pt sans-serif";
+        context.fillStyle = "#EFEFEF";
+
+        context.fillText(img.src, 8, 25);
+
+        // I. Compute histogram
+        var vR = new Array(); //equivalent to var vR = []; Futher reading: http://www.w3schools.com/js/js_arrays.asp
+        var vG = [];
+        var vB = [];
+        for (var i = 0; i < 256; i++){ 
+            vR[i] = 0; vG[i] = 0; vB[i] = 0; 
+        }
+
+        processImage(
+            function (x, y, r, g, b, a) {
+                vR[r]++; vG[g]++; vB[b]++;
+            }
+            );
+
+        drawHistogram(vR, vG, vB);
+
+        // II. Convert to greyscale
+        processImage(
+            function (x, y, r, g, b, a) {
+                var average = (r + g + b) / 3;
+                return [average, average, average];
+            }
+        );
+    };
+
+    //Load the actual image
+    var imageUrl = $("#txtImageUrl").val();
+    img.src = imageUrl;
+}
+
 function processImage(action) {
     var canvas = document.getElementById("result");
     var context = canvas.getContext("2d");
@@ -66,72 +131,6 @@ function drawHistogram(vR, vG, vB) {
         context.fillStyle = "rgba(0%,0%,100%,0.3)";
         context.fillRect(i * w, h - vB[i] * f, w, vB[i] * f);
     }
-}
-
-function loadImage() {
-
-    /* 
-    CORS Enabled images:
-    https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_enabled_image 
-    */
-
-    var img = document.createElement("img");
-    //jQuery Equivalent: 
-    // $(document.createElement('img')).get(0)
-    // $("<img>").get(0)
-    // //https://learn.jquery.com/using-jquery-core/faq/how-do-i-pull-a-native-dom-element-from-a-jquery-object/
-
-    img.crossOrigin = "anonymous"; //more details: https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS
-
-    img.onerror = function (msg, url, line) {
-        alert("ERROR loading image using url '{0}'.".format(img.src));
-    };
-
-    img.onload = function () {
-       
-        $("#originalImage").empty();
-        $("#originalImage").append(img);
-
-        var canvas = document.getElementById("result");
-        canvas.height = img.height;
-        canvas.width = img.width;
-
-        var context = canvas.getContext("2d");
-        context.drawImage(img, 0, 0);
-
-        context.font = "bold 10pt sans-serif";
-        context.fillStyle = "#EFEFEF";
-
-        context.fillText(img.src, 8, 25);
-
-        // I. Compute histogram
-        var vR = new Array(); //equivalent to var vR = []; Futher reading: http://www.w3schools.com/js/js_arrays.asp
-        var vG = [];
-        var vB = [];
-        for (var i = 0; i < 256; i++){ 
-            vR[i] = 0; vG[i] = 0; vB[i] = 0; 
-        }
-
-        processImage(
-            function (x, y, r, g, b, a) {
-                vR[r]++; vG[g]++; vB[b]++;
-            }
-         );
-
-        drawHistogram(vR, vG, vB);
-
-        // II. Convert to greyscale
-        processImage(
-            function (x, y, r, g, b, a) {
-                var average = (r + g + b) / 3;
-                return [average, average, average];
-            }
-        );
-    };
-
-    //Load the actual image
-    var imageUrl = $("#txtImageUrl").val();
-    img.src = imageUrl;
 }
 
 //extends the string prototype object
