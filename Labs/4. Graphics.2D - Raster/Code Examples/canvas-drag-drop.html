@@ -1,7 +1,9 @@
 ﻿<!--- Assignment
-1. Display the histogram only for the red channel
-2. Convert the dropped image to greyscale
-Hint: the values on the rgb channels should be equal
+1. Check the histogram for the same image in Adobe PhotoShop
+2. Change the color of the histogram to black: rgba(0,0,0,0.3)
+3. Also display the histogram for the red channel using as color rgba(255,0,0,0.3)
+2. Also display the histogram for the green channel using as color rgba(0,255,0,0.3)
+2. Also display the histogram for the blue channel using as color rgba(0,0,255,0.3)
 -->
 
 <!DOCTYPE html>
@@ -16,7 +18,7 @@ Hint: the values on the rgb channels should be equal
     <script>
         "use strict";
 
-        function desenare(img) {
+        function drawImageAndHistogram(img) {
             var cW = img.width, cH = img.height;
             
             $("#canvasProcessedImagine")
@@ -25,6 +27,10 @@ Hint: the values on the rgb channels should be equal
             var context = $("#canvasProcessedImagine")[0].getContext("2d");
             context.drawImage(img, 0, 0);
 
+            drawHistogram(context, cW, cH);
+        }
+
+        function drawHistogram(context, cW, cH){
             var v = [];
             for (var i = 0; i < 256; i++) {
                 //The push() method adds new items to the end of an array, and returns the new length.
@@ -33,20 +39,26 @@ Hint: the values on the rgb channels should be equal
             }
 
             var imageData = context.getImageData(0, 0, cW, cH);
-            var pixels = imageData.data;
+            var data = imageData.data;
 
             for (var y = 0; y < cH; y++) { //each line
                 for (var x = 0; x < cW; x++) { //each column
-                    var i = (y * cW * 4) + x * 4;
-                    var val = Math.round((pixels[i] + pixels[i + 1] + pixels[i + 2])/3);
+                    
+                    var offset = ((cW * y) + x) * 4
+
+                    var red = data[offset];
+                    var green = data[offset + 1];
+                    var blue = data[offset + 2];
+
+                    var val = Math.round((red + green + blue)/3);
                     v[val]++;
                 }
             }
 
-            grafic(context, v, cW, cH);
+            drawBarChart(context, v, cW, cH);
         }
 
-        function grafic(c, v, W, H) {
+        function drawBarChart(c, v, cW, cH) {
             //Saves the entire state of the canvas by pushing the current state onto a stack.
             //https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/save
             c.save();
@@ -60,13 +72,13 @@ Hint: the values on the rgb channels should be equal
             // To change the center point, we will need to move the canvas by using the translate() method.
             c.rotate(Math.PI);
             // translate it
-            c.translate(-W, -H);
+            c.translate(-cW, -cH);
             
             //Function.prototype.apply()
             //The apply() method calls a function with a given this value and arguments provided as an array
             //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply
-            var f = H / Math.max.apply(this, v);
-            //var f = H / Math.max(v) will not work, because max doesn't accept an array as input.
+            var f = cH / Math.max.apply(this, v);
+            //var f = cH / Math.max(v) will not work, because max doesn't accept an array as input.
             //http://stackoverflow.com/questions/21255138/how-does-the-math-max-apply-work
 
 
@@ -80,7 +92,7 @@ Hint: the values on the rgb channels should be equal
             c.fillStyle = "rgba(255,0,0,0.3)";
             
             //Determin the width of the rectangle for each shade of grey
-            var w = W / n;
+            var w = cW / n;
             for (var i = 0; i < n; i++) {
                 // -i * w = x coordinate
                 // 0 = y coordinate
@@ -116,7 +128,7 @@ Hint: the values on the rgb channels should be equal
                         //https://developer.mozilla.org/en-US/docs/Web/API/FileReader/onload
                         reader.onload = function (e) {
                             $("<img></img>")
-                                    .load(function(){desenare(this);})
+                                    .load(function(){drawImageAndHistogram(this);})
                                     .attr("src", e.target.result);
                         };
 
@@ -128,7 +140,19 @@ Hint: the values on the rgb channels should be equal
             //?After an event triggers on the deepest possible element, it then triggers on parents in nesting order
             //https://javascript.info/tutorial/bubbling-and-capturing
             $("#canvasProcessedImagine").click(function () {
-                $("a").attr("href", this.toDataURL("image/png"));
+                
+                //1. Ok for small images. Does not work with large images
+                //$("a").attr("href", this.toDataURL("image/png"));
+
+                //2. create a Blob object representing the image contained in the canvas; this file may be cached on the disk or stored in memory at the discretion of the user agent.
+                //https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob
+                this.toBlob(
+                    function(blob){
+                        $("a").attr("href", URL.createObjectURL(blob));
+                    },
+                    "image/png"
+                );
+
             });
         });
     </script>
