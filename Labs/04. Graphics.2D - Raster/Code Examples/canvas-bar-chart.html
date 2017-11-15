@@ -1,7 +1,11 @@
 ﻿<!-- Assignment
-1. add a separate button for downloading the barchart 
+1. Display the corresponding value above each bar
+2. Display the value using the black color (don't change the color of the bars)
+3. Center the displayed values horizontally against the corresponding bar
+Hint: use the measureText method
+4. Add a separate button for downloading the barchart 
 Hint: use an "a" element
-2. (optional) check http://www.chartjs.org/ and try to implement some of its features in the current example
+5. (optional) Check http://www.chartjs.org/ and try to implement some of its features in the current example
 -->
 
 <!DOCTYPE html>
@@ -26,7 +30,7 @@ Hint: use an "a" element
             //?After an event triggers on the deepest possible element, it then triggers on parents in nesting order
             //https://javascript.info/tutorial/bubbling-and-capturing
             $("#canvasBarChart").click(function () {
-                $("a").attr("href", this.toDataURL("image/png"));
+                $(this).parent().attr("href", this.toDataURL("image/png"));
             });
         });
             
