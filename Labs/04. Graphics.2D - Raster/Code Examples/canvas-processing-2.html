@@ -15,28 +15,27 @@
     <script 
         src="js/canvas-processing-2.js"></script>
     <script>
-        $(function () {
-            $("#btnLoad").click(loadImage);
+        $(function(){
+            $("#fileBrowser").change(
+                function(e){  
+                    loadFile(e.target.files[0])
+            });
         });
     </script>
 </head>
 <body>
-    <div class="container">
-
-        <div class="alert alert-info">
-            The chosen image might not be processed correctly due to HTTP access control (CORS). If this is the case, in Chrome Developer tools (Console tab) the following error will be displayed: "Unable to get image data from canvas because the canvas has been tainted by cross-origin data".
-            Learn more about HTTP access control (CORS) <a title="HTTP access control (CORS)" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS" target="_blank">here</a>.
-        </div>
-        
+    <div class="container">       
         <div>
-            <label for="txtImageUrl">Image URL:</label>
-            <input id="txtImageUrl" type="text" value="/img/Desert.jpg" />
-            <input id="btnLoad" type="button" value="Load" />
+            <label for="fileBrowser">Choose file to upload</label>
+            <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file -->
+            <input type="file" id="fileBrowser" name="fileBrowser" value="Choose image"
+                accept="image/*">
         </div>
 
-        <canvas id="histogram" width="512" height="200"></canvas>
+        <h2>Image</h2>
         <canvas id="result" width="300" height="200"></canvas>
-        <div id="originalImage"></div>
+        <h2>Histogram</h2>
+        <canvas id="histogram" width="512" height="200"></canvas>
     </div>
 </body>
 </html>
