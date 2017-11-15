@@ -28,7 +28,6 @@ Further Reading
 2. Check the "canvas-drag-drop.html" example. Complete the assignments included in the ```html``` file.
 3. Check the "canvas-processing-2.html" example. Complete the assignments included in the `js` file.
 4. Check the "canvas-processing-3.html" exemple. Complete the assignments included in the `js` file.
-5. Check the "canvas-game.html" example.
 
 # Game Development
 
@@ -48,3 +47,6 @@ Further Reading
 
 ## Other
 -   HTML5GameDevs community (<http://www.html5gamedevs.com>): includes a list of the most popular game development frameworks
+
+## Assignment
+1. Check the "canvas-game.html" example.
