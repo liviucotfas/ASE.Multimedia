@@ -6,6 +6,7 @@ Hint:
 function (x, y, r, g, b, a) {var average = (r + g + b) / 3; return [average, average, average];}
 2. Add a new div with the id "originalImage". Display the initial image ("img" variable bellow) in this div.
 Hint: use the empty() and append() jQuery methods
+3. Open the Developer Tools in the browser of your choice. Choose the Console tab. Click the browse button in the application and afterwards choose the Cancel option. An error will be displayed in the console tab. Try to fix it.
 */
 
 function loadFile(file) {
