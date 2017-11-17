@@ -24,10 +24,10 @@ Further Reading
 -   [Canvas Pocket Reference](http://ase.softmentor.ro/Multimedia/resurse/OReilly%20-%20Canvas%20Pocket%20Reference.pdf) -  Chapter 1.
 
 ## Assignment
-1. Check the "canvas-bar-chart.html" example. Complete the assignments included in the ```html``` file.
-2. Check the "canvas-drag-drop.html" example. Complete the assignments included in the ```html``` file.
-3. Check the "canvas-processing-2.html" example. Complete the assignments included in the `js` file.
-4. Check the "canvas-processing-3.html" exemple. Complete the assignments included in the `js` file.
+1. Try the "canvas-drag-drop.html" sample by clicking [here](https://ase-multimedia.azurewebsites.net/canvas-bar-chart.html). Check the source code. Complete the assignments included in the ```html``` file. 
+2. Try the "canvas-drag-drop.html" sample by clicking [here](https://ase-multimedia.azurewebsites.net/canvas-drag-drop.html). Check the source code. Complete the assignments included in the ```html``` file. 
+3. Try the "canvas-processing-2.html" sample by clicking [here](https://ase-multimedia.azurewebsites.net/canvas-processing-2.html). Check the source code. Complete the assignments included in the `js` file.
+4. Try the "canvas-processing-3.html" sample by clicking [here](https://ase-multimedia.azurewebsites.net/canvas-processing-3.html). Check the source code. Complete the assignments included in the `js` file.
 
 # Game Development
 
