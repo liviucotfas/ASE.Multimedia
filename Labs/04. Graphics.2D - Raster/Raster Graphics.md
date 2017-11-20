@@ -8,7 +8,7 @@
 
 - HTML5 Canvas: <https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images>
 
-- (optional )HTML Living Standard: <https://html.spec.whatwg.org/#the-canvas-element>
+- (optional) HTML Living Standard: <https://html.spec.whatwg.org/#the-canvas-element>
 
 Demos
 -----
@@ -26,10 +26,10 @@ Further Reading
 -   [Canvas Pocket Reference](http://ase.softmentor.ro/Multimedia/resurse/OReilly%20-%20Canvas%20Pocket%20Reference.pdf) -  Chapter 1.
 
 ## Assignment
-1. Try the "canvas-drag-drop.html" sample by clicking [here](https://ase-multimedia.azurewebsites.net/canvas-bar-chart.html). Check the source code. Complete the assignments included in the ```html``` file. 
-2. Try the "canvas-drag-drop.html" sample by clicking [here](https://ase-multimedia.azurewebsites.net/canvas-drag-drop.html). Check the source code. Complete the assignments included in the ```html``` file. 
-3. Try the "canvas-processing-2.html" sample by clicking [here](https://ase-multimedia.azurewebsites.net/canvas-processing-2.html). Check the source code. Complete the assignments included in the `js` file.
-4. Try the "canvas-processing-3.html" sample by clicking [here](https://ase-multimedia.azurewebsites.net/canvas-processing-3.html). Check the source code. Complete the assignments included in the `js` file.
+1. Try the "canvas-bar-chart" sample by clicking [here](https://ase-multimedia.azurewebsites.net/canvas-bar-chart). Check the source code. Complete the assignments included in the ```html``` file. 
+2. Try the "canvas-drag-drop" sample by clicking [here](https://ase-multimedia.azurewebsites.net/canvas-drag-drop). Check the source code. Complete the assignments included in the ```html``` file. 
+3. Try the "canvas-processing-2.html" sample by clicking [here](https://ase-multimedia.azurewebsites.net/canvas-processing-2). Check the source code. Complete the assignments included in the `js` file.
+4. Try the "canvas-image-editor" sample by clicking [here](https://ase-multimedia.azurewebsites.net/canvas-image-editor). Check the source code. Complete the assignments included in the `js` file.
 
 # Game Development
 
