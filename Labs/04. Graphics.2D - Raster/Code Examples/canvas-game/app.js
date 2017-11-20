@@ -253,7 +253,7 @@ Hint:
 
         //Attach events
         app.canvas.addEventListener("touchmove", app.touchMove, { passive: true });
-        window.addEventListener("resize", app.orientationChanged);
+        window.addEventListener("resize", app.windowSizeChanged);
         document.addEventListener("keydown", app.keyDownHandler, false);
         document.addEventListener("keyup", app.keyUpHandler, false);
         document.addEventListener("mousemove", app.mouseMoveHandler, false);

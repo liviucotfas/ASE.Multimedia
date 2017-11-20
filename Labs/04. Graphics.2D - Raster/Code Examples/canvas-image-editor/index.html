@@ -11,6 +11,18 @@
         src="https://code.jquery.com/jquery-latest.js"
         crossorigin="anonymous"></script>
     <script src="canvas-processing-3.js"></script>
+
+    <!-- Add to home screen -->
+    <link rel="manifest" href="manifest.json">
+    
+    <meta name="theme-color" content="#2F3BA2">
+    <link rel="icon" sizes="192x192" href="img/icons/icon-192x192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Image Editor">
+    <link rel="apple-touch-icon" href="img/icons/icon-152x152.png">
+    <meta name="msapplication-TileImage" content="img/icons/icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#2F3BA2">
 </head>
 
 <body style="text-align:center;">
@@ -42,6 +54,7 @@
             http://www.w3schools.com/tags/att_a_download.asp
         -->
         <img id="processedImage" style="width:100%"></canvas>
+        <canvas id="processedCanvas" style="width:100%; max-width:600px"></canvas>
     </a>
 </body>
 

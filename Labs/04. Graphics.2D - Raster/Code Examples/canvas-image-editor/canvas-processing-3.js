@@ -23,21 +23,34 @@ Hint: check https://gist.github.com/anonymous/1888841
     var app = {
         originialImage: null,
         processedImage: null,
+        processedCanvas: null,
         donwloadLink: null,
         currentEffect: null
     }
 
     //Drawing methods
-    app.desenare = function(effect) {
+    app.changeEffect = function(effect){
         if(effect !== app.currentEffect)
         {
+            app.currentEffect = effect;
+            app.drawImage();
+        }
+    }
+
+    app.drawImage = function() {
+       
+            var t0 = performance.now();
+
             var canvasProcessing = document.createElement('canvas');
             canvasProcessing.width = app.originialImage.naturalWidth;
             canvasProcessing.height = app.originialImage.naturalHeight;
             var context = canvasProcessing.getContext("2d");
             context.drawImage(app.originialImage, 0, 0, canvasProcessing.width, canvasProcessing.height);
 
-            switch (effect) {
+            var t1 = performance.now();
+            console.log(t1-t0);
+
+            switch (app.currentEffect) {
                 case "normal":
                     app.normal(context);
                     break;
@@ -46,13 +59,30 @@ Hint: check https://gist.github.com/anonymous/1888841
                     break;
             }
 
+            var t2 = performance.now();
+            console.log("t2: "+(t2-t1));
+            var context2 = app.processedCanvas.getContext("2d");
+            
+            var processedCanvasWidth = app.processedCanvas.clientWidth;           
+            var processedCanvasHeight = processedCanvasWidth * canvasProcessing.height / canvasProcessing.width;
+            app.processedCanvas.height = processedCanvasHeight;
+
+            context2.drawImage(canvasProcessing,0,0, canvasProcessing.width, canvasProcessing.height,
+            0,0, processedCanvasWidth, processedCanvasHeight);
+
+            var t3 = performance.now();
+            console.log("t3: "+(t3-t2));
+            
             canvasProcessing.toBlob(function(blob){
-                app.processedImage.src = URL.createObjectURL(blob);
-                app.donwloadLink.href = URL.createObjectURL(blob);
+                var blobUrl = URL.createObjectURL(blob);
+                //app.processedImage.src = blobUrl;
+                app.donwloadLink.href = blobUrl;
             },"image/png");
 
-            app.currentEffect = effect;
-        }
+            var t4 = performance.now();
+            console.log("t4: "+(t4-t3));
+
+            console.log("finished")
     }
 
     app.normal = function(context){
@@ -67,18 +97,25 @@ Hint: check https://gist.github.com/anonymous/1888841
         context.putImageData(imageData, 0, 0); 
     }
 
+    app.updateCanvasSize = function(){
+        app.processedCanvas.width = app.processedCanvas.clientWidth;
+
+        if(app.originialImage.src !== ""){
+            app.drawImage();
+        }
+    }
+
     //Events
     $(function () {
         app.originialImage = document.createElement("img");
         app.donwloadLink = document.getElementById("donwloadLink");
         app.processedImage = document.getElementById("processedImage");
+        app.processedCanvas = document.getElementById("processedCanvas");
+        app.updateCanvasSize();
         
-        app.originialImage.addEventListener("loadstart", function(){
-            app.currentEffect = null;
-        });
-
         app.originialImage.addEventListener("load",function(){
-            app.desenare("normal");
+            app.currentEffect = null;
+            app.changeEffect("normal");
         });
 
         app.originialImage.onerror = function (msg, source, lineNo) {
@@ -87,7 +124,7 @@ Hint: check https://gist.github.com/anonymous/1888841
 
         $('.effectType').click(function () {
             //more about the data attribute: https://developer.mozilla.org/en/docs/Web/Guide/HTML/Using_data_attributes
-            app.desenare($(this).data("effect")); //equivalent to $(this)[0].dataset.effect
+            app.changeEffect($(this).data("effect")); //equivalent to $(this)[0].dataset.effect
         });
 
         document.getElementById("fileBrowser").addEventListener("change",function(e){  
@@ -100,5 +137,7 @@ Hint: check https://gist.github.com/anonymous/1888841
              //3. start loading the file
              reader.readAsDataURL(e.target.files[0]);    
         });
+
+        window.addEventListener("resize", function(){app.updateCanvasSize()});
     });
 })();

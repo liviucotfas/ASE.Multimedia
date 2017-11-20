@@ -1,0 +1,170 @@
+﻿<!--- Assignment
+1. Check the histogram for the same image in Adobe PhotoShop
+2. Change the color of the histogram to black: rgba(0,0,0,0.3)
+3. Also display the histogram for the red channel using as color rgba(255,0,0,0.3)
+2. Also display the histogram for the green channel using as color rgba(0,255,0,0.3)
+2. Also display the histogram for the blue channel using as color rgba(0,0,255,0.3)
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>HTML5Multimedia - DragDrop</title>
+    <script 
+        src="https://code.jquery.com/jquery-latest.js"
+        crossorigin="anonymous"></script>
+    
+    <script>
+        "use strict";
+
+        $(function () {
+            $(document)
+                .on('dragover', function (e) {
+                    e.preventDefault();
+                })
+                .on('drop', function (e) {
+                    e.preventDefault();
+
+                    //Access the `dataTransfer` property from the `drop` event which
+                    //holds the files dropped into the browser window.
+                    //https://api.jquery.com/category/events/event-object/
+                    var files = e.originalEvent.dataTransfer.files;
+                    
+                    if (files.length > 0) {
+                        //The FileReader object lets web applications asynchronously read the contents of files (or raw data buffers) stored on the user's computer, using File or Blob objects to specify the file or data to read
+                        //https://developer.mozilla.org/en/docs/Web/API/FileReader
+                        var reader = new FileReader();
+
+                        //FileReader.onload: a handler for the load event. This event is triggered each time the reading operation is successfully completed.
+                        //https://developer.mozilla.org/en-US/docs/Web/API/FileReader/onload
+                        reader.onload = function (e) {
+                            $("<img></img>")
+                                    .load(function(){drawImageAndHistogram(this);})
+                                    .attr("src", e.target.result);
+                        };
+
+                        //FileReader.readAsDataURL: starts reading the contents of the specified Blob, once finished, the result attribute contains a data: URL representing the file's data.
+                        reader.readAsDataURL(files[0]);
+                    }
+                });
+
+            //?After an event triggers on the deepest possible element, it then triggers on parents in nesting order
+            //https://javascript.info/tutorial/bubbling-and-capturing
+            $("#canvasProcessedImagine").click(function () {
+                
+                //1. Ok for small images. Does not work with large images
+                //$("a").attr("href", this.toDataURL("image/png"));
+
+                //2. create a Blob object representing the image contained in the canvas; this file may be cached on the disk or stored in memory at the discretion of the user agent.
+                //https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob
+                this.toBlob(
+                    function(blob){
+                        $("a").attr("href", URL.createObjectURL(blob));
+                    },
+                    "image/png"
+                );
+
+            });
+        });
+
+        function drawImageAndHistogram(img) {
+            var cW = img.width, cH = img.height;
+            
+            $("#canvasProcessedImagine")
+                .attr({ width: cW, height: cH });
+            
+            var context = $("#canvasProcessedImagine")[0].getContext("2d");
+            context.drawImage(img, 0, 0);
+
+            drawHistogram(context, cW, cH);
+        }
+
+        function drawHistogram(context, cW, cH){
+            var v = [];
+            for (var i = 0; i < 256; i++) {
+                //The push() method adds new items to the end of an array, and returns the new length.
+                // http://www.w3schools.com/jsref/jsref_push.asp
+                v.push(0);
+            }
+
+            var imageData = context.getImageData(0, 0, cW, cH);
+            var data = imageData.data;
+
+            for (var y = 0; y < cH; y++) { //each line
+                for (var x = 0; x < cW; x++) { //each column
+                    
+                    var offset = ((cW * y) + x) * 4
+
+                    var red = data[offset];
+                    var green = data[offset + 1];
+                    var blue = data[offset + 2];
+
+                    var val = Math.round((red + green + blue)/3);
+                    v[val]++;
+                }
+            }
+
+            drawBarChart(context, v, cW, cH);
+        }
+
+        function drawBarChart(c, v, cW, cH) {
+            //Saves the entire state of the canvas by pushing the current state onto a stack.
+            //https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/save
+            c.save();
+
+            //256 shades of grey
+            var n = v.length;      
+            
+            //flip the histogram
+            //https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/rotate
+            //The rotation center point is always the canvas origin.
+            // To change the center point, we will need to move the canvas by using the translate() method.
+            c.rotate(Math.PI);
+            // translate it
+            c.translate(-cW, -cH);
+            
+            //Function.prototype.apply()
+            //The apply() method calls a function with a given this value and arguments provided as an array
+            //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply
+            var f = cH / Math.max.apply(this, v);
+            //var f = cH / Math.max(v) will not work, because max doesn't accept an array as input.
+            //http://stackoverflow.com/questions/21255138/how-does-the-math-max-apply-work
+
+
+            //The CanvasRenderingContext2D.scale() method of the Canvas 2D API adds a scaling transformation to the canvas units by x horizontally and by y vertically.
+            //void ctx.scale(x, y); x: Scaling factor in the horizontal direction. y: Scaling factor in the vertical direction. 
+            //https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/scale
+            //You can use ctx.scale(-1, 1) to flip the context horizontally and ctx.scale(1, -1) to flip it vertically.
+            c.scale(1, f); //flip (necessary due to  c.rotate(Math.PI);) & scale
+                        
+            //drawing color and transparency
+            c.fillStyle = "rgba(255,0,0,0.3)";
+            
+            //Determin the width of the rectangle for each shade of grey
+            var w = cW / n;
+            for (var i = 0; i < n; i++) {
+                // -i * w = x coordinate
+                // 0 = y coordinate
+                // w = width of the rectangle as computed above
+                // v[i] = height of the rectangle. The value will be scaled automatically due to c.scale(-1, f);
+                c.fillRect(i * w, 0, w, v[i]);
+            }
+
+            //Restores the most recently saved canvas state by popping the top entry in the drawing state stack.
+            //https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/restore
+            c.restore();
+        }
+    </script>
+</head>
+<body style="text-align:center;">
+    Drag and drop an image to start. Click on the image afterwards to download it. <br>
+    <a href="#" download="processedImage.png">
+        <!-- 
+            download attribute: download file when clicking on the link (instead of navigating to the file)
+            http://www.w3schools.com/tags/att_a_download.asp
+        -->
+        <canvas id="canvasProcessedImagine"></canvas>
+    </a>
+</body>
+</html>

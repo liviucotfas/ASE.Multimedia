@@ -8,6 +8,8 @@
 
 - HTML5 Canvas: <https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images>
 
+- (optional )HTML Living Standard: <https://html.spec.whatwg.org/#the-canvas-element>
+
 Demos
 -----
 
