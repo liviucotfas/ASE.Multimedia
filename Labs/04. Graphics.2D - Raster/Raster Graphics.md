@@ -51,4 +51,4 @@ Further Reading
 -   HTML5GameDevs community (<http://www.html5gamedevs.com>): includes a list of the most popular game development frameworks
 
 ## Assignment
-1. Check the "canvas-game.html" example.
+1. Try the "canvas-game" sample by clicking [here](https://ase-multimedia.azurewebsites.net/canvas-game). Check the source code. Complete the assignments included in the `js` file.
