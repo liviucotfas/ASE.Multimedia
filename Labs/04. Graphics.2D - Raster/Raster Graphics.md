@@ -25,30 +25,23 @@ Further Reading
 
 -   [Canvas Pocket Reference](http://ase.softmentor.ro/Multimedia/resurse/OReilly%20-%20Canvas%20Pocket%20Reference.pdf) -  Chapter 1.
 
-## Assignment
-1. Try the "canvas-bar-chart" sample by clicking [here](https://ase-multimedia.azurewebsites.net/canvas-bar-chart). Check the source code. Complete the assignments included in the ```html``` file. 
-2. Try the "canvas-drag-drop" sample by clicking [here](https://ase-multimedia.azurewebsites.net/canvas-drag-drop). Check the source code. Complete the assignments included in the ```html``` file. 
-3. Try the "canvas-processing-2.html" sample by clicking [here](https://ase-multimedia.azurewebsites.net/canvas-processing-2). Check the source code. Complete the assignments included in the `js` file.
-4. Try the "canvas-image-editor" sample by clicking [here](https://ase-multimedia.azurewebsites.net/canvas-image-editor). Check the source code. Complete the assignments included in the `js` file.
+## Assignment 1
+1. Try the "canvas-bar-chart" sample by clicking [here](https://ase-multimedia.azurewebsites.net/canvas-bar-chart). 
+2. Check the source code. 
+3. Complete the assignments included in the ```html``` file. 
 
-# Game Development
+## Assignment 2
+1. Try the "canvas-drag-drop" sample by clicking [here](https://ase-multimedia.azurewebsites.net/canvas-drag-drop). 
+2. Check the source code. 
+3. Complete the assignments included in the ```html``` file. 
 
-## HTML5 games real world examples:
-- Facebook Messenger Instant Games: https://messenger.fb.com/blog/instant-games-now-on-messenger/
-- Google Doodles: https://www.google.com/doodles/valentines-day-2017-day-4 (try it on mobile, developed using Pixi)
+## Assignment 3
+1. Try the "canvas-processing-2.html" sample by clicking [here](https://ase-multimedia.azurewebsites.net/canvas-processing-2). 
+2. Check the source code. 
+3. Complete the assignments included in the `js` file.
 
-## Documentation
--   Game development: <https://developer.mozilla.org/en/docs/Games>
-
-## Demos
--   <https://developer.mozilla.org/en-US/docs/Games/Examples>
-
-## Frameworks
-- Phaser ([https://phaser.io](https://phaser.io)): complete HTML5 game engine
-- Pixi ([http://www.pixijs.com](http://www.pixijs.com)): fast HTML 5 2D rendering engine that uses webGL with canvas fallback
-
-## Other
--   HTML5GameDevs community (<http://www.html5gamedevs.com>): includes a list of the most popular game development frameworks
-
-## Assignment
-1. Try the "canvas-game" sample by clicking [here](https://ase-multimedia.azurewebsites.net/canvas-game). Check the source code. Complete the assignments included in the `js` file.
+## Assignment 4
+1. Try the "canvas-image-editor" sample by clicking [here](https://ase-multimedia.azurewebsites.net/canvas-image-editor). 
+2. Add a shortcut to the application as shown in the following image. ![](media/android-add-to-home-screen.jpg)
+2. Check the source code. 
+3. Complete the assignments included in the `js` file.
