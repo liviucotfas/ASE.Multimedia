@@ -42,6 +42,6 @@ Further Reading
 
 ## Assignment 4
 1. Try the "canvas-image-editor" sample by clicking [here](https://ase-multimedia.azurewebsites.net/canvas-image-editor). 
-2. Add a shortcut to the application as shown in the following image. ![](media/android-add-to-home-screen.jpg)
+2. Add a shortcut to the application as shown in the following image. ![](media/android-add-to-home-screen.jpg | width=100 )
 2. Check the source code. 
 3. Complete the assignments included in the `js` file.
