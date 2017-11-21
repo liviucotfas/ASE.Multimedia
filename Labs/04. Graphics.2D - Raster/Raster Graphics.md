@@ -25,24 +25,26 @@ Further Reading
 
 -   [Canvas Pocket Reference](http://ase.softmentor.ro/Multimedia/resurse/OReilly%20-%20Canvas%20Pocket%20Reference.pdf) -  Chapter 1.
 
-## Assignment 1
+## Assignments
+### Assignment 1
 1. Try the "canvas-bar-chart" sample by clicking [here](https://ase-multimedia.azurewebsites.net/canvas-bar-chart). 
 2. Check the source code. 
 3. Complete the assignments included in the ```html``` file. 
 
-## Assignment 2
+### Assignment 2
 1. Try the "canvas-drag-drop" sample by clicking [here](https://ase-multimedia.azurewebsites.net/canvas-drag-drop). 
 2. Check the source code. 
 3. Complete the assignments included in the ```html``` file. 
 
-## Assignment 3
+### Assignment 3
 1. Try the "canvas-processing-2.html" sample by clicking [here](https://ase-multimedia.azurewebsites.net/canvas-processing-2). 
 2. Check the source code. 
 3. Complete the assignments included in the `js` file.
 
-## Assignment 4
+### Assignment 4
 1. Try the "canvas-image-editor" sample by clicking [here](https://ase-multimedia.azurewebsites.net/canvas-image-editor). 
-2. Add a shortcut to the application as shown in the following image.
+    > Note: only the "Normal" and "Black and White" effects are implemented.
+2. Also try the sample on your mobile phone. Add a shortcut to the application on the homescreen of your phone as shown in the following image. Launch the application using the shortcut.
 
     ![](media/android-add-to-home-screen.jpg)
 2. Check the source code. 
