@@ -47,6 +47,7 @@ Hint: check https://gist.github.com/anonymous/1888841
             var context = canvasProcessing.getContext("2d");
             context.drawImage(app.originialImage, 0, 0, canvasProcessing.width, canvasProcessing.height);
 
+            //https://developer.mozilla.org/en-US/docs/Web/API/Performance/now
             var t1 = performance.now();
             console.log(t1-t0);
 
