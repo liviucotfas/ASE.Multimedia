@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Image - Process</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0">
    
     <link 
         rel="stylesheet" 
@@ -13,12 +14,16 @@
         src="https://code.jquery.com/jquery-latest.js"
         crossorigin="anonymous"></script>
     <script 
+        src="histogram-library.js"></script>
+    <script 
+        src="drawing-library.js"></script>
+    <script 
         src="canvas-processing-2.js"></script>
     <script>
         $(function(){
             $("#fileBrowser").change(
                 function(e){  
-                    loadFile(e.target.files[0])
+                    app.loadFile(e.target.files[0])
             });
         });
     </script>
