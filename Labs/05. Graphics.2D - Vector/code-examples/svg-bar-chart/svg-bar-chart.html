@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>SVG Bar Chart</title>
+
+    <style type="text/css">
+        .bar:hover {
+            fill: gray;
+        }
+    </style>
+
+    <script type="text/javascript" src="svg-bar-chart.js"></script>
+    <script type="text/javascript">
+        window.addEventListener("DOMContentLoaded", function (event) {
+            let data = [
+                ['Label 1', 1],
+                ['Label 2', 2],
+                ['Label 3', 3],
+            ];
+
+            let barChart = new BarChart(document.getElementById("barChart"));
+            barChart.draw(data);
+        });
+    </script>
+</head>
+
+<body>
+    <div id="barChart" style="height:500px"></div>
+</body>
+
+</html>

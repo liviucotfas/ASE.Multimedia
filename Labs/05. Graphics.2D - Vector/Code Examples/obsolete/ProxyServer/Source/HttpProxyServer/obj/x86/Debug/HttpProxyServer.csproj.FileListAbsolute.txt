@@ -1,6 +1,0 @@
-E:\Dropbox\ASE\Multimedia\Playground\HttpProxyServer\bin\Debug\HttpProxyServer.exe.config
-E:\Dropbox\ASE\Multimedia\Playground\HttpProxyServer\bin\Debug\HttpProxyServer.exe
-E:\Dropbox\ASE\Multimedia\Playground\HttpProxyServer\bin\Debug\HttpProxyServer.pdb
-E:\Dropbox\ASE\Multimedia\Playground\HttpProxyServer\obj\x86\Debug\ResolveAssemblyReference.cache
-E:\Dropbox\ASE\Multimedia\Playground\HttpProxyServer\obj\x86\Debug\HttpProxyServer.exe
-E:\Dropbox\ASE\Multimedia\Playground\HttpProxyServer\obj\x86\Debug\HttpProxyServer.pdb
