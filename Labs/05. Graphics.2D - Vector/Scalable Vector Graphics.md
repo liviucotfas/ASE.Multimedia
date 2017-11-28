@@ -18,64 +18,78 @@ designed to work with other web standards such as
 -   SVG: <https://developer.mozilla.org/en/docs/Web/SVG>
 
 ## Assignment (solved)
-We want to build a simple **bar chart** library inspired by [Google Charts](https://developers.google.com/chart/interactive/docs/gallery/barchart). You can find bellow the code required for displaying a **bar chart** using Google Charts.
+We want to build a simple **bar chart** library inspired by [Google Charts](https://developers.google.com/chart/interactive/docs/gallery/barchart). Anyone should be able to use our library by referencing a single `*.js` file. 
 
+As an example, you can find bellow the code required for displaying a **bar chart** using Google Charts:
+
+**HTML**
+```HTML
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <div id="chart_div"></div>
+```
+**JavaScript**
 ```JavaScript
-var data = google.visualization.arrayToDataTable([
-['City', '2010 Population',],
-['New York City', 8175000],
-['Los Angeles', 3792000],
-]);
+google.charts.load('current', {packages: ['corechart', 'bar']});
+google.charts.setOnLoadCallback(drawBasic);
 
-var options = {
-title: 'Population of Largest U.S. Cities',
-hAxis: {
-    title: 'Total Population',
-    minValue: 0
-},
-vAxis: {
-    title: 'City'
+function drawBasic() {
+    var data = google.visualization.arrayToDataTable([
+        ['City', '2010 Population',],
+        ['New York City', 8175000],
+        ['Los Angeles', 3792000],
+        ]);
+
+    var options = {
+        title: 'Population of Largest U.S. Cities',
+        hAxis: {
+            title: 'Total Population',
+            minValue: 0
+        },
+        vAxis: {
+            title: 'City'
+        }
+    };
 }
-};
 
 var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
 chart.draw(data, options);
 ```
+
 1. Add an `HTML` file called `index.html` and add the code included below.
 
-    ```HTML
-    <!DOCTYPE HTML>
-    <html>
+```HTML
+<!DOCTYPE HTML>
+<html>
 
-    <head>
-        <title>SVG Bar Chart</title>
-    </head>
+<head>
+    <title>SVG Bar Chart</title>
+</head>
 
-    <body>
-        <div id="barChart" style="height:500px"></div>
-    </body>
+<body>
+    <div id="barChart" style="height:500px"></div>
+</body>
 
-    </html>
-    ```
+</html>
+```
 
 2. Similar to the Google Charts library, we would want to use our bar chart library as follows. Add the code to the `<head>` section of your page.
 
-    ```JavaScript
-    <script type="text/javascript">
-        window.addEventListener("DOMContentLoaded", function (event) {
-            let data = [
-                ['Label 1', 1],
-                ['Label 2', 2],
-                ['Label 3', 3],
-            ];
+```JavaScript
+<script type="text/javascript">
+    window.addEventListener("DOMContentLoaded", function (event) {
+        let data = [
+            ['Label 1', 1],
+            ['Label 2', 2],
+            ['Label 3', 3],
+        ];
 
-            let barChart = new BarChart(document.getElementById("barChart"));
-            barChart.draw(data);
-        });
-    </script>
-    ```
+        let barChart = new BarChart(document.getElementById("barChart"));
+        barChart.draw(data);
+    });
+</script>
+```
 2. Add a `JavaScript` file called `svg-bar-chart.js` and reference it from the `html` file.
-3. Declare the `BarChart` class and add a constructor.
+3. Declare the `BarChart` class and add a `constructor`.
     
     ```JavaScript
     class BarChart{
@@ -168,6 +182,10 @@ chart.draw(data, options);
     text.setAttribute('y', barY);
     this.svg.appendChild(text);
     ```
+>Remarks: While the `*.html` file is specific to our example, the bar chart library in the `.*js` file is general and can be used in any project. Our users will need to: 
+    - include the `.*js` file;
+    - instantiate the `BarChart` class;
+    - call the `draw()` method pssing as an argument a matrix.
 
 ## Assignment (for you to try)
 The Google Charts library supports many more features than our library, as you can see in the screenshot bellow. 
@@ -176,3 +194,4 @@ The Google Charts library supports many more features than our library, as you c
 
 1. Display the horizontal and vertical axes (as shown above).
 2. Display tooltips when the user hovers over the bars in you chart (as shown above).
+3. (optional) Check the [D3.js](https://d3js.org/) library. Reimplement the example above using this library.
