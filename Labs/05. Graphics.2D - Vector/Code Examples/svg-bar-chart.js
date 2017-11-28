@@ -1,10 +1,11 @@
 "use strict";
 
-var svgns = "http://www.w3.org/2000/svg";
-
+//http://exploringjs.com/es6/ch_classes.html
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
 class BarChart{
     constructor(domElement) {
         this.domElement = domElement;
+        this.svgns = "http://www.w3.org/2000/svg"; 
     }
     draw(data){
         this.data = data;
@@ -18,48 +19,48 @@ class BarChart{
         this.domElement.appendChild(this.svg);
     }
     createSVG(){
-        this.svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        this.svg = document.createElementNS(this.svgns, "svg");
         this.svg.setAttribute('style', 'border: 1px solid black');
         this.svg.setAttribute('width', this.width);
         this.svg.setAttribute('height', this.height);
         this.svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink");
     }
     drawBackground(){
-        let rect = document.createElementNS(svgns, 'rect');
-        rect.setAttributeNS(null, 'x', 0);
-        rect.setAttributeNS(null, 'y', 0);
-        rect.setAttributeNS(null, 'height', this.height);
-        rect.setAttributeNS(null, 'width', this.width);
-        rect.setAttributeNS(null, 'fill', 'WhiteSmoke');
+        let rect = document.createElementNS(this.svgns, 'rect');
+        rect.setAttribute('x', 0);
+        rect.setAttribute('y', 0);
+        rect.setAttribute('height', this.height);
+        rect.setAttribute('width', this.width);
+        rect.setAttribute('fill', 'WhiteSmoke');
         this.svg.appendChild(rect);
     }
     drawBars(){
         let barWidth = this.width / this.data.length;
 
-        var f = this.height * 0.9 / Math.max.apply(Math, this.data.map(x=>x[1]));
+        let f = this.height * 0.9 / Math.max.apply(Math, this.data.map(x=>x[1]));
 
         for(let i=0; i<this.data.length; i++){
 
-            var label = this.data[i][0];
-            var value = this.data[i][1];
+            let label = this.data[i][0];
+            let value = this.data[i][1];
 
-            var barHeight = value * f;
-            var barY = this.height - barHeight;
-            var barX = i * barWidth + barWidth/4;
+            let barHeight = value * f;
+            let barY = this.height - barHeight;
+            let barX = i * barWidth + barWidth/4;
 
-            let bar = document.createElementNS(svgns, 'rect');
-            bar.setAttributeNS(null,'class','bar');
-            bar.setAttributeNS(null, 'x', barX);
-            bar.setAttributeNS(null, 'y', barY);
-            bar.setAttributeNS(null, 'height', barHeight);
-            bar.setAttributeNS(null, 'width', barWidth/2);
-            bar.setAttributeNS(null, 'fill', '#db4437');
+            let bar = document.createElementNS(this.svgns, 'rect');
+            bar.setAttribute('class','bar');
+            bar.setAttribute('x', barX);
+            bar.setAttribute('y', barY);
+            bar.setAttribute('height', barHeight);
+            bar.setAttribute('width', barWidth/2);
+            bar.setAttribute('fill', '#db4437');
             this.svg.appendChild(bar);
 
-            let text = document.createElementNS(svgns, 'text');
+            let text = document.createElementNS(this.svgns, 'text');
             text.appendChild(document.createTextNode(label));
-            text.setAttributeNS(null, 'x', barX);
-            text.setAttributeNS(null, 'y', barY);
+            text.setAttribute('x', barX);
+            text.setAttribute('y', barY);
             this.svg.appendChild(text);
         }
     }
