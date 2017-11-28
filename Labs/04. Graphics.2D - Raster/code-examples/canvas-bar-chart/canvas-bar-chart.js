@@ -7,10 +7,10 @@ class BarChart{
         this.canvas = canvas;
     }
     draw(values){
-        var context = this.canvas.getContext('2d');
+        let context = this.canvas.getContext('2d');
     
-        var h = this.canvas.height;
-        var w = this.canvas.width / values.length;
+        let h = this.canvas.height;
+        let w = this.canvas.width / values.length;
     
         context.fillStyle = "#DEDEDE";
         context.fillRect(0, 0, this.canvas.width, this.canvas.height);
@@ -19,14 +19,14 @@ class BarChart{
         context.strokeStyle = "black";
         context.lineWidth = 2;
         
-        var f = this.canvas.height * 0.9 / Math.max.apply(Math, values);
+        let f = this.canvas.height * 0.9 / Math.max.apply(Math, values);
     
-        for (var i = 0; i < values.length; i++) {
+        for (let i = 0; i < values.length; i++) {
     
-            var rectX = (i + 0.1) * w;
-            var rectY = h - values[i] * f;
-            var rectWidth = 0.8 * w;
-            var rectHeight = values[i] * f;
+            let rectX = (i + 0.1) * w;
+            let rectY = h - values[i] * f;
+            let rectWidth = 0.8 * w;
+            let rectHeight = values[i] * f;
     
             context.fillRect(rectX, rectY, rectWidth, rectHeight);
             context.strokeRect(rectX, rectY, rectWidth, rectHeight);
