@@ -9,3 +9,5 @@ Demos
 -----
 
 -   <http://babylonjs.com/>
+- https://threejs.org/
+- https://jsfiddle.net/f2Lommf5/
