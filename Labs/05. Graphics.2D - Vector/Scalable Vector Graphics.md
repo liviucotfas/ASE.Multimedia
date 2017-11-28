@@ -1,9 +1,11 @@
 # Scalable Vector Graphics - SVG
 <!-- vscode-markdown-toc -->
-* 1. [What is it?](#Whatisit)
-* 2. [Documentation](#Documentation)
-* 3. [Assignment (solved)](#Assignmentsolved)
-* 4. [Assignment (for you to try)](#Assignmentforyoutotry)
+* 1. [Objectives](#Objectives)
+* 2. [What is it?](#Whatisit)
+* 3. [Documentation](#Documentation)
+* 4. [Assignment (solved)](#Assignmentsolved)
+* 5. [Assignment (for you to try)](#Assignmentforyoutotry)
+* 6. [Bibliography](#Bibliography)
 
 <!-- vscode-markdown-toc-config
 	numbering=true
@@ -11,7 +13,12 @@
 	/vscode-markdown-toc-config -->
 <!-- /vscode-markdown-toc -->
 
-##  1. <a name='Whatisit'></a>What is it?
+##  1. <a name='Objectives'></a>Objectives
+- creating an SVG element using JavaScript;
+- adding various elements in the SVG and setting their attributes (coordinates, width, height, etc.);
+- applying CSS styles to SVG Elements.
+
+##  2. <a name='Whatisit'></a>What is it?
 **Scalable Vector Graphics (SVG)** is an
 [XML](https://developer.mozilla.org/en-US/docs/XML)-based markup language for
 describing two-dimensional [vector
@@ -24,11 +31,11 @@ designed to work with other web standards such as
 [DOM](https://developer.mozilla.org/en-US/docs/DOM), and
 [SMIL](https://developer.mozilla.org/en-US/docs/Web/SVG/SVG_animation_with_SMIL).
 
-##  2. <a name='Documentation'></a>Documentation
+##  3. <a name='Documentation'></a>Documentation
 
 -   SVG: <https://developer.mozilla.org/en/docs/Web/SVG>
 
-##  3. <a name='Assignmentsolved'></a>Assignment (solved)
+##  4. <a name='Assignmentsolved'></a>Assignment (solved)
 We want to build a simple **bar chart** library inspired by [Google Charts](https://developers.google.com/chart/interactive/docs/gallery/barchart). Anyone should be able to use our library by referencing a single `*.js` file. 
 
 As an example, you can find bellow the code required for displaying a **bar chart** using Google Charts:
@@ -65,6 +72,8 @@ function drawBasic() {
 var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
 chart.draw(data, options);
 ```
+
+>**Note:** You can try the complete sample by clicking [here](https://ase-multimedia.azurewebsites.net/svg-bar-chart/).
 
 1. Add an `HTML` file called `index.html` and add the code included below.
 
@@ -198,7 +207,7 @@ chart.draw(data, options);
     - instantiate the `BarChart` class;
     - call the `draw()` method pssing as an argument a matrix.
 
-##  4. <a name='Assignmentforyoutotry'></a>Assignment (for you to try)
+##  5. <a name='Assignmentforyoutotry'></a>Assignment (for you to try)
 The Google Charts library supports many more features than our library, as you can see in the screenshot bellow. 
 
 ![Google Charts](media/google-charts.png)
@@ -206,3 +215,6 @@ The Google Charts library supports many more features than our library, as you c
 1. Display the horizontal and vertical axes (as shown above).
 2. Display tooltips when the user hovers over the bars in you chart (as shown above).
 3. (optional) Check the [D3.js](https://d3js.org/) library. Reimplement the example above using this library.
+
+##  6. <a name='Bibliography'></a>Bibliography
+-   SVG: <https://developer.mozilla.org/en/docs/Web/SVG>
