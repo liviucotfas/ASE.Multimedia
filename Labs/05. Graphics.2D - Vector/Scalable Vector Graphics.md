@@ -90,10 +90,11 @@ chart.draw(data, options);
 
 <head>
     <title>SVG Bar Chart</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0">
 </head>
 
 <body>
-    <div id="barChart" style="height:500px"></div>
+    <div id="barChart" style="height:300px"></div>
 </body>
 
 </html>
