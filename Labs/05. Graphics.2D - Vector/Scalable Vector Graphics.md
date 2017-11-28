@@ -16,7 +16,8 @@
 ##  1. <a name='Objectives'></a>Objectives
 - creating an SVG element using JavaScript;
 - adding various elements in the SVG and setting their attributes (coordinates, width, height, etc.);
-- applying CSS styles to SVG Elements.
+- applying CSS styles to SVG Elements;
+- subscribing to the events triggered on the SVG elements.
 
 ##  2. <a name='Whatisit'></a>What is it?
 **Scalable Vector Graphics (SVG)** is an
@@ -36,13 +37,21 @@ designed to work with other web standards such as
 -   SVG: <https://developer.mozilla.org/en/docs/Web/SVG>
 
 ##  4. <a name='Assignmentsolved'></a>Assignment (solved)
-We want to build a simple **bar chart** library inspired by [Google Charts](https://developers.google.com/chart/interactive/docs/gallery/barchart). Anyone should be able to use our library by referencing a single `*.js` file. 
 
-As an example, you can find bellow the code required for displaying a **bar chart** using Google Charts:
+Let's imagine that we are asked to implement a simple JavaScript **bar chart** library, having the following requirements:
+ - anyone should be able to use our library by referencing a **single** `*.js` file;
+ - the library should **not** have any dependencies on other libraries (such as: jQuert, D3.js, etc.);
+ - the chart should be **interactive** (ex: the bars should change color when the user hovers over them).
+
+>Try the complete `svg-bar-chart` sample by clicking [here](https://ase-multimedia.azurewebsites.net/svg-bar-chart/).
+
+
+As an example, you can find bellow the code required for displaying a **bar chart** using the [Google Charts](https://developers.google.com/chart/interactive/docs/gallery/barchart) library:
 
 **HTML**
 ```HTML
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
   <div id="chart_div"></div>
 ```
 **JavaScript**
@@ -72,8 +81,6 @@ function drawBasic() {
 var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
 chart.draw(data, options);
 ```
-
->**Note:** You can try the complete sample by clicking [here](https://ase-multimedia.azurewebsites.net/svg-bar-chart/).
 
 1. Add an `HTML` file called `index.html` and add the code included below.
 
