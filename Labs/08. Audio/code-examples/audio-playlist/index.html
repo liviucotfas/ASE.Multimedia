@@ -2,11 +2,13 @@
 <html>
 <head>
     <title>HTML5 - Audio Playlist</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0">
+
     <style type="text/css">
         #playlist, #controls
         {
             background: gray;
-            width: 400px;
+            max-width: 400px;
             padding: 5px;
             font-family: Sans-Serif;
         }
@@ -45,17 +47,19 @@
     <script 
         src="https://code.jquery.com/jquery-latest.js"
         crossorigin="anonymous"></script>
+     <script type="text/javascript" src="audio-playlist.js"></script>
 </head>
 <body>
     <audio id="audio">
         Your browser does not support the <code>audio</code> element.
     </audio>
-    <p id="controls">
+    <div id="controls">
         <span id="currentPosition">dfs</span>
         <button id="btnPlayPause">||</button>
         <button id="btnForward">&gt;&gt;</button>
         <button id="btnNext">&gt;|</button>
-    </p>
+    </div>
+
     <ul id="playlist">
         <li data-url="http://www.archive.org/download/bolero_69/Bolero.mp3">
             Ravel - Bolero
@@ -67,79 +71,5 @@
             Pachelbel - Canon in D
         </li>
     </ul>
-
-    <script type="text/javascript">
-        $(function () {
-
-            var audio = document.getElementById('audio');
-            var tracks = []; //track list
-
-            // 1. Display the current time in seconds
-            setInterval(function () {
-
-                if (audio.duration) {
-                    $("#controls span").text(
-                      Math.floor(audio.currentTime) + " / " +
-                        Math.floor(audio.duration));
-                }
-                else {
-                    $("#controls span").text("Loading...");
-                };
-            }, 30);
-
-            // 2. Iterate over the playlist in order to associate events
-            $("#playlist li").each(function () {
-                var url = $(this).data("url");
-                tracks.push(url);
-
-                $(this).click(function () {
-                    play(url);
-                });
-            });
-
-            // 3. Play/Next methods
-            function play(url) {
-
-                $("#playlist li[data-url='" + url + "']")
-                    .addClass("active")
-                    .siblings().removeClass("active");
-
-                audio.src = url;
-                audio.load();
-                audio.play();
-            }
-
-            function next() {
-                var index = tracks.indexOf(audio.src) + 1;
-                if (index >= tracks.length) {
-                    index = 0;
-                }
-
-                play(tracks[index]);
-            }
-
-            // 4. Associate events
-            $("#btnPlayPause").click(function () {
-                if (audio.paused) {
-                    audio.play();
-                    $("#btnPlayPause").text("||");
-                }
-                else {
-                    audio.pause();
-                    $("#btnPlayPause").text(">");
-                }
-            });
-
-            $("#btnForward").click(function () {
-                audio.currentTime += 10;
-            });
-
-            $("#btnNext").click(next);
-
-            $(audio).on("ended", next);
-
-            next(); // start playing
-        });
-    </script>
 </body>
 </html>
