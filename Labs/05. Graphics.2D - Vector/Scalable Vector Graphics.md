@@ -1,6 +1,17 @@
 # Scalable Vector Graphics - SVG
+<!-- vscode-markdown-toc -->
+* 1. [What is it?](#Whatisit)
+* 2. [Documentation](#Documentation)
+* 3. [Assignment (solved)](#Assignmentsolved)
+* 4. [Assignment (for you to try)](#Assignmentforyoutotry)
 
-## What is it?
+<!-- vscode-markdown-toc-config
+	numbering=true
+	autoSave=true
+	/vscode-markdown-toc-config -->
+<!-- /vscode-markdown-toc -->
+
+##  1. <a name='Whatisit'></a>What is it?
 **Scalable Vector Graphics (SVG)** is an
 [XML](https://developer.mozilla.org/en-US/docs/XML)-based markup language for
 describing two-dimensional [vector
@@ -13,11 +24,11 @@ designed to work with other web standards such as
 [DOM](https://developer.mozilla.org/en-US/docs/DOM), and
 [SMIL](https://developer.mozilla.org/en-US/docs/Web/SVG/SVG_animation_with_SMIL).
 
-## Documentation
+##  2. <a name='Documentation'></a>Documentation
 
 -   SVG: <https://developer.mozilla.org/en/docs/Web/SVG>
 
-## Assignment (solved)
+##  3. <a name='Assignmentsolved'></a>Assignment (solved)
 We want to build a simple **bar chart** library inspired by [Google Charts](https://developers.google.com/chart/interactive/docs/gallery/barchart). Anyone should be able to use our library by referencing a single `*.js` file. 
 
 As an example, you can find bellow the code required for displaying a **bar chart** using Google Charts:
@@ -182,12 +193,12 @@ chart.draw(data, options);
     text.setAttribute('y', barY);
     this.svg.appendChild(text);
     ```
->Remarks: While the `*.html` file is specific to our example, the bar chart library in the `.*js` file is general and can be used in any project. Our users will need to: 
+>**Remarks:** While the `*.html` file is specific to our example, the bar chart library in the `.*js` file is general and can be used in any project. Our users will need to: 
     - include the `.*js` file;
     - instantiate the `BarChart` class;
     - call the `draw()` method pssing as an argument a matrix.
 
-## Assignment (for you to try)
+##  4. <a name='Assignmentforyoutotry'></a>Assignment (for you to try)
 The Google Charts library supports many more features than our library, as you can see in the screenshot bellow. 
 
 ![Google Charts](media/google-charts.png)
