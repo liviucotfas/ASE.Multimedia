@@ -1,7 +1,5 @@
-"use strict";
-
-var drawingLibrary={
-    processImage : function(canvas, action) {
+class DrawingLibrary {
+    static processImage(canvas, action) {
         var context = canvas.getContext("2d");
     
         var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
@@ -32,8 +30,9 @@ var drawingLibrary={
     
         // draw the new image
         context.putImageData(imageData, 0, 0);
-    },
-    analyzeColorChannels:function(canvasImage){
+    }
+
+    static analyzeColorChannels(canvasImage){
         var vR = new Array(); //equivalent to var vR = []; Futher reading: http://www.w3schools.com/js/js_arrays.asp
         var vG = [];
         var vB = [];
@@ -41,14 +40,15 @@ var drawingLibrary={
             vR[i] = 0; vG[i] = 0; vB[i] = 0; 
         }
     
-        drawingLibrary.processImage(canvasImage,
+        DrawingLibrary.processImage(canvasImage,
             function (x, y, r, g, b, a) {
                 vR[r]++; vG[g]++; vB[b]++;
             });
 
         return {vR,vG,vB};
-    },
-    convertToGreyScale:function(canvasImage) {
+    }
+
+    static convertToGreyScale(canvasImage) {
 
     }
 }

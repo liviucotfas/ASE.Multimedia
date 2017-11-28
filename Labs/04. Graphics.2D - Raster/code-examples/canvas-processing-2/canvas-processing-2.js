@@ -59,12 +59,12 @@ app.displayImageOnCanvas = function(img)
 }
 
 app.drawHistogram = function(){
-    let result = drawingLibrary.analyzeColorChannels(app.canvasImage);
+    let result = DrawingLibrary.analyzeColorChannels(app.canvasImage);
     app.histogram.draw(result.vR, result.vG, result.vB);
 }
 
 app.convertToGreyScale = function(){
-    drawingLibrary.convertToGreyScale(app.canvasImage);
+    DrawingLibrary.convertToGreyScale(app.canvasImage);
 }
 
 //extends the string prototype object
