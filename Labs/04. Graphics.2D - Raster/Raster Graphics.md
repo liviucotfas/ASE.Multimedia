@@ -128,7 +128,6 @@ Further Reading
     app.originialImage = document.createElement("img");
     app.donwloadLink = document.getElementById("donwloadLink");
     app.processedImage = document.getElementById("processedImage");
-    app.processedCanvas = document.getElementById("processedCanvas");
     ```
 
 8. On the `app` object add the following method `drawImage` (used for displaying the image), `normal` (normal effect) and `blackWhite` (black and white effect).
@@ -159,14 +158,7 @@ Further Reading
 
             var t2 = performance.now();
             console.log("t2: "+(t2-t1));
-            var context2 = app.processedCanvas.getContext("2d");
-            
-            var processedCanvasWidth = app.processedCanvas.clientWidth;           
-            var processedCanvasHeight = processedCanvasWidth * canvasProcessing.height / canvasProcessing.width;
-            app.processedCanvas.height = processedCanvasHeight;
-
-            context2.drawImage(canvasProcessing,0,0, canvasProcessing.width, canvasProcessing.height,
-            0,0, processedCanvasWidth, processedCanvasHeight);
+        
 
             var t3 = performance.now();
             console.log("t3: "+(t3-t2));
