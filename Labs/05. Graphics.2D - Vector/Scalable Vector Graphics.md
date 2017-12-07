@@ -40,7 +40,7 @@ designed to work with other web standards such as
 
 Let's imagine that we are asked to implement a simple JavaScript **bar chart** library, having the following requirements:
  - anyone should be able to use our library by referencing a **single** `*.js` file;
- - the library should **not** have any dependencies on other libraries (such as: jQuert, D3.js, etc.);
+ - the library should **not** have any dependencies on other libraries (such as: jQuery, D3.js, etc.);
  - the chart should be **interactive** (ex: the bars should change color when the user hovers over them).
 
 >Try the complete `svg-bar-chart` sample by clicking [here](https://ase-multimedia.azurewebsites.net/svg-bar-chart/).
