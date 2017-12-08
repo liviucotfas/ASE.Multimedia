@@ -26,16 +26,12 @@
 ##  2. <a name='Documentation'></a>Documentation
 -   HTML Audio Element (HTML):
     <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio>
-
 -   HTMLAudioElement interface (JavaScript - HTML Media API):
     <https://developer.mozilla.org/en-US/docs/Web/API/HTMLVideoElement>
-
 -   Web Audio API:
     <https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API>
-
 -   Web RTC API:
     <https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia>
-
 - Speech API: <https://w3c.github.io/speech-api/webspeechapi.html>, <https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition>
 
 ##  3. <a name='Demos'></a>Demos
@@ -70,14 +66,10 @@
 ##  5. <a name='Bibliography'></a>Bibliography
 -   HTML Audio Element (HTML):
     <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio>
-
 -   HTMLAudioElement interface (JavaScript - HTML Media API):
     <https://developer.mozilla.org/en-US/docs/Web/API/HTMLVideoElement>
-
 -   Web Audio API:
     <https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API>
-
 -   Web RTC API:
     <https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia>
-
 - Speech API: <https://w3c.github.io/speech-api/webspeechapi.html>, <https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition>
