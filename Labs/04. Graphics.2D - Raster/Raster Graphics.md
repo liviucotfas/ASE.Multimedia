@@ -4,44 +4,56 @@
 
 # 2D Raster Graphics
 
-## Documentation
+<!-- vscode-markdown-toc -->
+* 1. [Objectives](#Objectives)
+* 2. [Documentation](#Documentation)
+* 3. [Demos](#Demos)
+* 4. [Assignments](#Assignments)
+	* 4.1. [Assignment 1](#Assignment1)
+	* 4.2. [Assignment 2](#Assignment2)
+	* 4.3. [Assignment 3](#Assignment3)
+	* 4.4. [Assignment 4](#Assignment4)
 
+<!-- vscode-markdown-toc-config
+	numbering=true
+	autoSave=true
+	/vscode-markdown-toc-config -->
+<!-- /vscode-markdown-toc -->
+
+##  1. <a name='Objectives'></a>Objectives
+- drawing various shapes on the `canvas` (rectangles, lines, etc.);
+- loading an image using drag and drop;
+- loading an image using the file picker;
+- drawing the histogram for an image;
+- applying various effects on an image;
+- saving the content of the canvas as a `*.png` or `.jpeg` file.
+##  2. <a name='Documentation'></a>Documentation
 - HTML5 Canvas: <https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images>
-
 - (optional) HTML Living Standard: <https://html.spec.whatwg.org/#the-canvas-element>
 
-Demos
------
-
+##  3. <a name='Demos'></a>Demos
 -   Capture image from the web cam:
     <https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Taking_still_photos>
-
 -   Image zoom: <http://phrogz.net/tmp/canvas_image_zoom.html>
-
 -   Image effects: <http://www.html5rocks.com/en/tutorials/canvas/imagefilters/>
 
-Further Reading
----------------
-
--   [Canvas Pocket Reference](http://ase.softmentor.ro/Multimedia/resurse/OReilly%20-%20Canvas%20Pocket%20Reference.pdf) -  Chapter 1.
-
-## Assignments
-### Assignment 1
+##  4. <a name='Assignments'></a>Assignments
+###  4.1. <a name='Assignment1'></a>Assignment 1
 1. Try the "canvas-bar-chart" sample by clicking [here](https://ase-multimedia.azurewebsites.net/canvas-bar-chart). 
 2. Check the source code. 
 3. Complete the assignments included in the ```html``` file. 
 
-### Assignment 2
+###  4.2. <a name='Assignment2'></a>Assignment 2
 1. Try the "canvas-drag-drop" sample by clicking [here](https://ase-multimedia.azurewebsites.net/canvas-drag-drop). 
 2. Check the source code. 
 3. Complete the assignments included in the ```html``` file. 
 
-### Assignment 3
+###  4.3. <a name='Assignment3'></a>Assignment 3
 1. Try the "canvas-processing-2.html" sample by clicking [here](https://ase-multimedia.azurewebsites.net/canvas-processing-2). 
 2. Check the source code. 
 3. Complete the assignments included in the `js` file.
 
-### Assignment 4
+###  4.4. <a name='Assignment4'></a>Assignment 4
 1. Try the "canvas-image-editor" sample by clicking [here](https://ase-multimedia.azurewebsites.net/canvas-image-editor). 
     > Note: only the "Normal" and the "Black and White" effects are implemented.
 2. Also try the sample on your mobile phone. Add a shortcut to the application on the homescreen of your phone as shown in the following image. Launch the application using the shortcut.
@@ -317,3 +329,8 @@ Further Reading
     ```
 
 19. Complete the assignments included in the `js` file.
+
+##  5. Bibliography
+- HTML5 Canvas: <https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images>
+-   [Canvas Pocket Reference](http://ase.softmentor.ro/Multimedia/resurse/OReilly%20-%20Canvas%20Pocket%20Reference.pdf) -  Chapter 1.
+- (optional) HTML Living Standard: <https://html.spec.whatwg.org/#the-canvas-element>
