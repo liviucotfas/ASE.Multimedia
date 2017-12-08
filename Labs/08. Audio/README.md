@@ -18,7 +18,7 @@
 
 ##  1. <a name='Objectives'></a>Objectives
 - playing audio files in the browser using the `<audio>` element;
-- contolling the audio playback (play/pause/stop/etc.) using the `HTMLAudioElement` interface;
+- controlling the audio playback (play/pause/stop/etc.) using the `HTMLAudioElement` interface;
 - capturing sound from the microphone using the `Web RTC API`;
 - analyzing the sound using the `Web Audio API` and displaying sound visualisations;
 - performing speech recognition using the `Speech API`.
