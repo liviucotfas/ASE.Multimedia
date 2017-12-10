@@ -59,7 +59,7 @@
 2. Also try the sample on your mobile phone. Add a shortcut to the application on the homescreen of your phone as shown in the following image. Launch the application using the shortcut.
 
     ![](media/android-add-to-home-screen.jpg)
-2. Download the `Code Examples.zip` archive. We'll be doing all our coding work in a directory called `canvas-image-editor-work`. The directory called `canvas-image-editor-final` contains the final version of the application.
+2. Download the `Code Examples.zip` archive. We'll be doing all our coding work in a directory called `canvas-image-editor-dev`. The directory called `canvas-image-editor-final` contains the final version of the application.
 3. Add an `html` file called `index.html` and add the code included below.
     ```html
     <!DOCTYPE html> 
