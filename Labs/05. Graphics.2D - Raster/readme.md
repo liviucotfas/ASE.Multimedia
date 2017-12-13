@@ -249,6 +249,9 @@
 13. Handle the `onerror` event of the originialImage element.
 
     ```JavaScript
+    /*app.originialImage.onerror = function (msg, source, lineNo) {
+            alert("Mesaj eroare: {0}".format(msg));
+    };*/
     app.originialImage.addEventListener("error", function (msg) {
             alert("Mesaj eroare: {0}".format(msg));
     });
@@ -305,7 +308,7 @@
     }
     ```
 
-19. Complete the assignments included in the `js` file.
+19. Complete the assignments included in the `*.js` file.
 
 ##  5. Bibliography
 - HTML5 Canvas: <https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images>
