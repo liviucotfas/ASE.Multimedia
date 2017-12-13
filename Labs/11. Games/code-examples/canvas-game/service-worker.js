@@ -9,6 +9,7 @@ var filesToCache = [
   'img/icons/icon-192x192.png'
 ];
 
+//1. Cache the required files
 self.addEventListener('install', function(e) {
   console.log('[ServiceWorker] Install');
   e.waitUntil(
@@ -19,6 +20,7 @@ self.addEventListener('install', function(e) {
   );
 });
 
+//2. Delete the old version of the cache
 self.addEventListener('activate', function(e) {
   console.log('[ServiceWorker] Activate');
   e.waitUntil(
@@ -35,6 +37,7 @@ self.addEventListener('activate', function(e) {
   return self.clients.claim();
 });
 
+//3. Fetch files from the cache or from the internet
 self.addEventListener('fetch', function(e) {
   console.log('[Service Worker] Fetch', e.request.url);
 
@@ -42,6 +45,8 @@ self.addEventListener('fetch', function(e) {
     caches.match(e.request)
       .then(function(response) {
         return response || fetch(e.request);
+        //https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
+        //fetch - returns a promise that resolves to the Response to that request, whether it is successful or not
       })
   );
 });
