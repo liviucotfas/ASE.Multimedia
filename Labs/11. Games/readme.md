@@ -40,9 +40,9 @@
 3. Store and display the minimum time in which the game has been won so far. The minimum time should be persisted even if the user closes the browser or navigates to another website.
 
 	Hint: 
-	- use the Web Storage API: https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API
-	- use `let d = new Date();` to get the current time
-	- you can subtract two `Date` objects to compute the difference between them in milliseconds
+	- use the Web Storage API: https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API;
+	- use `let d = new Date();` to get the current time;
+	- you can subtract two `Date` objects to compute the difference between them in milliseconds.
 4. The example has a few "physics" issues. For example, we only test if the coordinates of the ball are inside a brick, but in fact we should test if any point on the contour of the ball is touching the brick. The same issue appears when the ball hits the paddle from the side.
 5. Try a more advance version of our game, developed using the Phaser.io library: https://phaser.io/examples/v2/games/breakout
 5. (opt) Read more about phase on https://phaser.io
