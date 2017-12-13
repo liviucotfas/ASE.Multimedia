@@ -1,19 +1,4 @@
-/*
-Adapted from: https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript
-#Assignments
-1. Store and display the minimum time in which the game has been won so far. The minimum time should be persisted even if the user closes the browser or navigates to another website
-Hint: 
-- Use the Web Storage API: https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API
-- Use var d = new Date(); to get the current time
-- You can subtract two Date objects to compute the difference between them in milliseconds
-2. The example has a few "physics" issues. For example, we only test if the coordinates of the ball are inside a brick, but in fact we should test if any point on the contour of the ball is touching the brick. The same issue appears when the ball hits the paddle from the side.
-2. Make the canvas the same size as the browser window
-3. Rewrite the code that is drawing the elements (paddle, bricks and ball) in order to ajust their size based on the size of the browser window
-
-#Further reading:
-- try https://phaser.io/examples/v2/games/breakout
-- read more about phase on https://phaser.io
-*/
+// Adapted from: https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript
 
 (function () {
     'use strict';
@@ -49,6 +34,45 @@ Hint:
         lives: 3,
         bricks: []
     }
+
+    $(function () {
+        
+        //1. Query DOM
+        app.canvas = document.getElementById("gameCanvas");
+        //2. Set canvas size
+        app.windowSizeChanged();
+
+        //Ball settings
+        app.x = app.canvas.width / 2;
+        app.y = app.canvas.height - 30;
+        //we want to add a small value to x and y after every frame has been drawn to make it appear that the ball is moving
+        app.dx = app.dxDefault;
+        app.dy = app.dyDefault;
+
+        //Paddle settings
+        app.paddleX = (app.canvas.width - app.paddleWidth) / 2;
+
+        var brickTotalWidth = (app.screenWidth - 2 * app.brickOffsetLeft) / app.brickColumnCount;
+        app.brickWidth = brickTotalWidth - app.brickPadding;
+
+        //Game data
+        for (var r = 0; r < app.brickRowCount; r++) {
+            app.bricks[r] = [];
+            for (var c = 0; c < app.brickColumnCount; c++) {
+                app.bricks[r][c] = { x: 0, y: 0, status: 1 };
+            }
+        }
+
+        //Attach events
+        app.canvas.addEventListener("touchmove", app.touchMove, { passive: true });
+        window.addEventListener("resize", app.windowSizeChanged);
+        document.addEventListener("keydown", app.keyDownHandler, false);
+        document.addEventListener("keyup", app.keyUpHandler, false);
+        document.addEventListener("mousemove", app.mouseMoveHandler, false);
+
+        //Start drawing
+        app.draw();
+    });
 
     //Events
     app.touchMove = function (e) {
@@ -223,44 +247,7 @@ Hint:
         }
     }
 
-    $(function () {
-
-        //1. Query DOM
-        app.canvas = document.getElementById("gameCanvas");
-        //2. Set canvas size
-        app.windowSizeChanged();
-
-        //Ball settings
-        app.x = app.canvas.width / 2;
-        app.y = app.canvas.height - 30;
-        //we want to add a small value to x and y after every frame has been drawn to make it appear that the ball is moving
-        app.dx = app.dxDefault;
-        app.dy = app.dyDefault;
-
-        //Paddle settings
-        app.paddleX = (app.canvas.width - app.paddleWidth) / 2;
-
-        var brickTotalWidth = (app.screenWidth - 2 * app.brickOffsetLeft) / app.brickColumnCount;
-        app.brickWidth = brickTotalWidth - app.brickPadding;
-
-        //Game data
-        for (var r = 0; r < app.brickRowCount; r++) {
-            app.bricks[r] = [];
-            for (var c = 0; c < app.brickColumnCount; c++) {
-                app.bricks[r][c] = { x: 0, y: 0, status: 1 };
-            }
-        }
-
-        //Attach events
-        app.canvas.addEventListener("touchmove", app.touchMove, { passive: true });
-        window.addEventListener("resize", app.windowSizeChanged);
-        document.addEventListener("keydown", app.keyDownHandler, false);
-        document.addEventListener("keyup", app.keyUpHandler, false);
-        document.addEventListener("mousemove", app.mouseMoveHandler, false);
-
-        //Start drawing
-        app.draw();
-    });
+   
 
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker
