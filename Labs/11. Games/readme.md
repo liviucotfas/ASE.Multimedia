@@ -39,7 +39,7 @@
 2. Check the source code. 
 3. Store and display the minimum time in which the game has been won so far. The minimum time should be persisted even if the user closes the browser or navigates to another website.
 
-Hint: 
+	Hint: 
 	- use the Web Storage API: https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API
 	- use `let d = new Date();` to get the current time
 	- you can subtract two `Date` objects to compute the difference between them in milliseconds
