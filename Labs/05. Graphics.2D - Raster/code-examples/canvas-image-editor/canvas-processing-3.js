@@ -25,10 +25,9 @@ Hint: https://stackoverflow.com/questions/8170431/using-web-workers-for-drawing-
 (function () {
     'use strict';
 
-    var app = {
+    let app = {
         originialImage: null,
         processedImage: null,
-        processedCanvas: null,
         donwloadLink: null,
         loader: null,
         currentEffect: null
@@ -48,19 +47,18 @@ Hint: https://stackoverflow.com/questions/8170431/using-web-workers-for-drawing-
         //show spinner
         app.loader.removeAttribute('hidden');
 
-        //t0
         //https://developer.mozilla.org/en-US/docs/Web/API/Performance/now
-        var t0 = performance.now();
+        let t0 = performance.now();
+        console.log("t0: "+t0);
 
-        var canvasProcessing = document.createElement('canvas');
-        canvasProcessing.width = app.originialImage.naturalWidth;
-        canvasProcessing.height = app.originialImage.naturalHeight;
-        var context = canvasProcessing.getContext("2d");
-        context.drawImage(app.originialImage, 0, 0, canvasProcessing.width, canvasProcessing.height);
+        let processingCanvas = document.createElement('canvas');
+        processingCanvas.width = app.originialImage.naturalWidth;
+        processingCanvas.height = app.originialImage.naturalHeight;
+        let context = processingCanvas.getContext("2d");
+        context.drawImage(app.originialImage, 0, 0, processingCanvas.width, processingCanvas.height);
 
-        
-        var t1 = performance.now();
-        console.log(t1-t0);
+        let t1 = performance.now();
+        console.log(t1-t0 + ": drawing the image on the canvas");
 
         switch (app.currentEffect) {
             case "normal":
@@ -71,28 +69,17 @@ Hint: https://stackoverflow.com/questions/8170431/using-web-workers-for-drawing-
                 break;
         }
 
-        var t2 = performance.now();
-        console.log("t2: "+(t2-t1));
-        var context2 = app.processedCanvas.getContext("2d");
-        
-        var processedCanvasWidth = app.processedCanvas.clientWidth;           
-        var processedCanvasHeight = processedCanvasWidth * canvasProcessing.height / canvasProcessing.width;
-        app.processedCanvas.height = processedCanvasHeight;
-
-        context2.drawImage(canvasProcessing,0,0, canvasProcessing.width, canvasProcessing.height,
-        0,0, processedCanvasWidth, processedCanvasHeight);
-
-        var t3 = performance.now();
-        console.log("t3: "+(t3-t2));
-        
-        canvasProcessing.toBlob(function(blob){
-            var blobUrl = URL.createObjectURL(blob);
-            //app.processedImage.src = blobUrl;
+        let t2 = performance.now();
+        console.log(t2-t1+": applying the effect on the canvas");
+              
+        processingCanvas.toBlob(function(blob){
+            let blobUrl = URL.createObjectURL(blob);
+            app.processedImage.src = blobUrl;
             app.donwloadLink.href = blobUrl;
         },"image/png");
 
-        var t4 = performance.now();
-        console.log("t4: "+(t4-t3));
+        let t3 = performance.now();
+        console.log(t3-t2 + ": generating a blob from the processed canvas");
 
         app.loader.setAttribute('hidden', '');
         console.log("finished");
@@ -103,19 +90,11 @@ Hint: https://stackoverflow.com/questions/8170431/using-web-workers-for-drawing-
     }
 
     app.grayscale = function(context){
-        var imageData = context.getImageData(0, 0, context.canvas.width, context.canvas.height);
-        var pixels = imageData.data;
-        for (var i = 0; i < pixels.length; i += 4)
+        let imageData = context.getImageData(0, 0, context.canvas.width, context.canvas.height);
+        let pixels = imageData.data;
+        for (let i = 0; i < pixels.length; i += 4)
             pixels[i] = pixels[i + 1] = pixels[i + 2] = Math.round((pixels[i] + pixels[i + 1] + pixels[i + 2]) / 3);
         context.putImageData(imageData, 0, 0); 
-    }
-
-    app.updateCanvasSize = function(){
-        app.processedCanvas.width = app.processedCanvas.clientWidth;
-
-        if(app.originialImage.src !== ""){
-            app.drawImage();
-        }
     }
 
     //Events
@@ -123,10 +102,8 @@ Hint: https://stackoverflow.com/questions/8170431/using-web-workers-for-drawing-
         app.originialImage = document.createElement("img");
         app.donwloadLink = document.getElementById("donwloadLink");
         app.processedImage = document.getElementById("processedImage");
-        app.processedCanvas = document.getElementById("processedCanvas");
         app.loader = document.querySelector('.loader');
-        app.updateCanvasSize();
-        
+                
         app.originialImage.addEventListener("load",function(){
             app.currentEffect = null;
             app.changeEffect("normal");
@@ -143,7 +120,7 @@ Hint: https://stackoverflow.com/questions/8170431/using-web-workers-for-drawing-
 
         document.getElementById("fileBrowser").addEventListener("change",function(e){  
              //1. create the reader
-             var reader = new FileReader();
+             let reader = new FileReader();
              //2. attach events
              reader.onload = function(event){
                  app.originialImage.src = event.target.result;

@@ -147,54 +147,55 @@
     ```JavaScript
     app.drawImage = function() {
        
-            var t0 = performance.now();
+        //show spinner
+        app.loader.removeAttribute('hidden');
 
-            var canvasProcessing = document.createElement('canvas');
-            canvasProcessing.width = app.originialImage.naturalWidth;
-            canvasProcessing.height = app.originialImage.naturalHeight;
-            var context = canvasProcessing.getContext("2d");
-            context.drawImage(app.originialImage, 0, 0, canvasProcessing.width, canvasProcessing.height);
+        //https://developer.mozilla.org/en-US/docs/Web/API/Performance/now
+        let t0 = performance.now();
+        console.log("t0: "+t0);
 
-            //https://developer.mozilla.org/en-US/docs/Web/API/Performance/now
-            var t1 = performance.now();
-            console.log(t1-t0);
+        let processingCanvas = document.createElement('canvas');
+        processingCanvas.width = app.originialImage.naturalWidth;
+        processingCanvas.height = app.originialImage.naturalHeight;
+        let context = processingCanvas.getContext("2d");
+        context.drawImage(app.originialImage, 0, 0, processingCanvas.width, processingCanvas.height);
 
-            switch (app.currentEffect) {
-                case "normal":
-                    app.normal(context);
-                    break;
-                case "blackWhite":
-                    app.blackWhite(context);
-                    break;
-            }
+        let t1 = performance.now();
+        console.log(t1-t0 + ": drawing the image on the canvas");
 
-            var t2 = performance.now();
-            console.log("t2: "+(t2-t1));
-        
+        switch (app.currentEffect) {
+            case "normal":
+                app.normal(context);
+                break;
+            case "grayscale":
+                app.grayscale(context);
+                break;
+        }
 
-            var t3 = performance.now();
-            console.log("t3: "+(t3-t2));
-            
-            canvasProcessing.toBlob(function(blob){
-                var blobUrl = URL.createObjectURL(blob);
-                //app.processedImage.src = blobUrl;
-                app.donwloadLink.href = blobUrl;
-            },"image/png");
+        let t2 = performance.now();
+        console.log(t2-t1+": applying the effect on the canvas");
+              
+        processingCanvas.toBlob(function(blob){
+            let blobUrl = URL.createObjectURL(blob);
+            app.processedImage.src = blobUrl;
+            app.donwloadLink.href = blobUrl;
+        },"image/png");
 
-            var t4 = performance.now();
-            console.log("t4: "+(t4-t3));
+        let t3 = performance.now();
+        console.log(t3-t2 + ": generating a blob from the processed canvas");
 
-            console.log("finished")
+        app.loader.setAttribute('hidden', '');
+        console.log("finished");
     }
 
     app.normal = function(context){
         
     }
 
-    app.blackWhite = function(context){
-        var imageData = context.getImageData(0, 0, context.canvas.width, context.canvas.height);
-        var pixels = imageData.data;
-        for (var i = 0; i < pixels.length; i += 4)
+    app.grayscale = function(context){
+        let imageData = context.getImageData(0, 0, context.canvas.width, context.canvas.height);
+        let pixels = imageData.data;
+        for (let i = 0; i < pixels.length; i += 4)
             pixels[i] = pixels[i + 1] = pixels[i + 2] = Math.round((pixels[i] + pixels[i + 1] + pixels[i + 2]) / 3);
         context.putImageData(imageData, 0, 0); 
     }
@@ -248,33 +249,9 @@
 13. Handle the `onerror` event of the originialImage element.
 
     ```JavaScript
-    app.originialImage.onerror = function (msg, source, lineNo) {
+    app.originialImage.addEventListener("error", function (msg) {
             alert("Mesaj eroare: {0}".format(msg));
-        };
-    ```
-
-14. On the `app` object add the `updateCanvasSize` method that will update the size of the canvas when the dimensions of the browser window change (ex: phone screen goes from portrait to landscape)
-
-    ```JavaScript
-    app.updateCanvasSize = function(){
-        app.processedCanvas.width = app.processedCanvas.clientWidth;
-
-        if(app.originialImage.src !== ""){
-            app.drawImage();
-        }
-    }
-    ```
-
-15. Call the `updateCanvasSize` method in the `load` event.
-
-    ```JavaScript
-    app.updateCanvasSize();
-    ```
-
-16. Handle the `resize` event of the window in order to call the `updateCanvasSize` method. 
-
-    ```JavaScript
-    window.addEventListener("resize", function(){app.updateCanvasSize()});
+    });
     ```
 
 17. Let's make the application more mobile friendly by defining icons, theme-color, etc.
