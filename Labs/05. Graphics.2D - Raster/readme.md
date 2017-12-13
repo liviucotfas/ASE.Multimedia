@@ -147,9 +147,6 @@
     ```JavaScript
     app.drawImage = function() {
        
-        //show spinner
-        app.loader.removeAttribute('hidden');
-
         //https://developer.mozilla.org/en-US/docs/Web/API/Performance/now
         let t0 = performance.now();
         console.log("t0: "+t0);
@@ -183,8 +180,7 @@
 
         let t3 = performance.now();
         console.log(t3-t2 + ": generating a blob from the processed canvas");
-
-        app.loader.setAttribute('hidden', '');
+        
         console.log("finished");
     }
 
