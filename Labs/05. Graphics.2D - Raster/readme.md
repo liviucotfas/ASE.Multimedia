@@ -36,6 +36,7 @@
     <https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Taking_still_photos>
 -   Image zoom: <http://phrogz.net/tmp/canvas_image_zoom.html>
 -   Image effects: <http://www.html5rocks.com/en/tutorials/canvas/imagefilters/>
+- Slideshow: <https://www.google.com/logos/2016/slideshow/slideshow.html?doodle=holidays-2017-day-2&hl=fr>
 
 ##  4. <a name='Assignments'></a>Assignments
 ###  4.1. <a name='Assignment1'></a>Assignment 1
