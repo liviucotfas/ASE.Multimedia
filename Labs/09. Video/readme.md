@@ -37,6 +37,9 @@
     <https://developer.mozilla.org/en-US/Apps/Fundamentals/Audio_and_video_delivery/Adding_captions_and_subtitles_to_HTML5_video>
 
 ##  4. <a name='Assignments'></a>Assignments
+
+> A large collection of stock video footage that you can use in your applications is available at: https://www.pond5.com
+
 ###  4.1. <a name='Assignment1'></a>Assignment 1
 1. Try the "video-player" sample by clicking [here](https://ase-multimedia.azurewebsites.net/video-player).
 2. Check the source code.
