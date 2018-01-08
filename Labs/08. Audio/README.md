@@ -51,6 +51,9 @@
     , <https://www.html5rocks.com/en/tutorials/getusermedia/intro/>
 
 ##  4. <a name='AssignmentsSolved'></a>Assignments (Solved)
+
+> A large collection of stock audio that you can use in your applications is available at: https://www.pond5.com
+
 ###  4.1. <a name='Assignment1'></a>Assignment 1
 1. Try the "audio-playlist" sample by clicking [here](https://ase-multimedia.azurewebsites.net/audio-playlist).
 2. Check the source code.
