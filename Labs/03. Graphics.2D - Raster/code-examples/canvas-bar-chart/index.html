@@ -15,31 +15,7 @@ Hint: use an "a" element
     <title>BarChart</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0">
     
-    <script 
-        src="https://code.jquery.com/jquery-latest.js"
-        crossorigin="anonymous"></script>
-    
     <script src="canvas-bar-chart-library.js"></script>
-    
-    <script type="text/javascript">
-        "use strict";
-
-        $(function () {
-            var barChart = new BarChart(document.getElementById('canvasBarChart'));
-
-            $("#btnDrawChart").click(function () {
-                //the eval() function evaluates JavaScript code represented as a string.
-                //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval
-                barChart.draw(eval("[" + $("#tbValues").val() + "]"));
-            });
-
-            //?After an event triggers on the deepest possible element, it then triggers on parents in nesting order
-            //https://javascript.info/tutorial/bubbling-and-capturing
-            $("#canvasBarChart").click(function () {
-                $(this).parent().attr("href", this.toDataURL("image/png"));
-            });
-        });       
-    </script>
 </head>
 
 <body>
@@ -52,6 +28,28 @@ Hint: use an "a" element
     <a href="#" download="barchart.png">
         <canvas id="canvasBarChart" width="300" height="200"></canvas>
     </a>
+
+    <script type="text/javascript">
+        "use strict";
+
+        var canvasBarChart = document.getElementById('canvasBarChart');
+        var btnDrawChart = document.getElementById('btnDrawChart');
+
+        var barChart = new BarChart(canvasBarChart);
+
+        btnDrawChart.addEventListener("click", function () {
+            //the eval() function evaluates JavaScript code represented as a string.
+            //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval
+            barChart.draw(eval("[" + document.getElementById('tbValues').value + "]"));
+        });
+
+        //?After an event triggers on the deepest possible element, it then triggers on parents in nesting order
+        //https://javascript.info/tutorial/bubbling-and-capturing
+        canvasBarChart.addEventListener("click", function () {
+            this.parentNode.setAttribute("href", this.toDataURL("image/png"));
+        });
+    
+    </script>
 </body>
 
 </html>
