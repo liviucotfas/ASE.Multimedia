@@ -9,63 +9,59 @@ Hint: use the empty() and append() jQuery methods
 3. Open the Developer Tools in the browser of your choice. Choose the Console tab. Click the browse button in the application and afterwards choose the Cancel option. An error will be displayed in the console tab. Try to fix it.
 */
 
-$(function(){
-    app.canvasImage = document.getElementById("result");
-    app.canvasHistogram = document.getElementById("histogram");
-    app.histogram = new Histogram(app.canvasHistogram);
-});
-
-var app={
-    canvasImage:null,
-    canvasHistogram:null,
-    histogram:null,
-}
-
-app.loadFile = function(file) {
-    //1. create the reader
-    var reader = new FileReader();
-    //2. attach events
-    reader.onload = function(event){
-        //1. create the image element
-        var img = new Image();
-        //2. attach events
-        img.onload = function(e){
-            app.displayImageOnCanvas(e.target);
-            app.drawHistogram();            
-            app.convertToGreyScale();
-        };
-        img.onerror = function (msg, source, lineNo) {
-            alert("Mesaj eroare: {0}".format(msg));
-        };
-        //3. start loading the image
-        img.src = event.target.result;
+class App{
+    constructor(canvasImage, canvasHistogram){
+        this.canvasImage = canvasImage;
+        this.canvasHistogram = canvasHistogram;
+        this.histogram = new Histogram(canvasHistogram);
     }
-    //3. start loading the file
-    reader.readAsDataURL(file);
+
+    loadFile(file) {
+        //1. create the reader
+        var reader = new FileReader();
+        //2. attach events
+        reader.onload = function(event){
+            //1. create the image element
+            var img = new Image();
+            //2. attach events
+            img.onload = function(e){
+                displayImageOnCanvas(e.target);
+                drawHistogram();            
+                convertToGreyScale();
+            };
+            img.onerror = function (msg, source, lineNo) {
+                alert("Mesaj eroare: {0}".format(msg));
+            };
+            //3. start loading the image
+            img.src = event.target.result;
+        }
+        //3. start loading the file
+        reader.readAsDataURL(file);
+    }
+
+    displayImageOnCanvas(img){
+        app.canvasImage.height = img.height;
+        app.canvasImage.width = img.width;
+
+        var context =  app.canvasImage.getContext("2d");
+        context.drawImage(img, 0, 0);
+
+        context.font = "bold 10pt sans-serif";
+        context.fillStyle = "#EFEFEF";
+
+        context.fillText(img.src, 8, 25);
+    }
+
+    drawHistogram(){
+        let result = DrawingLibrary.analyzeColorChannels(app.canvasImage);
+        app.histogram.draw(result.vR, result.vG, result.vB);
+    }
+
+    convertToGreyScale (){
+        DrawingLibrary.convertToGreyScale(app.canvasImage);
+    }
 }
 
-app.displayImageOnCanvas = function(img)
-{
-    app.canvasImage.height = img.height;
-    app.canvasImage.width = img.width;
-
-    var context =  app.canvasImage.getContext("2d");
-    context.drawImage(img, 0, 0);
-
-    context.font = "bold 10pt sans-serif";
-    context.fillStyle = "#EFEFEF";
-
-    context.fillText(img.src, 8, 25);
-}
-
-app.drawHistogram = function(){
-    let result = DrawingLibrary.analyzeColorChannels(app.canvasImage);
-    app.histogram.draw(result.vR, result.vG, result.vB);
-}
-
-app.convertToGreyScale = function(){
-    DrawingLibrary.convertToGreyScale(app.canvasImage);
-}
 
 //extends the string prototype object
 //Inheritance and the prototype chain: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain 
