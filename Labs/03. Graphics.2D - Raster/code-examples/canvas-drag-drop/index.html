@@ -23,7 +23,7 @@
     </a>
 
     <script>
-        "use strict";
+        'use strict';
 
         document.addEventListener('dragover', function(e){e.preventDefault();})
         document.addEventListener('drop', function (e) {
@@ -42,8 +42,8 @@
                 //https://developer.mozilla.org/en-US/docs/Web/API/FileReader/onload
                 reader.onload = function (e) {
                     let image = document.createElement('img');
-                    image.addEventListener('load',function(){drawImageAndHistogram(this);});
-                    image.setAttribute("src", e.target.result);
+                    image.addEventListener('load', function(){drawImageAndHistogram(this);});
+                    image.setAttribute('src', e.target.result);
                 };
 
                 //FileReader.readAsDataURL: starts reading the contents of the specified Blob, once finished, the result attribute contains a data: URL representing the file's data.
@@ -62,48 +62,43 @@
 
             //2. create a Blob object representing the image contained in the canvas; this file may be cached on the disk or stored in memory at the discretion of the user agent.
             //https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob
-            this.toBlob(
-                function(blob){
-                    downloadLink.setAttribute('href', URL.createObjectURL(blob))
-                },
-                "image/png"
-            );
+            this.toBlob(function(blob){downloadLink.setAttribute('href', URL.createObjectURL(blob))}, 'image/png');
         });
 
         function drawImageAndHistogram(img) {
-            var cW = img.width, cH = img.height;
+            let cW = img.naturalWidth, cH = img.naturalHeight;
             
-            var canvasProcessedImagine = document.getElementById('canvasProcessedImagine');
-            canvasProcessedImagine.setAttribute('width', cW);
-            canvasProcessedImagine.setAttribute('height', cH);
+            let canvasProcessedImagine = document.getElementById('canvasProcessedImagine');
+            canvasProcessedImagine.width = cW;
+            canvasProcessedImagine.height = cH;
            
-            var context = canvasProcessedImagine.getContext("2d");
+            let context = canvasProcessedImagine.getContext('2d');
             context.drawImage(img, 0, 0);
 
             drawHistogram(context, cW, cH);
         }
 
         function drawHistogram(context, cW, cH){
-            var v = [];
-            for (var i = 0; i < 256; i++) {
+            let v = [];
+            for (let i = 0; i < 256; i++) {
                 //The push() method adds new items to the end of an array, and returns the new length.
                 // http://www.w3schools.com/jsref/jsref_push.asp
                 v.push(0);
             }
 
-            var imageData = context.getImageData(0, 0, cW, cH);
-            var data = imageData.data;
+            let imageData = context.getImageData(0, 0, cW, cH);
+            let data = imageData.data;
 
-            for (var y = 0; y < cH; y++) { //each line
-                for (var x = 0; x < cW; x++) { //each column
+            for (let y = 0; y < cH; y++) { //each line
+                for (let x = 0; x < cW; x++) { //each column
                     
-                    var offset = ((cW * y) + x) * 4
+                    let offset = ((cW * y) + x) * 4
 
-                    var red = data[offset];
-                    var green = data[offset + 1];
-                    var blue = data[offset + 2];
+                    let red = data[offset];
+                    let green = data[offset + 1];
+                    let blue = data[offset + 2];
 
-                    var val = Math.round((red + green + blue)/3);
+                    let val = Math.round((red + green + blue)/3);
                     v[val]++;
                 }
             }
@@ -117,7 +112,7 @@
             c.save();
 
             //256 shades of grey
-            var n = v.length;      
+            let n = v.length;      
             
             //flip the histogram
             //https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/rotate
@@ -130,7 +125,7 @@
             //Function.prototype.apply()
             //The apply() method calls a function with a given this value and arguments provided as an array
             //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply
-            var f = cH / Math.max.apply(this, v);
+            let f = cH / Math.max.apply(this, v);
             //var f = cH / Math.max(v) will not work, because max doesn't accept an array as input.
             //http://stackoverflow.com/questions/21255138/how-does-the-math-max-apply-work
 
@@ -142,11 +137,11 @@
             c.scale(1, f); //flip (necessary due to  c.rotate(Math.PI);) & scale
                         
             //drawing color and transparency
-            c.fillStyle = "rgba(255,0,0,0.3)";
+            c.fillStyle = 'rgba(255,0,0,0.3)';
             
             //Determin the width of the rectangle for each shade of grey
-            var w = cW / n;
-            for (var i = 0; i < n; i++) {
+            let w = cW / n;
+            for (let i = 0; i < n; i++) {
                 // -i * w = x coordinate
                 // 0 = y coordinate
                 // w = width of the rectangle as computed above
