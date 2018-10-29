@@ -11,70 +11,73 @@
 <head>
     <meta charset="utf-8" />
     <title>HTML5Multimedia - DragDrop</title>
-    <script 
-        src="https://code.jquery.com/jquery-latest.js"
-        crossorigin="anonymous"></script>
-    
+</head>
+<body style="text-align:center;">
+    Drag and drop an image to start. Click on the image afterwards to download it. <br>
+    <a id='downloadLink' href="#" download="processedImage.png">
+        <!-- 
+            download attribute: download file when clicking on the link (instead of navigating to the file)
+            http://www.w3schools.com/tags/att_a_download.asp
+        -->
+        <canvas id="canvasProcessedImagine"></canvas>
+    </a>
+
     <script>
         "use strict";
 
-        $(function () {
-            $(document)
-                .on('dragover', function (e) {
-                    e.preventDefault();
-                })
-                .on('drop', function (e) {
-                    e.preventDefault();
+        document.addEventListener('dragover', function(e){e.preventDefault();})
+        document.addEventListener('drop', function (e) {
+            e.preventDefault();
 
-                    //Access the `dataTransfer` property from the `drop` event which
-                    //holds the files dropped into the browser window.
-                    //https://api.jquery.com/category/events/event-object/
-                    var files = e.originalEvent.dataTransfer.files;
-                    
-                    if (files.length > 0) {
-                        //The FileReader object lets web applications asynchronously read the contents of files (or raw data buffers) stored on the user's computer, using File or Blob objects to specify the file or data to read
-                        //https://developer.mozilla.org/en/docs/Web/API/FileReader
-                        var reader = new FileReader();
+            //Access the `dataTransfer` property from the `drop` event which
+            //holds the files dropped into the browser window.
+            var files = e.dataTransfer.files;
+            
+            if (files.length > 0) {
+                //The FileReader object lets web applications asynchronously read the contents of files (or raw data buffers) stored on the user's computer, using File or Blob objects to specify the file or data to read
+                //https://developer.mozilla.org/en/docs/Web/API/FileReader
+                var reader = new FileReader();
 
-                        //FileReader.onload: a handler for the load event. This event is triggered each time the reading operation is successfully completed.
-                        //https://developer.mozilla.org/en-US/docs/Web/API/FileReader/onload
-                        reader.onload = function (e) {
-                            $("<img></img>")
-                                    .load(function(){drawImageAndHistogram(this);})
-                                    .attr("src", e.target.result);
-                        };
+                //FileReader.onload: a handler for the load event. This event is triggered each time the reading operation is successfully completed.
+                //https://developer.mozilla.org/en-US/docs/Web/API/FileReader/onload
+                reader.onload = function (e) {
+                    let image = document.createElement('img');
+                    image.addEventListener('load',function(){drawImageAndHistogram(this);});
+                    image.setAttribute("src", e.target.result);
+                };
 
-                        //FileReader.readAsDataURL: starts reading the contents of the specified Blob, once finished, the result attribute contains a data: URL representing the file's data.
-                        reader.readAsDataURL(files[0]);
-                    }
-                });
+                //FileReader.readAsDataURL: starts reading the contents of the specified Blob, once finished, the result attribute contains a data: URL representing the file's data.
+                reader.readAsDataURL(files[0]);
+            }
+        });
 
-            //?After an event triggers on the deepest possible element, it then triggers on parents in nesting order
-            //https://javascript.info/tutorial/bubbling-and-capturing
-            $("#canvasProcessedImagine").click(function () {
-                
-                //1. Ok for small images. Does not work with large images
-                //$("a").attr("href", this.toDataURL("image/png"));
+        //?After an event triggers on the deepest possible element, it then triggers on parents in nesting order
+        //https://javascript.info/tutorial/bubbling-and-capturing
+        document.getElementById('canvasProcessedImagine').addEventListener('click', function(){
 
-                //2. create a Blob object representing the image contained in the canvas; this file may be cached on the disk or stored in memory at the discretion of the user agent.
-                //https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob
-                this.toBlob(
-                    function(blob){
-                        $("a").attr("href", URL.createObjectURL(blob));
-                    },
-                    "image/png"
-                );
+            let downloadLink =  document.getElementById('downloadLink');
 
-            });
+            //1. Ok for small images. Does not work with large images
+            //downloadLink.setAttribute("href", this.toDataURL("image/png"));
+
+            //2. create a Blob object representing the image contained in the canvas; this file may be cached on the disk or stored in memory at the discretion of the user agent.
+            //https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob
+            this.toBlob(
+                function(blob){
+                    downloadLink.setAttribute('href', URL.createObjectURL(blob))
+                },
+                "image/png"
+            );
         });
 
         function drawImageAndHistogram(img) {
             var cW = img.width, cH = img.height;
             
-            $("#canvasProcessedImagine")
-                .attr({ width: cW, height: cH });
-            
-            var context = $("#canvasProcessedImagine")[0].getContext("2d");
+            var canvasProcessedImagine = document.getElementById('canvasProcessedImagine');
+            canvasProcessedImagine.setAttribute('width', cW);
+            canvasProcessedImagine.setAttribute('height', cH);
+           
+            var context = canvasProcessedImagine.getContext("2d");
             context.drawImage(img, 0, 0);
 
             drawHistogram(context, cW, cH);
@@ -156,15 +159,5 @@
             c.restore();
         }
     </script>
-</head>
-<body style="text-align:center;">
-    Drag and drop an image to start. Click on the image afterwards to download it. <br>
-    <a href="#" download="processedImage.png">
-        <!-- 
-            download attribute: download file when clicking on the link (instead of navigating to the file)
-            http://www.w3schools.com/tags/att_a_download.asp
-        -->
-        <canvas id="canvasProcessedImagine"></canvas>
-    </a>
 </body>
 </html>
