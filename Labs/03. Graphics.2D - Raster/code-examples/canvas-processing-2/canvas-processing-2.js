@@ -20,21 +20,21 @@ class App{
         //1. create the reader
         var reader = new FileReader();
         //2. attach events
-        reader.onload = function(event){
+        reader.addEventListener('load', function(event){
             //1. create the image element
             var img = new Image();
             //2. attach events
             img.onload = function(e){
-                displayImageOnCanvas(e.target);
-                drawHistogram();            
-                convertToGreyScale();
-            };
+                this.displayImageOnCanvas(e.target);
+                this.drawHistogram();            
+                this.convertToGreyScale();
+            }.bind(this);
             img.onerror = function (msg, source, lineNo) {
                 alert("Mesaj eroare: {0}".format(msg));
-            };
+            }.bind(this);
             //3. start loading the image
             img.src = event.target.result;
-        }
+        }.bind(this));
         //3. start loading the file
         reader.readAsDataURL(file);
     }
