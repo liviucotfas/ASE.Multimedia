@@ -26,16 +26,16 @@ Hint: use an "a" element
 
     Click on the bar chart to donwload it<br>
     <a href="#" download="barchart.png">
-        <canvas id="canvasBarChart" width="300" height="200"></canvas>
+        <canvas id="canvasBarChart" style="width: 300px; height: 200px"></canvas>
     </a>
 
     <script type="text/javascript">
-        "use strict";
+        'use strict';
 
-        var canvasBarChart = document.getElementById('canvasBarChart');
-        var btnDrawChart = document.getElementById('btnDrawChart');
+        let canvasBarChart = document.getElementById('canvasBarChart');
+        let btnDrawChart = document.getElementById('btnDrawChart');
 
-        var barChart = new BarChart(canvasBarChart);
+        let barChart = new BarChart(canvasBarChart);
 
         btnDrawChart.addEventListener("click", function () {
             //the eval() function evaluates JavaScript code represented as a string.

@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 //http://exploringjs.com/es6/ch_classes.html
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
@@ -12,21 +12,23 @@ class BarChart{
         let h = this.canvas.height;
         let w = this.canvas.width / values.length;
     
-        context.fillStyle = "#DEDEDE";
+        context.fillStyle = '#DEDEDE';
         context.fillRect(0, 0, this.canvas.width, this.canvas.height);
     
-        context.fillStyle = "red";
-        context.strokeStyle = "black";
+        context.fillStyle = 'red';
+        context.strokeStyle = 'black';
         context.lineWidth = 2;
         
-        let f = this.canvas.height * 0.9 / Math.max.apply(Math, values);
+        //...spread operator
+        let maxValue = Math.max(...values);
+        let f = this.canvas.height / maxValue;
     
         for (let i = 0; i < values.length; i++) {
     
             let rectX = (i + 0.1) * w;
-            let rectY = h - values[i] * f;
-            let rectWidth = 0.8 * w;
-            let rectHeight = values[i] * f;
+            let rectWidth = w * 0.8;
+            let rectHeight = values[i] * f * 0.9;
+            let rectY = h - rectHeight;
     
             context.fillRect(rectX, rectY, rectWidth, rectHeight);
             context.strokeRect(rectX, rectY, rectWidth, rectHeight);
