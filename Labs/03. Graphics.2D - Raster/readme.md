@@ -41,17 +41,17 @@
 ##  4. <a name='Assignments'></a>Assignments
 ###  4.1. <a name='Assignment1'></a>Assignment 1
 1. Try the "canvas-bar-chart" sample by clicking [here](https://ase-multimedia.azurewebsites.net/canvas-bar-chart). 
-2. Check the source code in the `code-examples.zip` archive. 
+2. Check the source code in the `code-examples.zip` archive or in the `code-examples` folder. 
 3. Complete the assignments included in the ```html``` file. 
 
 ###  4.2. <a name='Assignment2'></a>Assignment 2
 1. Try the "canvas-drag-drop" sample by clicking [here](https://ase-multimedia.azurewebsites.net/canvas-drag-drop). 
-2. Check the source code. 
+2. Check the source code in the `code-examples.zip` archive or in the `code-examples` folder. 
 3. Complete the assignments included in the ```html``` file. 
 
 ###  4.3. <a name='Assignment3'></a>Assignment 3
 1. Try the "canvas-processing-2.html" sample by clicking [here](https://ase-multimedia.azurewebsites.net/canvas-processing-2). 
-2. Check the source code. 
+2. Check the source code in the `code-examples.zip` archive or in the `code-examples` folder. 
 3. Complete the assignments included in the `js` file.
 
 ###  4.4. <a name='Assignment4'></a>Assignment 4
