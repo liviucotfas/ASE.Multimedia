@@ -25,8 +25,10 @@ Hint: use an "a" element
     </form>
 
     Click on the bar chart to donwload it<br>
-    <a href="#" download="barchart.png">
-        <canvas id="canvasBarChart" style="width: 300px; height: 200px"></canvas>
+    <a href="#" download="barchart">
+        <canvas id="canvasBarChart" style="width: 300px; height: 200px">
+            Your browser does not support the canvas element. :(
+        </canvas>
     </a>
 
     <script type="text/javascript">
@@ -37,16 +39,19 @@ Hint: use an "a" element
 
         let barChart = new BarChart(canvasBarChart);
 
-        btnDrawChart.addEventListener("click", function () {
+        btnDrawChart.addEventListener('click', function () {
+            let tbValues = document.getElementById('tbValues');
+            let values = tbValues.value;
+
             //the eval() function evaluates JavaScript code represented as a string.
             //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval
-            barChart.draw(eval("[" + document.getElementById('tbValues').value + "]"));
+            barChart.draw(eval('[' + values + ']'));
         });
 
         //?After an event triggers on the deepest possible element, it then triggers on parents in nesting order
         //https://javascript.info/tutorial/bubbling-and-capturing
-        canvasBarChart.addEventListener("click", function () {
-            this.parentNode.setAttribute("href", this.toDataURL("image/png"));
+        canvasBarChart.addEventListener('click', function () {
+            this.parentNode.setAttribute('href', this.toDataURL('image/png'));
         });
     
     </script>

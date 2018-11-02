@@ -24,11 +24,11 @@ class App{
             //1. create the image element
             var img = new Image();
             //2. attach events
-            img.onload = function(e){
+            img.addEventListener('load', function(e){
                 this.displayImageOnCanvas(e.target);
                 this.drawHistogram();            
                 this.convertToGreyScale();
-            }.bind(this);
+            }.bind(this));
             img.onerror = function (msg, source, lineNo) {
                 alert("Mesaj eroare: {0}".format(msg));
             }.bind(this);

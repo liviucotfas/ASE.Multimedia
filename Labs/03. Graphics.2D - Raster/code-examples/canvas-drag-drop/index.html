@@ -40,11 +40,11 @@
 
                 //FileReader.onload: a handler for the load event. This event is triggered each time the reading operation is successfully completed.
                 //https://developer.mozilla.org/en-US/docs/Web/API/FileReader/onload
-                reader.onload = function (e) {
+                reader.addEventListener("load", function (e) {
                     let image = document.createElement('img');
                     image.addEventListener('load', function(){drawImageAndHistogram(this);});
                     image.setAttribute('src', e.target.result);
-                };
+                });
 
                 //FileReader.readAsDataURL: starts reading the contents of the specified Blob, once finished, the result attribute contains a data: URL representing the file's data.
                 reader.readAsDataURL(files[0]);
@@ -125,7 +125,8 @@
             //Function.prototype.apply()
             //The apply() method calls a function with a given this value and arguments provided as an array
             //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply
-            let f = cH / Math.max.apply(this, v);
+            //let f = cH / Math.max.apply(this, v);
+            let f = cH / Math.max(...v); //...spread operator
             //var f = cH / Math.max(v) will not work, because max doesn't accept an array as input.
             //http://stackoverflow.com/questions/21255138/how-does-the-math-max-apply-work
 

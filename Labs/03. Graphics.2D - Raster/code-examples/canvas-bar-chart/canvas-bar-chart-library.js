@@ -25,9 +25,9 @@ class BarChart{
     
         for (let i = 0; i < values.length; i++) {
     
-            let rectX = (i + 0.1) * w;
             let rectWidth = w * 0.8;
             let rectHeight = values[i] * f * 0.9;
+            let rectX = (i + 0.1) * w;
             let rectY = h - rectHeight;
     
             context.fillRect(rectX, rectY, rectWidth, rectHeight);
