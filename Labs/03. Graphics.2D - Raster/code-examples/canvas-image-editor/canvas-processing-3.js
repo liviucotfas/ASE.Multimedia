@@ -16,9 +16,10 @@ Hint: r'=0; g'=255; b'=0;
 Hint: r'=0; g'=0; b'=b;
 7. Implement 2Channels
 Hint: check https://gist.github.com/anonymous/1888841
-8. (optional) Implement pixelate
+8. Add a separate button for saving the image
+9. (optional) Implement pixelate
 Hint: check https://gist.github.com/anonymous/1888841
-9. Check web workers as a way to perfrom heavy processing without blocking the UI thread
+10. (optional)Check web workers as a way to perfrom heavy processing without blocking the UI thread
 Hint: https://stackoverflow.com/questions/8170431/using-web-workers-for-drawing-using-native-canvas-functions
 */
 
