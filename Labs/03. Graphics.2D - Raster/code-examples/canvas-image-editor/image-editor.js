@@ -16,7 +16,7 @@ Hint: r'=0; g'=255; b'=0;
 Hint: r'=0; g'=0; b'=b;
 7. Implement 2Channels
 Hint: check https://gist.github.com/anonymous/1888841
-8. Add a separate button for saving the image
+8. (optional) Use Bootstrap for the UI (https://getbootstrap.com/)
 9. (optional) Implement pixelate
 Hint: check https://gist.github.com/anonymous/1888841
 10. (optional)Check web workers as a way to perfrom heavy processing without blocking the UI thread

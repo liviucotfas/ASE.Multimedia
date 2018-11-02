@@ -7,9 +7,9 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0">
 
-    <script src="canvas-processing-3.js"></script>
+    <script src="image-editor.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="canvas-processing-3.css">
+    <link rel="stylesheet" type="text/css" href="image-editor.css">
     
     <!-- Add to home screen -->
     <link rel="manifest" href="manifest.json">
@@ -47,13 +47,15 @@
         <button type="button" class="effectType" data-effect="green">Green</button>
         <button type="button" class="effectType" data-effect="blue">Blue</button>
     </div>
-    <a id="donwloadLink" href="#" download="processedImage.png">
+    <a id="donwloadLink" href="#" download="processedImage">
         <!-- 
             download attribute: download file when clicking on the link (instead of navigating to the file)
             http://www.w3schools.com/tags/att_a_download.asp
         -->
-        <img id="processedImage" style="width:100%;">
+        Download
     </a>
+    
+    <img id="processedImage" style="width:100%;">
 
     <div class="loader" style="display: none">
         <div id="spinner"></div>
