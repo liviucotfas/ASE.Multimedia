@@ -109,9 +109,9 @@ app.load = function () {
         app.changeEffect("normal");
     });
 
-    app.originialImage.onerror = function (msg, source, lineNo) {
+    app.originialImage.addEventListener('error', function (msg, source, lineNo) {
         alert("Mesaj eroare: {0}".format(msg));
-    };
+    });
 
     let buttons = document.getElementsByClassName("effectType");
     for(let i=0; i<buttons.length; i++){
@@ -120,14 +120,14 @@ app.load = function () {
         buttons[i].addEventListener("click", function(){ app.changeEffect(this.dataset.effect)}); 
     }
 
-    document.getElementById("fileBrowser").addEventListener("change",function(e){  
-            //1. create the reader
-            let reader = new FileReader();
-            //2. attach events
-            reader.onload = function(event){
-                app.originialImage.src = event.target.result;
-            }
-            //3. start loading the file
-            reader.readAsDataURL(e.target.files[0]);    
+    document.getElementById("fileBrowser").addEventListener("change", function(e){  
+        //1. create the reader
+        let reader = new FileReader();
+        //2. attach events
+        reader.addEventListener('load', function(event){
+            app.originialImage.src = event.target.result;
+        });
+        //3. start loading the file
+        reader.readAsDataURL(e.target.files[0]);    
     });
 }

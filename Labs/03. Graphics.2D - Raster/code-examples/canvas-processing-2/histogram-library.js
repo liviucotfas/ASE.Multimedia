@@ -10,12 +10,13 @@ class Histogram{
         this.context.save();
 
         //draw the background of the histogram
-        this.drawBackground();
+        this.context.fillStyle = "#DEDEDE";
+        this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
         var h = this.canvas.height;
         var w = this.canvas.width / vR.length;
                    
-        var f = this.canvas.height * 0.9 / Math.max.apply(Math, [].concat(vR, vG, vB));
+        var f = this.canvas.height * 0.9 / Math.max(... [].concat(vR, vG, vB));
     
         for (var i = 0; i < vR.length; i++) {
     
@@ -37,9 +38,5 @@ class Histogram{
         //Restores the most recently saved canvas state by popping the top entry in the drawing state stack.
         //https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/restore
         this.context.restore();
-    }
-    drawBackground(){
-        this.context.fillStyle = "#DEDEDE";
-        this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
     }
 }
