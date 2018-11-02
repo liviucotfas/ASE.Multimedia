@@ -44,7 +44,7 @@ class BarChart{
         context.scale(1, f); //flip (necessary due to  c.rotate(Math.PI);) & scale
                     
         //drawing color and transparency
-        context.fillStyle = 'rgba(255,0,0,0.3)';
+        context.fillStyle = 'rgba(255,0,0,0.8)';
         
         //Determin the width of the rectangle for each shade of grey
         let w = cW / n;
