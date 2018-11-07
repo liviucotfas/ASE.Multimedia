@@ -25,15 +25,21 @@
 </head>
 
 <body style="text-align:center;">
-    <div>
+    <img id="processedImage" style="
+        position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+        max-width:100%; width:auto; height: auto; max-height: 600px">
+
+    <div
+        style="position: fixed; top:0%; left: 50%; transform: translate(-50%);">
         <label for="fileBrowser">Choose file to upload</label>
         <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file -->
         <input type="file" id="fileBrowser" name="fileBrowser" value="Choose image"
             accept="image/*">
     </div>
 
-    <h2>Transformed</h2>
-    <div>
+    <!--  Why margin-right" -50%? https://www.w3.org/Style/Examples/007/center.en.html -->
+    <div style="position: fixed; bottom: 0%; left: 50%; transform: translate(-50%); margin-right: -50%;">
+
         <!-- https://developer.mozilla.org/en/docs/Web/Guide/HTML/Using_data_attributes -->
         <button type="button" class="effectType" data-effect="normal">Normal</button>
 
@@ -46,16 +52,15 @@
         <button type="button" class="effectType" data-effect="red">Red</button>
         <button type="button" class="effectType" data-effect="green">Green</button>
         <button type="button" class="effectType" data-effect="blue">Blue</button>
+
+        <a id="donwloadLink" href="#" download="processedImage">
+            <!-- 
+                download attribute: download file when clicking on the link (instead of navigating to the file)
+                http://www.w3schools.com/tags/att_a_download.asp
+            -->
+            Download
+        </a>
     </div>
-    <a id="donwloadLink" href="#" download="processedImage">
-        <!-- 
-            download attribute: download file when clicking on the link (instead of navigating to the file)
-            http://www.w3schools.com/tags/att_a_download.asp
-        -->
-        Download
-    </a>
-    
-    <img id="processedImage" style="width:100%;">
 
     <div class="loader" style="display: none">
         <div id="spinner"></div>

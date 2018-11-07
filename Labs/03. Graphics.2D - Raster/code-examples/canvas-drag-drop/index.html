@@ -84,6 +84,7 @@
             //holds the files dropped into the browser window.
             var files = e.dataTransfer.files;
             
+            //we need to check the length of the files property in order to make sure that the user has dragged and dropped a file and not something else (ex: a text). Note: if the user has dropped a text, we can access it in a similar manner, using the DataTransfer object
             if (files.length > 0) {
                 //The FileReader object lets web applications asynchronously read the contents of files (or raw data buffers) stored on the user's computer, using File or Blob objects to specify the file or data to read
                 //https://developer.mozilla.org/en/docs/Web/API/FileReader
