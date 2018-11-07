@@ -26,7 +26,7 @@ class BarChart{
         // To change the center point, we will need to move the canvas by using the translate() method.
         context.rotate(Math.PI);
         // translate it
-        context.translate(-cW, -cH);
+        context.translate(0, -cH);
         
         //Function.prototype.apply()
         //The apply() method calls a function with a given this value and arguments provided as an array
@@ -41,7 +41,7 @@ class BarChart{
         //void ctx.scale(x, y); x: Scaling factor in the horizontal direction. y: Scaling factor in the vertical direction. 
         //https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/scale
         //You can use ctx.scale(-1, 1) to flip the context horizontally and ctx.scale(1, -1) to flip it vertically.
-        context.scale(1, f); //flip (necessary due to  c.rotate(Math.PI);) & scale
+        context.scale(-1, f); //flip (necessary due to  c.rotate(Math.PI);) & scale
                     
         //drawing color and transparency
         context.fillStyle = 'rgba(255,0,0,0.8)';
