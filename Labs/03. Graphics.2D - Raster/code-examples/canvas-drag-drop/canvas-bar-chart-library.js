@@ -12,6 +12,8 @@ class BarChart{
 
         let cW = this.canvas.width;
         let cH = this.canvas.height;
+
+        context.clearRect(0, 0, cW, cH);
         
         //Saves the entire state of the canvas by pushing the current state onto a stack.
         //https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/save

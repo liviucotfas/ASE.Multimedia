@@ -18,6 +18,9 @@
 </head>
 <body style="text-align:center;">
     Drag and drop an image to start. Click on the image afterwards to download it. <br>
+
+    <canvas id="canvasHistogram" width="512" style="width:512px;border-style: dotted;"></canvas>
+    <br>
     <a id='downloadLink' href="#" download="processedImage.png">
         <!-- 
             download attribute: download file when clicking on the link (instead of navigating to the file)
@@ -33,7 +36,8 @@
 
         //Selectors
         let canvasImage = document.getElementById('canvasImage');
-        let barChart = new BarChart(canvasImage);
+        let canvasHistogram = document.getElementById('canvasHistogram');
+        let barChart = new BarChart(canvasHistogram);
 
         //Methods
         function drawImage(img) {
