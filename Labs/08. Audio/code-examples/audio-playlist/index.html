@@ -43,11 +43,6 @@
             cursor: pointer;
         }
     </style>
-
-    <script 
-        src="https://code.jquery.com/jquery-latest.js"
-        crossorigin="anonymous"></script>
-     <script type="text/javascript" src="audio-playlist.js"></script>
 </head>
 <body>
     <audio id="audio">
@@ -55,7 +50,7 @@
     </audio>
     <div id="controls">
         <span id="currentPosition">dfs</span>
-        <button id="btnPlayPause">||</button>
+        <button id="btnPlayPause">></button>
         <button id="btnForward">&gt;&gt;</button>
         <button id="btnNext">&gt;|</button>
     </div>
@@ -71,5 +66,10 @@
             Pachelbel - Canon in D
         </li>
     </ul>
+
+    <script type="text/javascript" src="audio-playlist.js"></script>
+    <script>
+        app.load();
+    </script>
 </body>
 </html>
