@@ -49,3 +49,4 @@
 
 ##  7. <a name='Bibliography'></a>Bibliography
 - https://developer.mozilla.org/en-US/docs/Games
+- https://webglfundamentals.org/webgl/lessons/webgl-anti-patterns.html
