@@ -14,7 +14,7 @@
 	numbering=true
 	autoSave=true
 	/vscode-markdown-toc-config -->
-<!-- /vscode-markdown-toc --># HTML5 Video
+<!-- /vscode-markdown-toc -->
 
 ##  1. <a name='Objectives'></a>Objectives
 - playing video files in the browser using the `<video>` element;
