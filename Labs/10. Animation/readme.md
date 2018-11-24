@@ -1,18 +1,10 @@
----
-title: HTML5 Animation
----
+# HTML5 Animation
 
-Documentation
-=============
-
+## Documentation
 -   Web Animations API:
     <https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API>
 
-Demos
-=====
-
+## Demos
 -   <https://webdesigner-webdeveloper.com/weblog/exploring-web-animations/>
-
-![](media/fc76c505698bb742d4a7dab3453a144a.png)
-
+    ![](media/fc76c505698bb742d4a7dab3453a144a.png)
 -   <https://web-animations.github.io/web-animations-demos/#galaxy/>

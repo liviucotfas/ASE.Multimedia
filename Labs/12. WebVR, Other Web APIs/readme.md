@@ -13,7 +13,7 @@
 	numbering=true
 	autoSave=true
 	/vscode-markdown-toc-config -->
-<!-- /vscode-markdown-toc --># Other Web APIs
+<!-- /vscode-markdown-toc -->
 
 ##  1. <a name='Documentation'></a>Documentation
 Full list: <https://developer.mozilla.org/en-US/docs/Web/API>
