@@ -1,7 +1,3 @@
-# Graphics on the Web
-
-- Check the avilable graphics options at: <https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics>
-
 # 2D Raster Graphics
 
 <!-- vscode-markdown-toc -->
@@ -315,3 +311,4 @@ https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API
 - HTML5 Canvas: <https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images>
 -   [Canvas Pocket Reference](http://ase.softmentor.ro/Multimedia/resurse/OReilly%20-%20Canvas%20Pocket%20Reference.pdf) -  Chapter 1.
 - (optional) HTML Living Standard: <https://html.spec.whatwg.org/#the-canvas-element>
+- Graphics on the web: <https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics>
