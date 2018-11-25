@@ -27,7 +27,7 @@
 -   HTML Audio Element (HTML):
     <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio>
 -   HTMLAudioElement interface (JavaScript - HTML Media API):
-    <https://developer.mozilla.org/en-US/docs/Web/API/HTMLVideoElement>
+    <https://developer.mozilla.org/en-US/docs/Web/API/HTMLAudioElement>
 -   Web Audio API:
     <https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API>
 -   Web RTC API:
@@ -70,7 +70,7 @@
 -   HTML Audio Element (HTML):
     <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio>
 -   HTMLAudioElement interface (JavaScript - HTML Media API):
-    <https://developer.mozilla.org/en-US/docs/Web/API/HTMLVideoElement>
+    <https://developer.mozilla.org/en-US/docs/Web/API/HTMLAudioElement>
 -   Web Audio API:
     <https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API>
 -   Web RTC API:
