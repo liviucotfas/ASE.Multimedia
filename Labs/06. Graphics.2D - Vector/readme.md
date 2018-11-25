@@ -221,9 +221,10 @@ The Google Charts library supports many more features than our library, as you c
 
 ![Google Charts](media/google-charts.png)
 
-1. Display the horizontal and vertical axes (as shown above).
-2. Display tooltips when the user hovers over the bars in you chart (as shown above).
-3. (optional) Check the [D3.js](https://d3js.org/) library. Reimplement the example above using this library.
+1. Display the value corresponding to a bar when clicking on it. ?  **Hint:** Attach a handler to the `click` event of the bars. 
+2. Display the horizontal and vertical axes (as shown above).
+3. Display tooltips when the user hovers over the bars in you chart (as shown above).
+4. (optional) Check the [D3.js](https://d3js.org/) library. Reimplement the example above using this library.
 
 ##  6. <a name='Bibliography'></a>Bibliography
 -   SVG: <https://developer.mozilla.org/en/docs/Web/SVG>
