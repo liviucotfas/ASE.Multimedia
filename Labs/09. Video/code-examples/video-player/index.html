@@ -18,10 +18,6 @@ Full source code available at: https://github.com/iandevlin/iandevlin.github.io/
 <head>
     <title>Video - Simple Player</title>
     
-    <script 
-        src="https://code.jquery.com/jquery-latest.js"
-        crossorigin="anonymous"></script>
-
     <link 
         rel="stylesheet" 
         href="css/video-player.css">
@@ -42,47 +38,44 @@ Full source code available at: https://github.com/iandevlin/iandevlin.github.io/
 <script type="text/javascript">
     "use strict";
 
-    $(document).ready(function () {
-        var video = document.getElementById("video");
-        var btnStop = $("#btnStop");
+    let video = document.getElementById("video");
+    let btnStop = document.getElementById("btnStop");
+    let btnControls = document.getElementById('btnControls');
 
-        //Play/Pause
-        btnStop.click(function (e) {
+    //Play/Pause
+    btnStop.click(function (e) {
 
-            //prevent the browser from navigating to # (adding # to the url)
-            //https://api.jquery.com/event.preventdefault/
-            //http://stackoverflow.com/questions/30473581/when-to-use-preventdefault-vs-return-false
-            e.preventDefault();
+        //prevent the browser from navigating to # (adding # to the url)
+        //https://api.jquery.com/event.preventdefault/
+        //http://stackoverflow.com/questions/30473581/when-to-use-preventdefault-vs-return-false
+        e.preventDefault();
 
-            if (video.paused) {
-                video.play();
-                btnStop.text("Pause");
-            }
-            else {
-                video.pause();
-                btnStop.text("Play");
-            }
-        });
-
-        //Show/Hide Controls
-        var btnControls = $("#btnControls");
-        btnControls.click(function (e) {
-
-            e.preventDefault();
-
-            if (video.hasAttribute("controls")) {
-                video.removeAttribute("controls")
-                btnControls.text("Show Controls");
-            } else {
-                video.setAttribute("controls", "") 
-                //we put "" because the controls atribute has no value <video controls></video>
-                //https://developer.mozilla.org/en/docs/Web/API/Element/setAttribute
-
-                btnControls.text("Hide Controls");
-            } 
-        });
+        if (video.paused) {
+            video.play();
+            btnStop.text("Pause");
+        }
+        else {
+            video.pause();
+            btnStop.text("Play");
+        }
     });
 
+    //Show/Hide Controls
+    btnControls.addEventListener('click', function (e) {
+
+        e.preventDefault();
+
+        if (video.hasAttribute("controls")) {
+            video.removeAttribute("controls")
+            btnControls.text("Show Controls");
+        } else {
+            video.setAttribute("controls", "") 
+            //we put "" because the controls atribute has no value <video controls></video>
+            //https://developer.mozilla.org/en/docs/Web/API/Element/setAttribute
+
+            btnControls.text("Hide Controls");
+        } 
+    });
 </script>
 </body>
 </html>
