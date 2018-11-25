@@ -21,9 +21,12 @@ class BarChart{
     createSVG(){
         this.svg = document.createElementNS(this.svgns, "svg");
         this.svg.setAttribute('style', 'border: 1px solid black');
+        //or
+        //this.svg.style.borderColor = 'black';
+        //this.svg.style.borderWidth = '1px';
+        //this.svg.style.borderStyle = 'solid';
         this.svg.setAttribute('width', this.width);
         this.svg.setAttribute('height', this.height);
-        this.svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink");
     }
     drawBackground(){
         let rect = document.createElementNS(this.svgns, 'rect');
@@ -37,19 +40,21 @@ class BarChart{
     drawBars(){
         let barWidth = this.width / this.data.length;
 
-        let f = this.height * 0.9 / Math.max.apply(Math, this.data.map(x=>x[1]));
+        let f = this.height / Math.max(...this.data.map(x=>x[1]));
 
         for(let i=0; i<this.data.length; i++){
 
             let label = this.data[i][0];
             let value = this.data[i][1];
 
-            let barHeight = value * f;
+            let barHeight = value * f * 0.9;
             let barY = this.height - barHeight;
             let barX = i * barWidth + barWidth/4;
 
             let bar = document.createElementNS(this.svgns, 'rect');
             bar.setAttribute('class','bar');
+            //or
+            //bar.classList.add('bar');
             bar.setAttribute('x', barX);
             bar.setAttribute('y', barY);
             bar.setAttribute('height', barHeight);

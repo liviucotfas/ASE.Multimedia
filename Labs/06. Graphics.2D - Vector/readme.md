@@ -84,38 +84,36 @@ chart.draw(data, options);
 
 1. Add an `HTML` file called `index.html` and add the code included below.
 
-```HTML
-<!DOCTYPE HTML>
-<html>
+    ```HTML
+    <!DOCTYPE HTML>
+    <html>
 
-<head>
-    <title>SVG Bar Chart</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0">
-</head>
+    <head>
+        <title>SVG Bar Chart</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0">
+    </head>
 
-<body>
-    <div id="barChart" style="height:300px"></div>
-</body>
+    <body>
+        <div id="barChart" style="height:300px"></div>
+    </body>
 
-</html>
-```
+    </html>
+    ```
 
 2. Similar to the Google Charts library, we would want to use our bar chart library as follows. Add the code to the `<head>` section of your page.
 
-```JavaScript
-<script type="text/javascript">
-    window.addEventListener("DOMContentLoaded", function (event) {
+    ```JavaScript
+    <script type="text/javascript">
         let data = [
-            ['Label 1', 1],
-            ['Label 2', 2],
-            ['Label 3', 3],
-        ];
+                ['Label 1', 1],
+                ['Label 2', 2],
+                ['Label 3', 3],
+            ];
 
         let barChart = new BarChart(document.getElementById("barChart"));
         barChart.draw(data);
-    });
-</script>
-```
+    </script>
+    ```
 2. Add a `JavaScript` file called `svg-bar-chart.js` and reference it from the `html` file.
 3. Declare the `BarChart` class and add a `constructor`.
     
@@ -148,7 +146,6 @@ chart.draw(data, options);
         this.svg.setAttribute('style', 'border: 1px solid black');
         this.svg.setAttribute('width', this.width);
         this.svg.setAttribute('height', this.height);
-        this.svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink");
     }
     ```
 6. Add the `drawBackground()` method to the `BarChart` class that will draw a background rectangle for our chart. Call it from the `draw()` method.
@@ -170,25 +167,29 @@ chart.draw(data, options);
     drawBars(){
         let barWidth = this.width / this.data.length;
 
-        let f = this.height * 0.9 / Math.max.apply(Math, this.data.map(x=>x[1]));
+        let f = this.height / Math.max(...this.data.map(x=>x[1]));
 
         for(let i=0; i<this.data.length; i++){
 
             let label = this.data[i][0];
             let value = this.data[i][1];
 
-            let barHeight = value * f;
+            let barHeight = value * f * 0.9;
             let barY = this.height - barHeight;
             let barX = i * barWidth + barWidth/4;
 
             let bar = document.createElementNS(this.svgns, 'rect');
             bar.setAttribute('class','bar');
+            //or
+            //bar.classList.add('bar');
             bar.setAttribute('x', barX);
             bar.setAttribute('y', barY);
             bar.setAttribute('height', barHeight);
             bar.setAttribute('width', barWidth/2);
             bar.setAttribute('fill', '#db4437');
-            this.svg.appendChild(bar); 
+            bar.setAttribute('stroke-width', 2);
+            bar.setAttribute('stroke', 'black');
+            this.svg.appendChild(bar);
         }
     }
     ```
