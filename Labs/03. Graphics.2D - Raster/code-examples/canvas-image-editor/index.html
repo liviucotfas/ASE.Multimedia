@@ -29,16 +29,25 @@
         position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
         max-width:100%; width:auto; height: auto; max-height: 600px">
 
-    <div
-        style="position: fixed; top:0%; left: 50%; transform: translate(-50%);">
-        <label for="fileBrowser">Choose file to upload</label>
+    <div style="
+        background-color: rgba(200,200,200,0.8);
+        padding: 10px;
+        position: fixed; 
+        top:10px; left: 50%; 
+        transform: translate(-50%);">
         <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file -->
         <input type="file" id="fileBrowser" name="fileBrowser" value="Choose image"
             accept="image/*">
     </div>
 
     <!--  Why margin-right" -50%? https://www.w3.org/Style/Examples/007/center.en.html -->
-    <div style="position: fixed; bottom: 0%; left: 50%; transform: translate(-50%); margin-right: -50%;">
+    <div style="
+        background-color: rgba(200,200,200,0.8);
+        padding: 10px;
+        position: fixed; 
+        bottom: 10px; left: 50%; 
+        transform: translate(-50%); 
+        margin-right: -50%;">
 
         <!-- https://developer.mozilla.org/en/docs/Web/Guide/HTML/Using_data_attributes -->
         <button type="button" class="effectType" data-effect="normal">Normal</button>
