@@ -13,10 +13,6 @@
 
     <title>Video - Processing</title>
 
-    <script 
-        src="https://code.jquery.com/jquery-latest.js"
-        crossorigin="anonymous"></script>
-
     <link 
         rel="stylesheet" 
         href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
@@ -47,51 +43,49 @@
     <script type="text/javascript">
     "use strict";
 
-    $(function () {
-        var video = $("#video")[0]; //var video = document.getElementById("video")
-        var canvas = $("#canvasProcesare")[0]; // var canvas = document.getElementById("canvasProcesare");
-        var context = canvas.getContext("2d");
+    var video = document.getElementById("video");
+    var canvas = document.getElementById("canvasProcesare"); 
+    var context = canvas.getContext("2d");
 
-        setInterval(function () {
+    setInterval(function () {
 
-            var W = canvas.width = video.clientWidth;
-            var H = canvas.height = video.clientHeight;
+        var W = canvas.width = video.clientWidth;
+        var H = canvas.height = video.clientHeight;
 
-            context.drawImage(video, 0, 0, W, H);
-            var imageData = context.getImageData(0, 0, W, H);
-            var pixels = imageData.data;
+        context.drawImage(video, 0, 0, W, H);
+        var imageData = context.getImageData(0, 0, W, H);
+        var pixels = imageData.data;
 
-            for (var y = 0; y < H; y++) {
-                for (var x = 0; x < W; x++) {
+        for (var y = 0; y < H; y++) {
+            for (var x = 0; x < W; x++) {
 
-                    //      pixels[i] - Red
-                    //      pixels[i+1] - Green
-                    //      pixels[i+2] - Blue
-                    //      pixels[i+3] - Opacity
-                    var offset = (( W * y) + x) * 4;
+                //      pixels[i] - Red
+                //      pixels[i+1] - Green
+                //      pixels[i+2] - Blue
+                //      pixels[i+3] - Opacity
+                var offset = (( W * y) + x) * 4;
 
-                    //make the first 30 lines darker
-                    if (y < 30) {
-                        pixels[offset] /= 2;
-                        pixels[offset + 1] /= 2;
-                        pixels[offset + 2] /= 2;
-                    }
+                //make the first 30 lines darker
+                if (y < 30) {
+                    pixels[offset] /= 2;
+                    pixels[offset + 1] /= 2;
+                    pixels[offset + 2] /= 2;
                 }
             }
+        }
 
-            context.putImageData(imageData, 0, 0);
+        context.putImageData(imageData, 0, 0);
 
-            context.font = 'bold 16px sans-serif';
-            context.fillStyle = "white";
-            context.fillText("Time: " + video.currentTime.toFixed(1) + "s", 10, 22);
-            //The toFixed() method formats a number using fixed-point notation
-            //Number.prototype.toFixed(): https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed
+        context.font = 'bold 16px sans-serif';
+        context.fillStyle = "white";
+        context.fillText("Time: " + video.currentTime.toFixed(1) + "s", 10, 22);
+        //The toFixed() method formats a number using fixed-point notation
+        //Number.prototype.toFixed(): https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed
 
-        }, 33);
-        //The setTimeout() method calls a function or evaluates an expression after a specified number of milliseconds.
-        //Tip: 1000 ms = 1 second.
-        //33ms ~= 30fps
-    });
+    }, 33);
+    //The setTimeout() method calls a function or evaluates an expression after a specified number of milliseconds.
+    //Tip: 1000 ms = 1 second.
+    //33ms ~= 30fps
 </script>
 </body>
 

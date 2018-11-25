@@ -37,8 +37,6 @@ https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onresize
 //Note: global variables should be avoided. Learn more at: https://www.w3.org/wiki/JavaScript_best_practices#Avoid_globals
 var effect = "normal";
 
-$(document).ready(function () {
-
     $('.effectType').click(function () {
         //Restores the previously saved canvas state
         context.restore();
@@ -57,8 +55,6 @@ $(document).ready(function () {
         draw(video, context);
         //TODO add the code for resizing the canvas here     
     }, false);
-
-});
 
 function draw(video, context) {
     if (video.paused || video.ended) {
