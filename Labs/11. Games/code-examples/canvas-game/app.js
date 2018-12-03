@@ -34,7 +34,7 @@ var app = {
     bricks: []
 }
 
-app.load = function (){    
+app.load = function () {
     //1. Query DOM
     app.canvas = document.getElementById("gameCanvas");
 
@@ -79,15 +79,15 @@ app.touchMove = function (e) {
     }
 }
 
-app.resize = function() {
+app.resize = function () {
     var width = app.canvas.clientWidth;
     var height = app.canvas.clientHeight;
     if (app.canvas.width != width ||
         app.canvas.height != height) {
-            app.screenWidth = app.canvas.width = width;
-            app.screenHeight = app.canvas.height = height;
+        app.screenWidth = app.canvas.width = width;
+        app.screenHeight = app.canvas.height = height;
     }
-  }
+}
 
 app.keyDownHandler = function (e) {
     if (e.keyCode == 39) {
@@ -251,12 +251,14 @@ app.collisionDetection = function () {
     }
 }
 
-
-
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker
-                .register('./service-worker.js')
-                .then(function() { console.log('Service Worker Registered'); });
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("/serviceworker.js")
+        .then(function (registration) {
+            console.log("Service Worker registered with scope:", registration.scope);
+        }).catch(function (err) {
+            console.log("Service worker registration failed:", err);
+        });
 }
+
 
 app.load();

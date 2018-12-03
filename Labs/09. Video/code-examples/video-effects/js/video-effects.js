@@ -37,24 +37,26 @@ https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onresize
 //Note: global variables should be avoided. Learn more at: https://www.w3.org/wiki/JavaScript_best_practices#Avoid_globals
 var effect = "normal";
 
-    $('.effectType').click(function () {
+var video = document.getElementById('video');
+var canvas = document.getElementById('canvasProcessed');
+var context = canvas.getContext('2d');
+
+let buttons = document.getElementsByClassName("effectType");
+for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', function () {
         //Restores the previously saved canvas state
         context.restore();
         //Saves the entire state of the canvas by pushing the current state onto a stack
         context.save();
-        
         //more about the data attribute: https://developer.mozilla.org/en/docs/Web/Guide/HTML/Using_data_attributes
-        window.effect = $(this).data("effect"); //equivalent to $(this)[0].dataset.effect
+        window.effect = this.dataset.effect;
     });
+}
 
-    var video = document.getElementById('video');
-    var canvas = document.getElementById('canvasProcessed');
-    var context = canvas.getContext('2d');
-
-    video.addEventListener('play', function () {
-        draw(video, context);
-        //TODO add the code for resizing the canvas here     
-    }, false);
+video.addEventListener('play', function () {
+    draw(video, context);
+    //TODO add the code for resizing the canvas here     
+}, false);
 
 function draw(video, context) {
     if (video.paused || video.ended) {
@@ -63,7 +65,7 @@ function draw(video, context) {
 
     switch (effect) {
         case "normal":
-            context.drawImage(video, 0, 0, video.clientWidth, video.clientHeight);            
+            context.drawImage(video, 0, 0, video.clientWidth, video.clientHeight);
             break;
         case "rotation":
             var unghi = 3 * Math.PI / 180;
