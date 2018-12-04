@@ -49,10 +49,11 @@
 
     //resize the video
     video.addEventListener('canplay', function(){
-        let W = canvas.width = video.clientWidth;
-        let H = canvas.height = video.clientHeight;
+        canvas.width = video.clientWidth;
+        canvas.height = video.clientHeight;
     });
 
+    //draw the video on the canvas
     function draw () {
         context.drawImage(video, 0, 0);
         let imageData = context.getImageData(0, 0, canvas.width, canvas.height);
