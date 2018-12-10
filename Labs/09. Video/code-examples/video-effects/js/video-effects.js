@@ -34,12 +34,12 @@ https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onresize
 
 "use strict";
 
-//Note: global variables should be avoided. Learn more at: https://www.w3.org/wiki/JavaScript_best_practices#Avoid_globals
-var effect = "normal";
+//Note: global letiables should be avoided. Learn more at: https://www.w3.org/wiki/JavaScript_best_practices#Avoid_globals
+let effect = "normal";
 
-var video = document.getElementById('video');
-var canvas = document.getElementById('canvasProcessed');
-var context = canvas.getContext('2d');
+let video = document.getElementById('video');
+let canvas = document.getElementById('canvasProcessed');
+let context = canvas.getContext('2d');
 
 let buttons = document.getElementsByClassName("effectType");
 for (let i = 0; i < buttons.length; i++) {
@@ -68,9 +68,9 @@ function draw(video, context) {
             context.drawImage(video, 0, 0, video.clientWidth, video.clientHeight);
             break;
         case "rotation":
-            var unghi = 3 * Math.PI / 180;
-            var ct = Math.cos(unghi), st = Math.sin(unghi);
-            var x = video.clientWidth / 2, y = video.clientHeight / 2;
+            let unghi = 3 * Math.PI / 180;
+            let ct = Math.cos(unghi), st = Math.sin(unghi);
+            let x = video.clientWidth / 2, y = video.clientHeight / 2;
             context.transform(ct, -st, st, ct, -x * ct - y * st + x, x * st - y * ct + y);
             context.drawImage(video, 0, 0, video.clientWidth, video.clientHeight);
             context.fillText("Rotation Effect", 10, 10);
@@ -78,11 +78,11 @@ function draw(video, context) {
         case "emboss":
             //further reading http://html5doctor.com/video-canvas-magic/
             context.drawImage(video, 0, 0, video.clientWidth, video.clientHeight);
-            var imageData = context.getImageData(0, 0, video.clientWidth, video.clientHeight);
-            var pixels = imageData.data;
-            var imgDataWidth = imageData.width;
+            let imageData = context.getImageData(0, 0, video.clientWidth, video.clientHeight);
+            let pixels = imageData.data;
+            let imgDataWidth = imageData.width;
 
-            for (var i = 0; i < pixels.length; i++) {
+            for (let i = 0; i < pixels.length; i++) {
                 if (i % 4 != 3) {
                     pixels[i] = 127 + 2 * pixels[i] - pixels[i + 4] - pixels[i + imgDataWidth * 4];
                 }
@@ -92,7 +92,7 @@ function draw(video, context) {
             break;
         case "blackWhite":
             //context.drawImage(video, 0, 0, video.clientWidth, video.clientHeight);
-            //var imageData = context.getImageData(0, 0, video.clientWidth, video.clientHeight);
+            //let imageData = context.getImageData(0, 0, video.clientWidth, video.clientHeight);
             //process the pixels
             //context.putImageData(imageData, 0, 0);
             break;

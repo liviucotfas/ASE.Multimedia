@@ -1,10 +1,10 @@
 "use strict";
 
-var app={
+var app = {
   //UI Controls
-  canvas:null,
-  context:null,
-  visualSelect:null
+  canvas: null,
+  context: null,
+  visualSelect: null
 }
 
 //Details regarding building Visualizations using Web Audio API
@@ -20,57 +20,55 @@ var analyser = audioCtx.createAnalyser();
 
 var drawVisual;
 
-window.addEventListener("resize", function(){
+window.addEventListener("resize", function () {
   //reset canvas width and height to match the display values
   app.canvas.width = app.canvas.clientWidth;
   app.canvas.height = app.canvas.clientHeight;
 });
 
-window.addEventListener("DOMContentLoaded", function (){
-  // set up canvas context for visualizer
-  app.canvas = document.getElementById('visualizer');
-  app.context = app.canvas.getContext("2d");
-  app.visualSelect = document.getElementById("visual");
+// set up canvas context for visualizer
+app.canvas = document.getElementById('visualizer');
+app.context = app.canvas.getContext("2d");
+app.visualSelect = document.getElementById("visual");
 
-  // event listeners to change visualize settings
-  app.visualSelect.onchange = function () {
-    window.cancelAnimationFrame(drawVisual);
-    visualize();
-  }
+// event listeners to change visualize settings
+app.visualSelect.onchange = function () {
+  window.cancelAnimationFrame(drawVisual);
+  visualize();
+}
 
-  //main block for doing the audio recording
-  if (navigator.mediaDevices.getUserMedia) {
+//main block for doing the audio recording
+if (navigator.mediaDevices.getUserMedia) {
 
-    console.log('getUserMedia supported.');
+  console.log('getUserMedia supported.');
 
-    //The MediaDevices.getUserMedia() method prompts the user for permission to use one video and/or one audio input device such as a camera or screensharing and/or a microphone. 
-    //Part of WebRTC API
-    //More details: https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
-    navigator.mediaDevices.getUserMedia(
-      {
-        // constraints - only audio needed for this app
-        audio: true
-      })
-      .then(function (stream) {
-        // Success callback
-        var source = audioCtx.createMediaStreamSource(stream);
-        source.connect(analyser);
-        //analyser.connect(audioCtx.destination);
+  //The MediaDevices.getUserMedia() method prompts the user for permission to use one video and/or one audio input device such as a camera or screensharing and/or a microphone. 
+  //Part of WebRTC API
+  //More details: https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
+  navigator.mediaDevices.getUserMedia(
+    {
+      // constraints - only audio needed for this app
+      audio: true
+    })
+    .then(function (stream) {
+      // Success callback
+      var source = audioCtx.createMediaStreamSource(stream);
+      source.connect(analyser);
+      //analyser.connect(audioCtx.destination);
 
-        visualize();
-      })
-      .catch(function (err) {
-        // Error callback
-        console.log('The following gUM error occured: ' + err);
-      });
-  } else {
-    console.log('getUserMedia not supported on your browser!');
-  }
-});
+      visualize();
+    })
+    .catch(function (err) {
+      // Error callback
+      console.log('The following gUM error occured: ' + err);
+    });
+} else {
+  console.log('getUserMedia not supported on your browser!');
+}
 
 function visualize() {
   var visualSetting = app.visualSelect.value;
-  
+
   if (visualSetting == "frequencybars") {
     //Is an unsigned long value representing the size of the FFT (Fast Fourier Transform) to be used to determine the frequency domain.
     //More info: https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode/fftSize
@@ -79,7 +77,7 @@ function visualize() {
   } else if (visualSetting == "sinewave") {
     analyser.fftSize = 1024;
     drawSineWave();
-  }  
+  }
 }
 
 function drawFrequencyBars() {
@@ -87,61 +85,61 @@ function drawFrequencyBars() {
   //Return value: A long integer value, the request id, that uniquely identifies the entry in the callback list. This is a non-zero value, but you may not make any other assumptions about its value. You can pass this value to window.cancelAnimationFrame() to cancel the refresh callback request.
   //More info: https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame
   drawVisual = requestAnimationFrame(drawFrequencyBars);
-  
+
   app.context.fillStyle = 'rgb(0, 0, 0)';
   app.context.fillRect(0, 0, app.canvas.width, app.canvas.height);
 
   //Is an unsigned long value half that of the FFT size. This generally equates to the number of data values you will have to play with for the visualization.
   var bufferLength = analyser.frequencyBinCount;
-  
+
   //Copies the current frequency data into a Uint8Array array passed into it.
   var dataArray = new Uint8Array(bufferLength);
   analyser.getByteFrequencyData(dataArray); //Value btween 0 and 255
   //http://stackoverflow.com/questions/14789283/what-does-the-fft-data-in-the-web-audio-api-correspond-to/14789992#14789992
-  
+
   var barWidth = app.canvas.width / bufferLength;
   var barHeight;
 
   for (let i = 0; i < bufferLength; i++) {
     barHeight = dataArray[i] + 10;
-    
-    app.context.fillStyle = 'rgb(' + Math.min(barHeight*2,255) + ',50,50)';
+
+    app.context.fillStyle = 'rgb(' + Math.min(barHeight * 2, 255) + ',50,50)';
     app.context.fillRect(barWidth * i, app.canvas.height - barHeight, barWidth, barHeight);
   }
 }
 
-function drawSineWave(){
+function drawSineWave() {
   drawVisual = requestAnimationFrame(drawSineWave);
-  
-        var bufferLength = analyser.fftSize;
-        var dataArray = new Float32Array(bufferLength);
-        analyser.getFloatTimeDomainData(dataArray);
-  
-        app.context.fillStyle = 'rgb(200, 200, 200)';
-        app.context.fillRect(0, 0, app.canvas.width, app.canvas.height);
-  
-        app.context.lineWidth = 2;
-        app.context.strokeStyle = 'rgb(0, 0, 0)';
-  
-        app.context.beginPath();
-  
-        var sliceWidth = app.canvas.width * 1.0 / bufferLength;
-        var x = 0;
-  
-        for (var i = 0; i < bufferLength; i++) {
-  
-          var v = dataArray[i] * 200.0;
-          var y = app.canvas.height / 2 + v;
-  
-          if (i === 0) {
-            app.context.moveTo(x, y);
-          } else {
-            app.context.lineTo(x, y);
-          }
-  
-          x += sliceWidth;
-        }
-  
-        app. context.lineTo(app.canvas.width, app.canvas.height / 2);
-        app.context.stroke();
+
+  var bufferLength = analyser.fftSize;
+  var dataArray = new Float32Array(bufferLength);
+  analyser.getFloatTimeDomainData(dataArray);
+
+  app.context.fillStyle = 'rgb(200, 200, 200)';
+  app.context.fillRect(0, 0, app.canvas.width, app.canvas.height);
+
+  app.context.lineWidth = 2;
+  app.context.strokeStyle = 'rgb(0, 0, 0)';
+
+  app.context.beginPath();
+
+  var sliceWidth = app.canvas.width * 1.0 / bufferLength;
+  var x = 0;
+
+  for (var i = 0; i < bufferLength; i++) {
+
+    var v = dataArray[i] * 200.0;
+    var y = app.canvas.height / 2 + v;
+
+    if (i === 0) {
+      app.context.moveTo(x, y);
+    } else {
+      app.context.lineTo(x, y);
+    }
+
+    x += sliceWidth;
+  }
+
+  app.context.lineTo(app.canvas.width, app.canvas.height / 2);
+  app.context.stroke();
 }
