@@ -4,6 +4,10 @@
 //https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Visualizations_with_Web_Audio_API
 
 class SoundAnalyser {
+  /**
+   * 
+   * @param {HTMLCanvasElement} canvas 
+   */
   constructor(canvas) {
     this.canvas = canvas;
     this.context = this.canvas.getContext("2d");
@@ -15,6 +19,10 @@ class SoundAnalyser {
     //More details: https://developer.mozilla.org/en-US/docs/Web/API/AudioContext/createAnalyser
     this.analyser = this.audioCtx.createAnalyser();
   }
+  /**
+   * 
+   * @param {string} visualSetting 
+   */
   display(visualSetting) {
     window.cancelAnimationFrame(this.drawVisual);
 
@@ -30,11 +38,20 @@ class SoundAnalyser {
       this.drawSineWave();
     }
   }
+
+  /**
+   * 
+   * @param {MediaStream} stream 
+   */
   setStreamSource(stream) {
     const source = this.audioCtx.createMediaStreamSource(stream);
     // Connect the output of the source to the input of the analyser
     source.connect(this.analyser);
   }
+  /**
+   * 
+   * @param {HTMLMediaElement} mediaElement 
+   */
   setMediaElementSource(mediaElement){
     const source = this.audioCtx.createMediaElementSource(mediaElement);
     // Connect the output of the source to the input of the analyser
