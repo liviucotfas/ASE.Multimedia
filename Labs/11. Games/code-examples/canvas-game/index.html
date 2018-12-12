@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
@@ -22,10 +22,15 @@
 </head>
 
 <body>
-    <canvas id="gameCanvas"></canvas>
+    <canvas id="gameCanvas">
+        Canvas not supported :(
+    </canvas>
     <noscript>
         JavaScript is required for running this game.
     </noscript>
     <script src="app.js" async></script>
+    <script>
+        app.load();
+    </script>
 </body>
 </html>

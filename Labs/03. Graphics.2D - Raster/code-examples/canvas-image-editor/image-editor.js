@@ -35,6 +35,9 @@ let app = {
 }
 
 //Drawing methods
+/** Changes the effect
+ * @param {string} effect - The new effect
+ */
 app.changeEffect = function(effect){
     if(effect !== app.currentEffect)
     {
