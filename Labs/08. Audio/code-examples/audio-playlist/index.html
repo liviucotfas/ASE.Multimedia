@@ -43,18 +43,21 @@ https://521dimensions.com/open-source/amplitudejs/docs/
     </div>
 
     <ul id="playlist" lass="list-group">
-        <li data-url="http://www.archive.org/download/bolero_69/Bolero.mp3" class="list-group-item">
+        <li data-url="media/Bolero.mp3" class="list-group-item">
             Ravel - Bolero
         </li>
-        <li data-url="http://www.archive.org/download/MoonlightSonata_755/Beethoven-MoonlightSonata.mp3" class="list-group-item">
+        <li data-url="media/Beethoven-MoonlightSonata.mp3" class="list-group-item">
             Beethoven - Moonlight Sonata
         </li>
-        <li data-url="http://www.archive.org/download/CanonInD_261/CanoninD.mp3" class="list-group-item">
+        <li data-url="media/CanoninD.mp3" class="list-group-item">
             Pachelbel - Canon in D
         </li>
     </ul>
 
-    <script type="text/javascript" src="audio-playlist.js"></script>
+    <canvas id="canvas"></canvas>
+
+    <script src="audio-playlist.js"></script>
+    <script src="sound-analyser-library.js"></script>
     <script>
         app.load();
     </script>

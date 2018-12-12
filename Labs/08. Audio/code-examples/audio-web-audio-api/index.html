@@ -33,13 +33,13 @@
     </form>
   </div>
 
-  <script src="audio-web-audio-api.js"></script>
+  <script src="sound-analyser-library.js"></script>
   <script>
     //Variables
     const canvas = document.getElementById('canvas');
     const visualSelect = document.getElementById("visual");
 
-    const microphoneAnalyser = new MicrophoneAnalyser(canvas);
+    const soundAnalyser = new SoundAnalyser(canvas);
 
     //Methods
     function resizeCanvas() {
@@ -52,11 +52,27 @@
     window.addEventListener("resize", resizeCanvas);
 
     visualSelect.addEventListener("change", function () {
-      microphoneAnalyser.changeVisualisation(this.value);
+      soundAnalyser.display(this.value);
     });
 
     //Start
     resizeCanvas();
+
+    if (navigator.mediaDevices.getUserMedia) {
+      //The MediaDevices.getUserMedia() method prompts the user for permission to use one video and/or one audio input device such as a camera or screensharing and/or a microphone. 
+      //Part of WebRTC API
+      //More details: https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
+      navigator.mediaDevices.getUserMedia(
+        {
+          audio: true // constraints - only audio needed for this app
+        })
+        .then((stream) => {
+          soundAnalyser.setStreamSource(stream);
+        })
+        .catch(function (err) {
+          alert(err.messsage);
+        });
+    }
   </script>
 </body>
 
