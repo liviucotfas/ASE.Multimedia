@@ -37,7 +37,7 @@ app.next = function() {
 
 app.load = function(){
     app.audio = document.getElementById('audio');
-    app.audioTime = document.querySelector('#controls span');
+    app.audioTime = document.querySelector('#audioTime');
     app.btnPlayPause = document.getElementById('btnPlayPause');
 
     // Iterate over the playlist in order to associate events
@@ -67,12 +67,14 @@ app.load = function(){
 
     // Handle the play event
     app.audio.addEventListener('play', function(){
-        app.btnPlayPause.textContent = '||';
+        app.btnPlayPause.children[0].classList.remove('fa-play');
+        app.btnPlayPause.children[0].classList.add('fa-pause');
     });
 
     // Handle the pause event
     app.audio.addEventListener('pause', function(){
-        app.btnPlayPause.textContent = '>';
+        app.btnPlayPause.children[0].classList.add('fa-play');
+        app.btnPlayPause.children[0].classList.remove('fa-pause');
     });
 
     // Handle the ended event
