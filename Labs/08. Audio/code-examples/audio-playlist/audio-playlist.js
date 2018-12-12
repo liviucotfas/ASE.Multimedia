@@ -1,6 +1,6 @@
 'use strict';
 
-const app={
+const app = {
     audio: null,
     tracks: [], //track list
     //UI
@@ -10,13 +10,13 @@ const app={
 
 /** Plays a song 
  * @param {string} url - The url of the song 
- */ 
-app.play = function(url) {
+ */
+app.play = function (url) {
     let elements = document.querySelectorAll('#playlist li.active');
     for (let i = 0; i < elements.length; i++) {
         elements[i].classList.remove('active');
-     }
-    
+    }
+
     let selectedElement = document.querySelector('#playlist li[data-url="' + url + '"]');
     selectedElement.classList.add('active');
 
@@ -26,7 +26,7 @@ app.play = function(url) {
 }
 
 /** Changes the current song */
-app.next = function() {
+app.next = function () {
     let index = app.tracks.indexOf(app.audio.src) + 1;
     if (index >= app.tracks.length) {
         index = 0;
@@ -35,14 +35,14 @@ app.next = function() {
     app.play(app.tracks[index]);
 }
 
-app.load = function(){
+app.load = function () {
     app.audio = document.getElementById('audio');
     app.audioTime = document.querySelector('#audioTime');
     app.btnPlayPause = document.getElementById('btnPlayPause');
 
     // Iterate over the playlist in order to associate events
     let elements = document.querySelectorAll('#playlist li');
-    for(let i = 0; i<elements.length; i++){
+    for (let i = 0; i < elements.length; i++) {
 
         let url = elements[i].dataset.url;
         app.tracks.push(url);
@@ -53,10 +53,10 @@ app.load = function(){
     }
 
     // Handle the timeupdate event
-    app.audio.addEventListener('timeupdate', function(){
+    app.audio.addEventListener('timeupdate', function () {
         let currentTime = app.audio.currentTime;
         let duration = app.audio.duration;
-        
+
         if (app.audio.duration) {
             app.audioTime.textContent = app.secondsToString(currentTime) + ' / ' + app.secondsToString(duration);
         }
@@ -66,13 +66,13 @@ app.load = function(){
     });
 
     // Handle the play event
-    app.audio.addEventListener('play', function(){
+    app.audio.addEventListener('play', function () {
         app.btnPlayPause.children[0].classList.remove('fa-play');
         app.btnPlayPause.children[0].classList.add('fa-pause');
     });
 
     // Handle the pause event
-    app.audio.addEventListener('pause', function(){
+    app.audio.addEventListener('pause', function () {
         app.btnPlayPause.children[0].classList.add('fa-play');
         app.btnPlayPause.children[0].classList.remove('fa-pause');
     });
@@ -82,7 +82,7 @@ app.load = function(){
 
     // Handle the click event btnPlayPause
     document.getElementById('btnPlayPause').addEventListener('click', function () {
-        if(app.audio.src === ""){
+        if (app.audio.src === "") {
             app.play(app.tracks[0]);
         } else {
             if (app.audio.paused) {
@@ -102,7 +102,7 @@ app.load = function(){
     // Handle the click event on btnNext
     document.getElementById('btnNext').addEventListener('click', app.next);
 
-   
+
 };
 
 /**
@@ -110,7 +110,7 @@ app.load = function(){
 * @param {number} seconds The time in seconds.
 * @return {string} The time in minutes and/or seconds.
 **/
-app.secondsToString = function(seconds) {
+app.secondsToString = function (seconds) {
     let min = 0;
     let sec = Math.floor(seconds);
     let time = 0;
