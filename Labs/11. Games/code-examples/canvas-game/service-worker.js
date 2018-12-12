@@ -4,7 +4,6 @@ var filesToCache = [
   'index.html',
   'app.js',
   'styles.css',
-  'lib/jquery-3.2.1.min.js',
   'img/icons/icon-152x152.png',
   'img/icons/icon-192x192.png'
 ];

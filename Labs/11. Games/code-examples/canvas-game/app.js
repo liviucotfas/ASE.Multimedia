@@ -260,5 +260,4 @@ if ("serviceWorker" in navigator) {
         });
 }
 
-
 app.load();
