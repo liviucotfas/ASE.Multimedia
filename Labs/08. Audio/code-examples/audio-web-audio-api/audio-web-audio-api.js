@@ -1,14 +1,19 @@
 "use strict";
 
-let app = {
+//Details regarding building Visualizations using Web Audio API
+//https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Visualizations_with_Web_Audio_API
+
+const app = {
   //UI Controls
   canvas: null,
   context: null,
   visualSelect: null
 }
 
-//Details regarding building Visualizations using Web Audio API
-//https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Visualizations_with_Web_Audio_API
+// set up canvas context for visualizer
+app.canvas = document.getElementById('visualizer');
+app.context = app.canvas.getContext("2d");
+app.visualSelect = document.getElementById("visual");
 
 // set up forked web audio context
 //The AudioContext interface represents an audio-processing graph built from audio modules linked together, each represented by an AudioNode. An audio context controls both the creation of the nodes it contains and the execution of the audio processing, or decoding. You need to create an AudioContext before you do anything else, as everything happens inside a context.
@@ -26,16 +31,12 @@ window.addEventListener("resize", function () {
   app.canvas.height = app.canvas.clientHeight;
 });
 
-// set up canvas context for visualizer
-app.canvas = document.getElementById('visualizer');
-app.context = app.canvas.getContext("2d");
-app.visualSelect = document.getElementById("visual");
-
 // event listeners to change visualize settings
-app.visualSelect.onchange = function () {
+app.visualSelect.addEventListener("change", function () {
+  audioCtx.resume()
   window.cancelAnimationFrame(drawVisual);
   visualize();
-}
+});
 
 //main block for doing the audio recording
 if (navigator.mediaDevices.getUserMedia) {
@@ -55,8 +56,6 @@ if (navigator.mediaDevices.getUserMedia) {
       let source = audioCtx.createMediaStreamSource(stream);
       source.connect(analyser);
       //analyser.connect(audioCtx.destination);
-
-      visualize();
     })
     .catch(function (err) {
       // Error callback
@@ -89,7 +88,7 @@ function drawFrequencyBars() {
   app.context.fillStyle = 'rgb(0, 0, 0)';
   app.context.fillRect(0, 0, app.canvas.width, app.canvas.height);
 
-  //Is an unsigned long value half that of the FFT size. This generally equates to the number of data values you will have to play with for the visualization.
+  //Is an unsigned long value half that of the FFT size. 
   let bufferLength = analyser.frequencyBinCount;
 
   //Copies the current frequency data into a Uint8Array array passed into it.
