@@ -1,6 +1,5 @@
-
-var cacheName = 'bricks-final-1';
-var filesToCache = [
+const cacheName = 'bricks-final-1';
+const filesToCache = [
   'index.html',
   'app.js',
   'styles.css',
