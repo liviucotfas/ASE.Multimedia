@@ -2,10 +2,8 @@
 
 'use strict';
 
-var app = {
+const app = {
     canvas: null,
-    screenWidth: window.innerWidth,
-    screenHeight: window.innerHeight,
     //Brick settings
     brickColumnCount: 5,
     brickRowCount: 3,
@@ -50,7 +48,7 @@ app.load = function () {
     //Paddle settings
     app.paddleX = (app.canvas.width - app.paddleWidth) / 2;
 
-    var brickTotalWidth = (app.screenWidth - 2 * app.brickOffsetLeft) / app.brickColumnCount;
+    var brickTotalWidth = (app.canvas.width - 2 * app.brickOffsetLeft) / app.brickColumnCount;
     app.brickWidth = brickTotalWidth - app.brickPadding;
 
     //Game data
@@ -84,8 +82,8 @@ app.resize = function () {
     var height = app.canvas.clientHeight;
     if (app.canvas.width != width ||
         app.canvas.height != height) {
-        app.screenWidth = app.canvas.width = width;
-        app.screenHeight = app.canvas.height = height;
+        app.canvas.width = width;
+        app.canvas.height = height;
     }
 }
 
