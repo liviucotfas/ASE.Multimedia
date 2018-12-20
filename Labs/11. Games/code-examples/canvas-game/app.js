@@ -4,6 +4,7 @@
 
 const app = {
     canvas: null,
+    context: null,
     //Brick settings
     brickColumnCount: 5,
     brickRowCount: 3,
@@ -33,9 +34,9 @@ const app = {
 }
 
 app.load = function () {
-    //1. Query DOM
-    app.canvas = document.getElementById("gameCanvas");
-
+    app.canvas = document.getElementById('gameCanvas');
+    app.context = app.canvas.getContext('2d');
+   
     app.resize();
 
     //Ball settings
@@ -48,22 +49,22 @@ app.load = function () {
     //Paddle settings
     app.paddleX = (app.canvas.width - app.paddleWidth) / 2;
 
-    var brickTotalWidth = (app.canvas.width - 2 * app.brickOffsetLeft) / app.brickColumnCount;
+    const brickTotalWidth = (app.canvas.width - 2 * app.brickOffsetLeft) / app.brickColumnCount;
     app.brickWidth = brickTotalWidth - app.brickPadding;
 
     //Game data
-    for (var r = 0; r < app.brickRowCount; r++) {
+    for (let r = 0; r < app.brickRowCount; r++) {
         app.bricks[r] = [];
-        for (var c = 0; c < app.brickColumnCount; c++) {
+        for (let c = 0; c < app.brickColumnCount; c++) {
             app.bricks[r][c] = { x: 0, y: 0, status: 1 };
         }
     }
 
     //Attach events
-    app.canvas.addEventListener("touchmove", app.touchMove, { passive: true });
-    document.addEventListener("keydown", app.keyDownHandler, false);
-    document.addEventListener("keyup", app.keyUpHandler, false);
-    document.addEventListener("mousemove", app.mouseMoveHandler, false);
+    app.canvas.addEventListener('touchmove', app.touchMove, { passive: true });
+    document.addEventListener('keydown', app.keyDownHandler, false);
+    document.addEventListener('keyup', app.keyUpHandler, false);
+    document.addEventListener('mousemove', app.mouseMoveHandler, false);
 
     //Start drawing
     app.draw();
@@ -71,15 +72,15 @@ app.load = function () {
 
 //Events
 app.touchMove = function (e) {
-    var relativeX = e.touches[0].clientX;
+    const relativeX = e.touches[0].clientX;
     if (relativeX > 0 && relativeX < app.canvas.width) {
         paddleX = relativeX - paddleWidth / 2;
     }
 }
 
 app.resize = function () {
-    var width = app.canvas.clientWidth;
-    var height = app.canvas.clientHeight;
+    const width = app.canvas.clientWidth;
+    const height = app.canvas.clientHeight;
     if (app.canvas.width != width ||
         app.canvas.height != height) {
         app.canvas.width = width;
@@ -106,7 +107,7 @@ app.keyUpHandler = function (e) {
 }
 
 app.mouseMoveHandler = function (e) {
-    var relativeX = e.clientX - app.canvas.offsetLeft;
+    const relativeX = e.clientX - app.canvas.offsetLeft;
     if (relativeX > 0 && relativeX < app.canvas.width) {
         app.paddleX = relativeX - app.paddleWidth / 2;
     }
@@ -114,65 +115,53 @@ app.mouseMoveHandler = function (e) {
 
 //Drawing functions
 app.drawBall = function () {
-    var ctx = app.canvas.getContext("2d");
-
-    ctx.beginPath();
-    ctx.arc(app.x, app.y, app.ballRadius, 0, Math.PI * 2);
-    ctx.fillStyle = "#FF0000";
-    ctx.fill();
-    ctx.closePath();
+    app.context.beginPath();
+    app.context.arc(app.x, app.y, app.ballRadius, 0, Math.PI * 2);
+    app.context.fillStyle = '#FF0000';
+    app.context.fill();
+    app.context.closePath();
 }
 
 app.drawPaddle = function () {
-    var ctx = app.canvas.getContext("2d");
-
-    ctx.beginPath();
-    ctx.rect(app.paddleX, app.canvas.height - app.paddleHeight, app.paddleWidth, app.paddleHeight);
-    ctx.fillStyle = "#0095DD";
-    ctx.fill();
-    ctx.closePath();
-    //equivalen to ctx.fillRect
+    app.context.beginPath();
+    app.context.rect(app.paddleX, app.canvas.height - app.paddleHeight, app.paddleWidth, app.paddleHeight);
+    app.context.fillStyle = '#0095DD';
+    app.context.fill();
+    app.context.closePath();
+    //equivalen to app.context.fillRect
 }
 app.drawBricks = function () {
-    var ctx = app.canvas.getContext("2d");
-
-    for (var r = 0; r < app.brickRowCount; r++) {
-        for (var c = 0; c < app.brickColumnCount; c++) {
+    for (let r = 0; r < app.brickRowCount; r++) {
+        for (let c = 0; c < app.brickColumnCount; c++) {
             if (app.bricks[r][c].status == 1) {
-                var brickX = (c * (app.brickWidth + app.brickPadding)) + app.brickOffsetLeft;
-                var brickY = (r * (app.brickHeight + app.brickPadding)) + app.brickOffsetTop;
+                const brickX = (c * (app.brickWidth + app.brickPadding)) + app.brickOffsetLeft;
+                const brickY = (r * (app.brickHeight + app.brickPadding)) + app.brickOffsetTop;
                 app.bricks[r][c].x = brickX;
                 app.bricks[r][c].y = brickY;
-                ctx.beginPath();
-                ctx.rect(brickX, brickY, app.brickWidth, app.brickHeight);
-                ctx.fillStyle = "#0095DD";
-                ctx.fill();
-                ctx.closePath();
+                app.context.beginPath();
+                app.context.rect(brickX, brickY, app.brickWidth, app.brickHeight);
+                app.context.fillStyle = '#0095DD';
+                app.context.fill();
+                app.context.closePath();
             }
         }
     }
 }
 app.drawScore = function () {
-    var ctx = app.canvas.getContext("2d");
-
-    ctx.font = "16px Arial";
-    ctx.fillStyle = "#000000";
-    ctx.fillText("Score: " + app.score, 8, 20);
+    app.context.font = '16px Arial';
+    app.context.fillStyle = '#000000';
+    app.context.fillText('Score: ' + app.score, 8, 20);
 }
 app.drawLives = function () {
-    var ctx = app.canvas.getContext("2d");
-
-    ctx.font = "16px Arial";
-    ctx.fillStyle = "#000000";
-    ctx.fillText("Lives: " + app.lives, app.canvas.width - 65, 20);
+    app.context.font = '16px Arial';
+    app.context.fillStyle = '#000000';
+    app.context.fillText('Lives: ' + app.lives, app.canvas.width - 65, 20);
 }
 
 app.draw = function () {
-
     app.resize()
     //clear the canvas before each frame
-    var ctx = app.canvas.getContext("2d");
-    ctx.clearRect(0, 0, app.canvas.width, app.canvas.height);
+    app.context.clearRect(0, 0, app.canvas.width, app.canvas.height);
     //draw the elements
     app.drawBricks();
     app.drawBall();
@@ -200,7 +189,7 @@ app.draw = function () {
         else {
             app.lives--;
             if (!app.lives) {
-                alert("GAME OVER");
+                alert('GAME OVER');
                 document.location.reload();
             }
             else {
@@ -231,16 +220,16 @@ app.draw = function () {
 }
 
 app.collisionDetection = function () {
-    for (var r = 0; r < app.brickRowCount; r++) {
-        for (var c = 0; c < app.brickColumnCount; c++) {
-            var b = app.bricks[r][c];
+    for (let r = 0; r < app.brickRowCount; r++) {
+        for (let c = 0; c < app.brickColumnCount; c++) {
+            const b = app.bricks[r][c];
             if (b.status == 1) {
                 if (app.x > b.x && app.x < b.x + app.brickWidth && app.y > b.y && app.y < b.y + app.brickHeight) {
                     app.dy = -app.dy;
                     b.status = 0;
                     app.score++;
                     if (app.score == app.brickColumnCount * app.brickRowCount) {
-                        alert("YOU WIN, CONGRATS!");
+                        alert('YOU WIN, CONGRATS!');
                         document.location.reload();
                     }
                 }
@@ -249,11 +238,11 @@ app.collisionDetection = function () {
     }
 }
 
-if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("/serviceworker.js")
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/serviceworker.js')
         .then(function (registration) {
-            console.log("Service Worker registered with scope:", registration.scope);
+            console.log('Service Worker registered with scope:', registration.scope);
         }).catch(function (err) {
-            console.log("Service worker registration failed:", err);
+            console.log('Service worker registration failed:', err);
         });
 }
