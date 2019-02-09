@@ -20,6 +20,7 @@
 - drawing various shapes on the `canvas` (rectangles, lines, etc.);
 - loading an image using drag and drop;
 - loading an image using the file picker;
+- loading an image using the clipboard;
 - drawing the histogram for an image;
 - applying various effects on an image;
 - saving the content of the canvas as a `*.png` or `.jpeg` file.
@@ -48,6 +49,7 @@ https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API
 
 2. Check the source code in the `code-examples.zip` archive or in the `code-examples` folder. 
 3. Complete the assignments included in the ```html``` file. 
+4. Allow the user to load images using `Ctrl+C` and `Ctrl+V` (hint: use the [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API)).
 
 ###  4.3. <a name='Assignment3'></a>Assignment 3
 1. Try the "canvas-processing-2.html" sample by clicking [here](https://ase-multimedia.azurewebsites.net/canvas-processing-2). 
